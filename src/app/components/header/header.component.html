@@ -36,34 +36,12 @@
                                 <i class="ti-bag"></i>
                             </a>
                         </div>
-                        <a id="search_1"><i class="ti-search"></i></a>
+                        <a routerLink="/search/dummy">
+                            <a id="search_1"><i class="ti-search"></i></a>
+                        </a>
                     </div>
                 </nav>
             </div>
         </div>
     </div>
-
-    <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" #searchInput name="searchInput" class="form-control" placeholder="Search Here">
-                <a routerLink="/search/{{searchQuery}}">
-                    <button type="submit" class="btn" (keypress)="inputValueChanged(searchInput.value)">search</button>
-                </a>
-                <span class="ti-close" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div>
-
-    <!-- <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <a routerLink="/search" type="submit">
-                    <input type="text" #searchInput (keydown)="inputValueChanged(searchInput.value)" name="searchInput" class="form-control" placeholder="Search Here">
-                    <button type="submit" class="btn">search</button>
-                </a>
-                <span class="ti-close" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div> -->
 </header>

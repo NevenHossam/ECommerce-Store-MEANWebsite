@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     this.prdName = activatedRouteObj.snapshot.params['name'];
-    console.log(this.prdName);
   }
 
   ngOnInit(){}
@@ -29,6 +28,5 @@ export class HeaderComponent implements OnInit {
   inputValueChanged(searchInputValue){
     this.searchQuery = searchInputValue;
     this.inputValueChangedEvent.emit(this.searchQuery);
-    console.log(this.searchQuery);
   }
 }

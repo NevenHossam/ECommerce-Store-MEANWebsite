@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, DoCheck, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit, OnChanges {
+export class SearchComponent implements OnInit {
   productsList;
   prdName;
 
@@ -17,22 +17,14 @@ export class SearchComponent implements OnInit, OnChanges {
     private router: Router
   ) {
     this.prdName = activatedRouteObj.snapshot.params['name'];
-    this.productsList = this.getProductDetails(this.prdName);
   }
 
-  ngOnChanges() {
-    this.prdName = this.activatedRouteObj.snapshot.params['name'];
-    this.getProductDetails(this.prdName);
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.productsList = this.getProductDetails(this.prdName);
-  }
-
-  getProductDetails(name) {
-    this.prdService.getProductByName(this.prdName).subscribe(
+  inputValueChanged(searchInputValue){
+    this.prdService.getProductByName(searchInputValue).subscribe(
       (res) => {
-        console.log(this.productsList);
+        console.log(res);
         this.productsList = res;
       },
       (err) => console.log(err)

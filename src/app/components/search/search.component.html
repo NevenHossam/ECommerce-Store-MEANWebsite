@@ -1,3 +1,12 @@
+<div class="search_input" id="search_input_box">
+    <div class="container">
+        <form class="d-flex justify-content-between search-inner">
+            <input type="text" (keydown)="inputValueChanged(searchInput.value)" #searchInput name=" searchInput " class="form-control" placeholder="Search Here " />
+            <button type="submit" class="btn" (keyenter)="inputValueChanged(searchInput.value)"></button>
+        </form>
+    </div>
+</div>
+
 <body class="bg-white">
     <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
@@ -23,7 +32,7 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <!-- Products -->
-                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let prd of productsList; let i = index">
+                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let prd of productsList">
                             <app-product-item [product]="prd" class="col-lg-4 col-sm-6"></app-product-item>
                         </ng-container>
                     </div>
