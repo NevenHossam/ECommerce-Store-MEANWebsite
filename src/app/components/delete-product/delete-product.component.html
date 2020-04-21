@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<div class="container">
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Are you sure you wanna delete this product?
+                    </h4>
+                    <a type="button" class="close" href="/products">
+                        &times;
+                    </a>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="single_category_product">
+                        <div class="single_category_img">
+                            <img src="assets/img/category/category_1.png" height="350px" width="50px" />
+                            <div class="category_product_text">
+                                <h5>{{ product.title }}</h5>
+                                <h6>{{ product.details }}</h6>
+                                <del *ngIf="product.promotion">${{ product.price }}</del>
+                                <p>${{ getPrice() }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-success text-light" (click)="deleteProduct()" href="/products">
+                        Delete
+                    </a>
+                    <a type="button" class="btn btn-danger" href="/products">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

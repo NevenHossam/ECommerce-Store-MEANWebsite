@@ -1,0 +1,73 @@
+<body class="bg-white">
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <p>Home/Shop/Single product</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+    <!--================Single Product Area =================-->
+    <div class="product_image_area section_padding">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-5">
+                    <div class="product_slider_img">
+                        <div id="vertical">
+                            <div data-thumb="img/product_details/prodect_details_1.png">
+                                <div class="item-medium-1__alert" *ngIf="product.promotion">Sale</div>
+                                <img src="assets/img/product_details/prodect_details_1.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>{{ product.title }}</h3>
+                        <del *ngIf="product.promotion">${{ product.price }}</del>
+                        <h2>${{ getPrice() }}</h2>
+                        <ul class="list">
+                            <li>
+                                <a class="active">
+                                    <span>Category</span> : {{ product.category }}
+                                </a>
+                            </li>
+                            <li *ngIf="product.quantity > 0">
+                                <a> <span>Availibility</span> : In Stock</a>
+                            </li>
+                            <li *ngIf="product.quantity == 0">
+                                <a> <span>Availibility</span> : Out Of Stock</a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span> Description </span> : {{ product.details }}
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span> Quantity </span> : {{ product.quantity }}
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="card_area">
+                            <div class="add_to_cart">
+                                <a class="btn_3">add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Single Product Area =================-->
+</body>
