@@ -1,1 +1,163 @@
-<p>register works!</p>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mx-auto">
+                <div id="first">
+                    <div class="myform form ">
+                        <div class="logo mb-3">
+                            <div class="col-md-12 text-center">
+                                <h1>Registeration</h1>
+                            </div>
+                        </div>
+                        <!-- class="form-horizontal" -->
+                        <form method="post" action="">
+                            <div class="form-group">
+                                <label for="name" class="cols-sm-2 control-label">Name</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="cols-sm-2 control-label">Email</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="email" id="email" placeholder="Your Email" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile" class="cols-sm-2 control-label required">Mobile</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Your Mobile" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nationality" class="cols-sm-2 control-label">Nationality</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
+                                        <select class="form-control" name="nationality" id="nationality" placeholder="Please select your Nationality">
+                                            <option>-select-</option>
+                                            <option>India</option>
+                                            <option>Singapore</option>
+                                            <option>Malaysia</option>
+                                            <option>USA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country" class="cols-sm-2 control-label">Country of Residence</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
+                                        <select class="form-control" name="country" id="country" placeholder="Please select your Country">
+                                            <option>-select-</option>
+                                            <option>India</option>
+                                            <option>Singapore</option>
+                                            <option>Malaysia</option>
+                                            <option>USA</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <button type="button" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#signup").click(function() {
+            $("#first").fadeOut("fast", function() {
+                $("#second").fadeIn("fast");
+            });
+        });
+
+        $("#signin").click(function() {
+            $("#second").fadeOut("fast", function() {
+                $("#first").fadeIn("fast");
+            });
+        });
+
+
+
+        $(function() {
+            $("form[name='login']").validate({
+                rules: {
+
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+
+                    }
+                },
+                messages: {
+                    email: "Please enter a valid email address",
+
+                    password: {
+                        required: "Please enter password",
+
+                    }
+
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        });
+
+
+
+        $(function() {
+
+            $("form[name='registration']").validate({
+                rules: {
+                    firstname: "required",
+                    lastname: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    }
+                },
+
+                messages: {
+                    firstname: "Please enter your firstname",
+                    lastname: "Please enter your lastname",
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long"
+                    },
+                    email: "Please enter a valid email address"
+                },
+
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
+</body>
