@@ -24,7 +24,6 @@ export class SearchComponent implements OnInit {
   inputValueChanged(searchInputValue){
     this.prdService.getProductByName(searchInputValue).subscribe(
       (res) => {
-        console.log(res);
         this.productsList = res;
       },
       (err) => console.log(err)
