@@ -12,6 +12,7 @@ import { SearchComponent } from './components/search/search.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'product/add', component: AddProductComponent },
   { path: 'product/edit/:id', component: EditProductComponent },
   { path: 'product/delete/:id', component: DeleteProductComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
