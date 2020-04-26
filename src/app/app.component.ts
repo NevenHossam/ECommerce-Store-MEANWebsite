@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+let x =6;
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ECommerceAngular';
+  
+ constructor() {
+  console.log(x);   
+  x=9;
+ }
+  // ngOnDestroy(){
+  //   console.log("Destroy");
+  //   debugger;
+  // }
 }

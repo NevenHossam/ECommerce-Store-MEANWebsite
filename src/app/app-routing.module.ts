@@ -12,6 +12,7 @@ import { SearchComponent } from './components/search/search.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'shoppingCart', component: ShoppingCartComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
-  { path: 'search/:name', component: SearchComponent }
+  { path: 'search/:name', component: SearchComponent },
+  { path: 'orders', component:OrdersComponent}
 ];
 
 @NgModule({

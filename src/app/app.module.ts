@@ -26,6 +26,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { PromotedProductsComponent } from './components/promoted-products/promoted-products.component';
+import { OrdersService } from './services/orders.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { PromotedProductsComponent } from './components/promoted-products/promot
     FormsModule,
     Ng2SearchPipeModule
   ],
-  providers: [ProductsService],
+  providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
