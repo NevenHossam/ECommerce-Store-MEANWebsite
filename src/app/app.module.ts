@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 import { ProductsService } from './services/products.service';
 
@@ -26,6 +27,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { PromotedProductsComponent } from './components/promoted-products/promoted-products.component';
+import { CheckoutOrderComponent } from './components/checkout-order/checkout-order.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -47,14 +50,17 @@ import { PromotedProductsComponent } from './components/promoted-products/promot
     AddProductComponent,
     EditProductComponent,
     DeleteProductComponent,
-    PromotedProductsComponent
+    PromotedProductsComponent,
+    CheckoutOrderComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    TooltipModule 
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

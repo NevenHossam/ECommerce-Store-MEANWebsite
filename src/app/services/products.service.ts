@@ -8,6 +8,7 @@ import { productModel } from '../models/productModel';
 export class ProductsService {
   private baseUrl = 'http://localhost:3000/api/products';
   allProducts;
+  shoppingCartListOfProduct: productModel[] = [];
 
   constructor(private client: HttpClient) {}
 

@@ -61,7 +61,7 @@
                 <div class="instagram_photo_iner">
                     <!-- Products -->
                     <ng-container class="col-lg-4 col-sm-6" *ngFor="let prd of promotedProductsList; let i = index">
-                        <app-promoted-products [product]="prd" class="single_instgram_photo" *ngIf="i <= 5"></app-promoted-products>
+                        <app-promoted-products [product]="prd" class="single_instgram_photo" *ngIf="i < 5"></app-promoted-products>
                     </ng-container>
                 </div>
             </div>

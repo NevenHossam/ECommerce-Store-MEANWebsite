@@ -20,4 +20,9 @@ export class ProductItemComponent implements OnInit {
       ? this.product.price - this.product.promotion
       : this.product.price;
   }
+
+  addProductToCart(){
+    this.prdService.shoppingCartListOfProduct.push(this.product);
+    console.log(this.prdService.shoppingCartListOfProduct);
+  }
 }

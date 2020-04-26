@@ -13,27 +13,44 @@
                         <ul class="navbar-nav p-4">
                             <li class="nav-item">
                                 <a class="" routerLink="/profile">
-                                    <i class="fa fa-user"></i> Profile
+                                    <span tooltip="Profile" placement="bottom" show-delay="500">
+                                        <i class="fa fa-user"></i>
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="" routerLink="/home">
-                                    <i class="fa fa-home"></i> Home
+                                    <span tooltip="Home" placement="bottom" show-delay="500">
+                                        <i class="fa fa-home"></i> 
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="" routerLink="/products">
-                                    <i class="fa fa-tshirt"></i> Products
+                                    <span tooltip="Products" placement="bottom" show-delay="500">
+                                        <i class="fa fa-tshirt"></i> 
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="" routerLink="/shoppingCart">
-                                    <i class="fa fa-money-bill-wave"></i> Checkout
+                                <a class="" routerLink="/checkout">
+                                    <span tooltip="Checkout" placement="bottom" show-delay="500">
+                                        <i class="fa fa-money-bill-wave"></i> 
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="" routerLink="/contact">
-                                    <i class="fa fa-address-book"></i> Contact
+                                    <span tooltip="Contact" placement="bottom" show-delay="500">
+                                        <i class="fa fa-address-book"></i> 
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" routerLink="/home">
+                                    <span tooltip="Logout" placement="bottom" show-delay="500">
+                                        <i class="fa fa-sign-out-alt"></i> 
+                                    </span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -46,17 +63,14 @@
                                     <i class="fa fa-address-card"></i> Register
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="" routerLink="/home">
-                                    <i class="fa fa-sign-out-alt"></i> Logout
-                                </a>
-                            </li>
                         </ul>
                     </div>
-                    <div class="hearer_icon d-flex">
+                    <div class="hearer_icon d-flex p-2">
                         <div class="dropdown cart">
                             <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-bag"></i>
+                                <span tooltip="Shopping Cart" placement="bottom" show-delay="500">
+                                    <app-shopping-cart></app-shopping-cart>
+                                </span>
                             </a>
                         </div>
                         <a routerLink="/search/dummy">

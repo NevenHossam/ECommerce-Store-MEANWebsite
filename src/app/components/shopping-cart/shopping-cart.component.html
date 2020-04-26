@@ -1,1 +1,57 @@
-<p>shopping-cart works!</p>
+<app-dropdown>
+    <!-- header -->
+    <ng-container class="dropDownHeader">
+        <!-- <div class="dropdown__header"> -->
+        <div class="image image--small" style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
+            <div>
+                <div class="notification notification--danger">
+                    {{ shoppingCartListOfProducts?.length }}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- body -->
+    <ng-container class="dropDownBody">
+        <!-- <div class="dropdown__body"> -->
+        <!-- items -->
+        <div style="height: 300px; overflow: auto;">
+            <ul class="dropdown__items list list--vr-separator">
+                <li *ngFor="let prd of shoppingCartListOfProducts" class="dropdown__item list__item">
+                    <!-- item small 2 -->
+                    <div class="item-small-1">
+                        <!-- item data -->
+                        <div class="item-small-1__data">
+                            <!-- title -->
+                            <a href="" class="item-small-1__title">{{ prd.title }}</a>
+                            <!-- price -->
+                            <span class="item-small-1__description">
+                                1 X ${{ getProductFinalPrice(prd) }}
+                            </span>
+                        </div>
+                        <!-- item image -->
+                        <div class="item-small-1__image-box">
+                            <a class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.image + ')'">
+                            </a>
+                            <a class="item-small-1__action">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- totals -->
+        <div class="separator"></div>
+        <div class="block">
+            <span class="lable">Total:</span>
+            <span class="lable">${{ getTotalPriceOfShoppingCart() }}</span>
+        </div>
+        <!-- actions -->
+        <div class="block list list--hr">
+            <a class="list-item btn btn--gray" href="">View Cart</a>
+            <a class="list-item btn btn--primary" href="">Checkout</a>
+        </div>
+        <!-- </div> -->
+    </ng-container>
+</app-dropdown>
