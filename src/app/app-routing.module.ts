@@ -13,6 +13,8 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CheckoutOrderComponent } from './components/checkout-order/checkout-order.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { OrderItemComponent } from './components/order-item/order-item.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'checkout', component: CheckoutOrderComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
-  { path: 'search/:name', component: SearchComponent }
+  { path: 'search/:name', component: SearchComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'orders/:id', component: OrderItemComponent }
 ];
 
 @NgModule({

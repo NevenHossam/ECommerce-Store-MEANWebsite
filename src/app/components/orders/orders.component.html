@@ -1,1 +1,53 @@
-<p>orders works!</p>
+<body class="bg-white">
+    <!--================Cart Area =================-->
+    <section class="cart_area section_padding">
+      <div class="container">
+        <div class="cart_inner">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Order No</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Total Cost</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">Confirm</th>
+                  <th scope="col">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container class="col-lg-4 col-sm-6" *ngFor="let order of ordersList; let i = index">
+                  <!-- <app-order-item [order]="order" ></app-order-item> -->
+                  <tr>
+                    <td>
+                      {{i+1}}
+                    </td>
+                    <td>
+                      {{order.date}}
+                    </td>
+                    <td>
+                      {{order.status}}
+                    </td>
+                    <td>
+                      {{order.cost}}
+                    </td>
+                    <td>
+                      <input class="btn btn-primary" type="button" value="Details"  routerLink="/orders/{{ order._id }}"/>
+                    </td>
+                    <td>
+                      <input class="btn btn-danger" type="button" value="Confirm"  (click)="confirmOrder(order)"/>
+                    </td>
+                    <td>
+                      <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
+                    </td>
+                  </tr>
+                
+                </ng-container>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>

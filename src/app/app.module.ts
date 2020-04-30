@@ -29,6 +29,10 @@ import { DeleteProductComponent } from './components/delete-product/delete-produ
 import { PromotedProductsComponent } from './components/promoted-products/promoted-products.component';
 import { CheckoutOrderComponent } from './components/checkout-order/checkout-order.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { CommonModule } from '@angular/common';
+import { OrderItemComponent } from './components/order-item/order-item.component';
+import { OrdersService } from './services/orders.service';
+import { OrderDeleteComponent } from './components/order-delete/order-delete.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +56,9 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     DeleteProductComponent,
     PromotedProductsComponent,
     CheckoutOrderComponent,
-    DropdownComponent
+    DropdownComponent,
+    OrderItemComponent,
+    OrderDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +66,10 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     HttpClientModule,
     FormsModule,
     Ng2SearchPipeModule,
-    TooltipModule 
+    TooltipModule,
+    CommonModule 
   ],
-  providers: [ProductsService],
+  providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

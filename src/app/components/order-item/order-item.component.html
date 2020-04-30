@@ -1,0 +1,40 @@
+<body class="bg-white">
+    <section class="cart_area section_padding">
+        <div class="container">
+          <div class="cart_inner">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Product No</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Details</th>
+                  </tr>
+                </thead>
+                    <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of products;let i=index;">
+                        <tr>
+                            <td>
+                                {{i+1}}
+                            </td>
+                            <td>
+                                <img src="{{product.Product.image}}" width="100px" height="100px"/>
+                                <br/>
+                                {{product.Product.title}}
+                            </td>
+                            <td>
+                                {{product.Product.price}}
+                            </td>
+                            <td>
+                                {{product.count}}
+                            </td>
+                        </tr>
+                    </ng-container>
+                </table>
+                </div>
+                </div>
+                </div>
+                </section>
+                
+                </body>
