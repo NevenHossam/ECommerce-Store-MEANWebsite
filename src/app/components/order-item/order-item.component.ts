@@ -28,6 +28,7 @@ export class OrderItemComponent implements OnInit {
    this.service.getOrder(id).subscribe(
      (res:orderModel)=>{
         this.order = res;
+        this.order.cost = this.calculateCost(this.order);
         this.products = this.order.products;
         console.log(this.products);
         debugger;
@@ -38,5 +39,11 @@ export class OrderItemComponent implements OnInit {
    ) 
    return this.order;
   }
-
+  calculateCost(order:orderModel){
+    let cost=0
+    order.products.forEach(item => {
+      cost+=item.Product.price * item.count;
+    });
+    return cost;
+  }
 }

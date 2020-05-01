@@ -3,6 +3,10 @@
         <div class="container">
           <div class="cart_inner">
             <div class="table-responsive">
+              <h3>
+                Orderd By:
+                {{order.user.username}}
+              </h3>
               <table class="table">
                 <thead>
                   <tr>
@@ -10,7 +14,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Price</th>
                     <th scope="col">Count</th>
-                    <th scope="col">Details</th>
+                    <th scope="col">Cost</th>
                   </tr>
                 </thead>
                     <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of products;let i=index;">
@@ -29,8 +33,17 @@
                             <td>
                                 {{product.count}}
                             </td>
+                            <td>
+                              {{product.Product.price * product.count}} 
+                            </td>
                         </tr>
                     </ng-container>
+                    <div style="width: 100%;text-align: right;">
+                      
+                      <h3 style="text-align: right;">
+                        Total : {{order.cost}}
+                      </h3>
+                    </div>
                 </table>
                 </div>
                 </div>

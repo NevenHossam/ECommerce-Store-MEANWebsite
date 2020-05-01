@@ -6,20 +6,22 @@ import {orderModel} from '../models/orderModel';
   providedIn: 'root'
 })
 export class OrdersService {
-  private baseUrl = 'http://localhost:3000/api/orders/';
+  private baseUrl = 'http://localhost:3000/api/';
 
   constructor(private client:HttpClient) { }
   getAll(){
-    let res =  this.client.get(this.baseUrl, {observe:'body'});
-    return res;
+    return  this.client.get(this.baseUrl+'orders/', {observe:'body'});
   }
   getOrder(id){
-    let res = this.client.get(this.baseUrl+id, {observe: 'body'});
-    return res;    
+    return this.client.get(this.baseUrl+`orders/${id}`, {observe: 'body'});
   }
   updateOrder(id, order){
-    let res =  this.client.patch(this.baseUrl+id, order,{observe:'body', responseType:'text'});
-    return res;
+    return  this.client.patch(this.baseUrl+`orders/${id}`, order,{observe:'body'});
   }
-
+  deleteOrder(id){
+    return this.client.delete(this.baseUrl+`orders/${id}`, {observe: 'body'});
+  }
+  getUserOrders(id){
+    return  this.client.get(this.baseUrl+`users/${id}/orders`,{observe:'body', responseType:'text'});
+  }
 }
