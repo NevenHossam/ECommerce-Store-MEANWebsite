@@ -32,7 +32,6 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrdersService } from './services/orders.service';
-import { OrderDeleteComponent } from './components/order-delete/order-delete.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +57,6 @@ import { OrderDeleteComponent } from './components/order-delete/order-delete.com
     CheckoutOrderComponent,
     DropdownComponent,
     OrderItemComponent,
-    OrderDeleteComponent
   ],
   imports: [
     BrowserModule,
