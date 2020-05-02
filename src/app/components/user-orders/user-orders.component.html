@@ -65,10 +65,7 @@
                       <input class="btn btn-primary" type="button" value="Details"  routerLink="/orders/{{ order._id }}"/>
                     </td>
                     <td>
-                      <input class="btn btn-success" type="button" value="Accept"  (click)="confirmOrder(order)"/>
-                    </td>
-                    <td>
-                      <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
+                      <input class="btn btn-danger" type="button" value="Cancel" (click)="deleteOrder(order)"/>
                     </td>
                   </tr>
                 

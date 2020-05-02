@@ -32,6 +32,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { OrdersService } from './services/orders.service';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { OrdersService } from './services/orders.service';
     CheckoutOrderComponent,
     DropdownComponent,
     OrderItemComponent,
+    UserOrdersComponent,
   ],
   imports: [
     BrowserModule,

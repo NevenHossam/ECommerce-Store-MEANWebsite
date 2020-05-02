@@ -22,6 +22,9 @@ export class OrdersService {
     return this.client.delete(this.baseUrl+`orders/${id}`, {observe: 'body'});
   }
   getUserOrders(id){
-    return  this.client.get(this.baseUrl+`users/${id}/orders`,{observe:'body', responseType:'text'});
+    return  this.client.get(this.baseUrl+`orders/user/${id}`,{observe:'body'});
+  }
+  insertOrder(order){
+    return this.client.post(this.baseUrl+'orders/', order, {observe:'body'} );
   }
 }
