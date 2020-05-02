@@ -31,7 +31,7 @@
               <thead>
                 <tr>
                   <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
+                  <!-- <th scope="col">Ordered By</th> -->
                   <th scope="col">Date</th>
                   <th scope="col">Status</th>
                   <th scope="col">Total Cost</th>
@@ -43,12 +43,9 @@
                   *ngFor="let order of pendingList;
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status =='pending'">
                     <td>
                       {{i+1}}
-                    </td>
-                    <td>
-                      {{order.user.username}}
                     </td>
                     <td>
                       <!-- {{order.date}} -->
@@ -87,7 +84,7 @@
               <thead>
                 <tr>
                   <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
+                  <!-- <th scope="col">Ordered By</th> -->
                   <th scope="col">Date</th>
                   <th scope="col">Status</th>
                   <th scope="col">Total Cost</th>
@@ -99,13 +96,13 @@
                   *ngFor="let order of acceptedList; 
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status =='accepted'">
                     <td>
                       {{i+1}}
                     </td>
-                    <td>
+                    <!-- <td>
                       {{order.user.username}}
-                    </td>
+                    </td> -->
                     <td>
                       <!-- {{order.date}} -->
                       {{ order.date | date  }}
@@ -150,7 +147,7 @@
               <thead>
                 <tr>
                   <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
+                  <!-- <th scope="col">Ordered By</th> -->
                   <th scope="col">Date</th>
                   <th scope="col">Status</th>
                   <th scope="col">Total Cost</th>
@@ -162,13 +159,13 @@
                   *ngFor="let order of rejectedList; 
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status =='rejected'">
                     <td>
                       {{i+1}}
                     </td>
-                    <td>
+                    <!-- <td>
                       {{order.user.username}}
-                    </td>
+                    </td> -->
                     <td>
                       <!-- {{order.date}} -->
                       {{ order.date | date  }}

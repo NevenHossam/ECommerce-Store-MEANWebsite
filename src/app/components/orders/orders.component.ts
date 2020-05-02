@@ -77,8 +77,8 @@ export class OrdersComponent implements OnInit {
     this.service.updateOrder(orderId, status).subscribe(
       (res:orderModel)=>{
         order.status = status.status;
-        console.log(res._id);
-        console.log(orderId);
+        // console.log(res._id);
+        // console.log(orderId);
       },
       err=>{
         console.log(err);

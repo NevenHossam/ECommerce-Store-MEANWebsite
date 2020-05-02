@@ -43,7 +43,7 @@
                   *ngFor="let order of pendingList;
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status=='pending'">
                     <td>
                       {{i+1}}
                     </td>
@@ -102,7 +102,7 @@
                   *ngFor="let order of acceptedList; 
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status=='accepted'">
                     <td>
                       {{i+1}}
                     </td>
@@ -165,7 +165,7 @@
                   *ngFor="let order of rejectedList; 
                   let i = index"
                 >
-                  <tr>
+                  <tr *ngIf="order.status=='rejected'">
                     <td>
                       {{i+1}}
                     </td>
