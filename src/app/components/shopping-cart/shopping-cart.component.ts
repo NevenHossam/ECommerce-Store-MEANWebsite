@@ -10,29 +10,32 @@ import { OrdersService } from 'src/app/services/orders.service';
   styleUrls: ['./shopping-cart.component.css'],
 })
 export class ShoppingCartComponent implements OnInit {
-  @Input() shoppingCartListOfProducts: productModel[];
+  @Input() shoppingCartListOfProducts = [];
   shoppingCartTotal = 0;
   orderCheckout: {
-    user: string,
-    products: [{}]
+    user: string;
+    products: [{}];
   };
 
   constructor(
     private prdService: ProductsService,
-    private orderService: OrdersService) { }
+    private orderService: OrdersService
+  ) {}
 
   ngOnInit(): void {
-    this.shoppingCartListOfProducts = this.prdService.shoppingCartListOfProduct;
+    this.shoppingCartListOfProducts = JSON.parse(
+      localStorage.getItem('shoppingCartProducts')
+    );
 
     this.orderCheckout = {
-      user: "5eabaa55cac73750843b4950",
-      products: [{}]
+      user: '5eabaa55cac73750843b4950',
+      products: [{}],
     };
   }
 
   getTotalPriceOfShoppingCart() {
     this.shoppingCartTotal = 0;
-    this.shoppingCartListOfProducts.forEach(prd => {
+    this.shoppingCartListOfProducts.forEach((prd) => {
       this.shoppingCartTotal += this.getFinalPriceForAproduct(prd);
     });
     return this.shoppingCartTotal;
@@ -43,24 +46,29 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   getFinalPriceForAproduct(product: productModel) {
-    return product.promotion ? product.price - product.promotion : product.price;
+    return product.promotion
+      ? product.price - product.promotion
+      : product.price;
   }
 
   insertOrder() {
-    this.orderCheckout.products[0] = { Product: this.shoppingCartListOfProducts[0]._id, count: 1 };
+    this.orderCheckout.products[0] = {
+      Product: this.shoppingCartListOfProducts[0]._id,
+      count: 1,
+    };
     for (let i = 1; i < this.shoppingCartListOfProducts.length; i++) {
       const element = this.shoppingCartListOfProducts[i];
       this.orderCheckout.products.push({ Product: element._id, count: 1 });
     }
     debugger;
     this.orderService.insertOrder(this.orderCheckout).subscribe(
-      res => {
-        console.log(res)
+      (res) => {
+        console.log(res);
       },
-      err => {
-        console.log(err)
+      (err) => {
+        console.log(err);
       }
-    )
+    );
     // this.shoppingCartListOfProducts.forEach(p=>{
     //   debugger;
 
@@ -69,5 +77,11 @@ export class ShoppingCartComponent implements OnInit {
     //     count:1
     //   });
     // })
+  }
+
+  deleteProductFromShoppingCart(prd){
+    let prdToRemove = this.shoppingCartListOfProducts.findIndex(p=>p._id == prd._id);
+    this.shoppingCartListOfProducts.splice(prdToRemove, 1);
+    localStorage.setItem('shoppingCartProducts', JSON.stringify(this.shoppingCartListOfProducts));
   }
 }

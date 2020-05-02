@@ -18,7 +18,6 @@ export class ProductDetailsComponent implements OnInit {
   ) {
     this.productId = activatedRouteObj.snapshot.params['id'] || 0;
     this.product = this.getProductDetails();
-    debugger;
   }
 
   ngOnInit(): void {

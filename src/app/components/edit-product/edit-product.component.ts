@@ -2,6 +2,7 @@ import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { productModel } from 'src/app/models/productModel';
 import { ActivatedRoute, Router } from '@angular/router';
+import { productCategoryModel } from 'src/app/models/productCategories';
 
 @Component({
   selector: 'app-edit-product',
@@ -19,7 +20,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     promotion: 0,
     isDeleted: false,
     title: '',
-  };;
+  };
   @Input() productId;
   disabledFlag;
 
@@ -29,11 +30,12 @@ export class EditProductComponent implements OnInit, DoCheck {
     private router: Router
   ) {
     this.productId = activatedRouteObj.snapshot.params['id'] || '0';
-    this.getProduct();
     this.disabledFlag = this.product.isPromoted;
   }
-
-  ngOnInit(): void {}
+  
+  ngOnInit(): void {
+    this.getProduct();
+  }
 
   ngDoCheck() {
     if (this.product.isPromoted === 'true') this.disabledFlag = false;
@@ -41,8 +43,10 @@ export class EditProductComponent implements OnInit, DoCheck {
   }
 
   getProduct() {
-    this.prdService.getSpecificProduct(this.productId).subscribe(
-      (res) => (this.product = res[0]),
+     this.prdService.getSpecificProduct(this.productId).subscribe(
+      (res) => {
+        this.product = res[0];
+      },
       (err) => console.log(err)
     );
   }

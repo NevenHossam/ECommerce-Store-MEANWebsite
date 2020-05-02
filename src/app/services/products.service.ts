@@ -1,16 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { productModel } from '../models/productModel';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductsService {
+export class ProductsService implements OnInit {
   private baseUrl = 'http://localhost:3000/api/products';
   allProducts;
-  shoppingCartListOfProduct: productModel[] = [];
+  shoppingCartListOfProducts = [];
 
   constructor(private client: HttpClient) {}
+
+  ngOnInit() {
+    this.shoppingCartListOfProducts = JSON.parse(
+      localStorage.getItem('shoppingCartProducts')
+    );
+  }
 
   getAllProducts() {
     return this.client.get(this.baseUrl, { observe: 'body' });
@@ -36,8 +42,8 @@ export class ProductsService {
       observe: 'body',
     });
   }
-  getPromotedProducts(){
-    return this.client.get(this.baseUrl + '/promoted', {observe:'body'});
+  getPromotedProducts() {
+    return this.client.get(this.baseUrl + '/promoted', { observe: 'body' });
   }
 
   addNewProduct(prd: productModel) {
