@@ -72,3 +72,9 @@ form .error {
 #second {
     display: none;
 }
+
+#validation{
+    display: block;
+    color: #ff0000;
+    margin-left: 25px;
+}

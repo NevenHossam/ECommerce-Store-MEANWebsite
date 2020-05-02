@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TooltipModule } from 'ng2-tooltip-directive';
+//import { TooltipModule } from 'ng2-tooltip-directive';
 
 import { ProductsService } from './services/products.service';
 
@@ -67,7 +67,7 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
     FormsModule,
     Ng2SearchPipeModule,
     TooltipModule,
-    CommonModule 
+    CommonModule
   ],
   providers: [ProductsService, OrdersService],
   bootstrap: [AppComponent]

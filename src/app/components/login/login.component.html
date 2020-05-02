@@ -13,20 +13,31 @@
                                 <h1>Login</h1>
                             </div>
                         </div>
-                        <form action="" method="post" name="login">
+                        <form action="" method="post" (ngSubmit)="Login()">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input type="email" name="email" class="form-control" id="email"
+                                    aria-describedby="emailHelp" placeholder="Enter email"
+                                    [(ngModel)]="loginObject.email">
+                            </div>
+                            <div id="validation" *ngIf="loginObject.email.length < 7">
+                                Enter Valid mail..
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                                <input type="password" name="password" id="password" class="form-control"
+                                    aria-describedby="emailHelp" placeholder="Enter Password"
+                                    [(ngModel)]="loginObject.password">
+                            </div>
+                            <div id="validation" *ngIf="loginObject.password.length < 5">
+                                Enter Valid password..
                             </div>
                             <div class="form-group">
                                 <p class="text-center">By signing up you accept our <a>Terms Of Use</a></p>
                             </div>
                             <div class="col-md-12 text-center ">
-                                <button type="submit" class=" btn btn-primary btn-lg btn-block login-button">Login</button>
+                                <button type="submit"
+                                    class=" btn btn-primary btn-lg btn-block login-button">Login</button>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="login-or">
@@ -35,7 +46,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <p class="text-center">Don't have account? <a routerLink="/register" id="signup">Sign up here</a></p>
+                                <p class="text-center">Don't have account? <a routerLink="/register" id="signup">Sign up
+                                        here</a></p>
                             </div>
                         </form>
                     </div>
@@ -44,21 +56,21 @@
         </div>
     </div>
     <script>
-        $("#signup").click(function() {
-            $("#first").fadeOut("fast", function() {
+        $("#signup").click(function () {
+            $("#first").fadeOut("fast", function () {
                 $("#second").fadeIn("fast");
             });
         });
 
-        $("#signin").click(function() {
-            $("#second").fadeOut("fast", function() {
+        $("#signin").click(function () {
+            $("#second").fadeOut("fast", function () {
                 $("#first").fadeIn("fast");
             });
         });
 
 
 
-        $(function() {
+        $(function () {
             $("form[name='login']").validate({
                 rules: {
 
@@ -80,7 +92,7 @@
                     }
 
                 },
-                submitHandler: function(form) {
+                submitHandler: function (form) {
                     form.submit();
                 }
             });
@@ -88,7 +100,7 @@
 
 
 
-        $(function() {
+        $(function () {
 
             $("form[name='registration']").validate({
                 rules: {
@@ -114,7 +126,7 @@
                     email: "Please enter a valid email address"
                 },
 
-                submitHandler: function(form) {
+                submitHandler: function (form) {
                     form.submit();
                 }
             });

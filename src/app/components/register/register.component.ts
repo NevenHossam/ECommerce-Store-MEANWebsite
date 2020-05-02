@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { userRegisterModel } from 'src/app/models/RegisterModel';
+import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
+  @Input() newRegisterUser: userRegisterModel = {
+    username: '',
+    email: '',
+    password: '',
+    gender: 'male'
+  }
+  constructor(private userServices: UsersService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  RegisterNewUser() {
+    if (this.newRegisterUser.username.length >= 6 &&
+      this.newRegisterUser.username.length < 16 &&
+      this.newRegisterUser.password.length > 4 &&
+      this.newRegisterUser.email.length >= 7) {
+      this.userServices.insertUser(this.newRegisterUser)
+        .subscribe((response) => {
+          console.log(response);
+          this.router.navigate(['home']);
+        }, (err) => {
+          console.log(err);
+        });
+      // redirect to products
+      // add user's token and id to cookie
+    }
   }
 
 }

@@ -12,22 +12,22 @@ import { OrdersService } from 'src/app/services/orders.service';
 export class ShoppingCartComponent implements OnInit {
   @Input() shoppingCartListOfProducts: productModel[];
   shoppingCartTotal = 0;
-  orderCheckout:{
+  orderCheckout: {
     user: string,
-    products:[{}]
+    products: [{}]
   };
 
   constructor(
     private prdService: ProductsService,
-    private orderService: OrdersService) {}
+    private orderService: OrdersService) { }
 
   ngOnInit(): void {
     this.shoppingCartListOfProducts = this.prdService.shoppingCartListOfProduct;
-    
-    this.orderCheckout ={
-      user: "5e982719d169965138fe18f5",
-      products:[{}]
-  };
+
+    this.orderCheckout = {
+      user: "5eabaa55cac73750843b4950",
+      products: [{}]
+    };
   }
 
   getTotalPriceOfShoppingCart() {
@@ -42,28 +42,28 @@ export class ShoppingCartComponent implements OnInit {
     return this.getFinalPriceForAproduct(prd);
   }
 
-  getFinalPriceForAproduct(product: productModel){
-    return product.promotion ? product.price  - product.promotion : product.price;
+  getFinalPriceForAproduct(product: productModel) {
+    return product.promotion ? product.price - product.promotion : product.price;
   }
 
-  insertOrder(){
-    this.orderCheckout.products[0] = {Product:this.shoppingCartListOfProducts[0]._id,count:1};
+  insertOrder() {
+    this.orderCheckout.products[0] = { Product: this.shoppingCartListOfProducts[0]._id, count: 1 };
     for (let i = 1; i < this.shoppingCartListOfProducts.length; i++) {
       const element = this.shoppingCartListOfProducts[i];
-      this.orderCheckout.products.push({Product:element._id,count:1});
+      this.orderCheckout.products.push({ Product: element._id, count: 1 });
     }
     debugger;
     this.orderService.insertOrder(this.orderCheckout).subscribe(
-      res=>{
+      res => {
         console.log(res)
       },
-      err=>{
+      err => {
         console.log(err)
       }
     )
     // this.shoppingCartListOfProducts.forEach(p=>{
     //   debugger;
-      
+
     //   this.orderCheckout.products.push({
     //     Product:p,
     //     count:1
