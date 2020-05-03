@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { productModel } from 'src/app/models/productModel';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,8 +13,12 @@ export class ProductItemComponent implements OnInit {
   @Input() product: productModel;
   prdsList;
   shoppingCartListOfProduct = [];
+  currentUser;
 
-  constructor(private prdService: ProductsService) {}
+  constructor(
+    private prdService: ProductsService,
+    public userService: UsersService
+  ) {}
 
   ngOnInit(): void {}
 

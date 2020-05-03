@@ -4,8 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { CommonModule } from '@angular/common';
 
 import { ProductsService } from './services/products.service';
+import { UsersService } from './services/users.service';
+import { OrdersService } from './services/orders.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,9 +31,7 @@ import { EditProductComponent } from './components/edit-product/edit-product.com
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { PromotedProductsComponent } from './components/promoted-products/promoted-products.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { CommonModule } from '@angular/common';
 import { OrderItemComponent } from './components/order-item/order-item.component';
-import { OrdersService } from './services/orders.service';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
 @NgModule({
@@ -65,9 +66,9 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
     FormsModule,
     Ng2SearchPipeModule,
     TooltipModule,
-    CommonModule
+    CommonModule,
   ],
-  providers: [ProductsService, OrdersService],
-  bootstrap: [AppComponent]
+  providers: [ProductsService, OrdersService, UsersService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

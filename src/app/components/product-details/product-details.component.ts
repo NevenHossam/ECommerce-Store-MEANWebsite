@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   @Input() productId;
   product;
+  shoppingCartListOfProduct = [];
 
   constructor(
     private prdService: ProductsService,
@@ -33,5 +34,16 @@ export class ProductDetailsComponent implements OnInit {
 
   getPrice(){
     return this.product.promotion ? this.product.price - this.product.promotion : this.product.price
+  }
+
+  addProductToCart() {
+    this.shoppingCartListOfProduct = JSON.parse(
+      localStorage.getItem('shoppingCartProducts')
+    );
+    this.shoppingCartListOfProduct.push(this.product);
+    localStorage.setItem(
+      'shoppingCartProducts',
+      JSON.stringify(this.shoppingCartListOfProduct)
+    );
   }
 }

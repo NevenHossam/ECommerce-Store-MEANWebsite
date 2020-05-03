@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { productModel } from 'src/app/models/productModel';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private prdService: ProductsService,
     private activatedRouteObj: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public userService: UsersService
   ) {
     this.prdName = activatedRouteObj.snapshot.params['name'];
   }

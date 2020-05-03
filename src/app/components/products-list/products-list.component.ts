@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-products-list',
@@ -12,7 +13,7 @@ export class ProductsListComponent implements OnInit {
   categoryName;
   showOptionNumber: number;
 
-  constructor(private prdService: ProductsService) {
+  constructor(private prdService: ProductsService, public userService: UsersService) {
     this.getPromotedProduts();
   }
 

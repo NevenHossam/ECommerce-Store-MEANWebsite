@@ -19,7 +19,7 @@
             <br *ngIf="!product.promotion">
             <p>${{ getPrice() }}</p>
         </div>
-        <div class="text-center">
+        <div class="text-center" *ngIf="userService.getCurrentUser().role == 'admin'">
             <a class="btn btn-secondary m-1" routerLink="/product/edit/{{ product._id }}">
                 Edit
             </a>

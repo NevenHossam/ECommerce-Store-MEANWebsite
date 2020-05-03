@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow" *ngIf="userService.getCurrentUser().role == 'member'">
                         <div class="l_w_title">
                             <h3>Product Categories</h3>
                         </div>
@@ -46,7 +46,7 @@
                         </div>
                     </aside>
 
-                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow" *ngIf="userService.getCurrentUser().role == 'admin'">
                         <div class="l_w_title">
                             <h3>Manage Product</h3>
                         </div>

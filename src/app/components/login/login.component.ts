@@ -7,36 +7,42 @@ import * as jwtDecoder from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   @Input() loginObject: LoginModel = {
     email: '',
-    password: ''
+    password: '',
   };
+  invalidLogin: boolean = true;
+  currentUser;
 
-  constructor(private userServices: UsersService,
-    private router: Router) {
+  constructor(private userServices: UsersService, private router: Router) {
     console.log(this.loginObject);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   Login() {
-    if (this.loginObject.password.length > 4 &&
-      this.loginObject.email.length >= 7) {
-      this.userServices.loginUser(this.loginObject)
-        .subscribe((response: { accessToken: '', userId: '' }) => {
-          console.log(response);
+    if (
+      this.loginObject.password.length > 4 &&
+      this.loginObject.email.length >= 7
+    ) {
+      this.userServices.loginUser(this.loginObject).subscribe(
+        (response: { accessToken: ''; userId: '' }) => {
           let { accessToken } = response;
-          let a7a = jwtDecoder(accessToken);
-          console.log(a7a);
+          console.log(this.loginObject);
+          let jwtDec = jwtDecoder(accessToken);
+          localStorage.setItem('token', JSON.stringify(accessToken));
+          localStorage.setItem('currentuser', JSON.stringify(this.userServices.getCurrentUser()));
+          this.invalidLogin = false;
           this.router.navigate(['home']);
-        }, (err) => {
+        },
+        (err) => {
           console.log(err);
-        });
+          this.invalidLogin = true;
+        }
+      );
     }
   }
-
 }
