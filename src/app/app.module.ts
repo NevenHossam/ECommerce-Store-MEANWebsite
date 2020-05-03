@@ -27,7 +27,6 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { PromotedProductsComponent } from './components/promoted-products/promoted-products.component';
-import { CheckoutOrderComponent } from './components/checkout-order/checkout-order.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { CommonModule } from '@angular/common';
 import { OrderItemComponent } from './components/order-item/order-item.component';
@@ -55,7 +54,6 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
     EditProductComponent,
     DeleteProductComponent,
     PromotedProductsComponent,
-    CheckoutOrderComponent,
     DropdownComponent,
     OrderItemComponent,
     UserOrdersComponent,

@@ -2,7 +2,6 @@ import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { productModel } from 'src/app/models/productModel';
 import { ActivatedRoute, Router } from '@angular/router';
-import { productCategoryModel } from 'src/app/models/productCategories';
 
 @Component({
   selector: 'app-edit-product',

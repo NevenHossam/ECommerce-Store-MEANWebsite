@@ -12,7 +12,6 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { DeleteProductComponent } from './components/delete-product/delete-product.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CheckoutOrderComponent } from './components/checkout-order/checkout-order.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: 'contact', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'checkout', component: CheckoutOrderComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
   { path: 'search/:name', component: SearchComponent },
   { path: 'orders', component: OrdersComponent },

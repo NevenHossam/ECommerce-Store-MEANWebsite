@@ -9,7 +9,7 @@ import {Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  ordersList :Array<orderModel>;
+  ordersList :Array<orderModel>=[];
   pendingList :Array<orderModel> = new Array<orderModel>();
   acceptedList :Array<orderModel> = new Array<orderModel>();
   rejectedList :Array<orderModel> = new Array<orderModel>();
@@ -23,7 +23,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ordersList = this.getAllOrders();
-
   }
 
   getAllOrders(){

@@ -1,209 +1,223 @@
 <body class="bg-white">
+    <!--================Home Banner Area =================-->
+    <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <p>Home / Orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
     <!--================Cart Area =================-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-  <script>
-    var i=0;
-    </script>
-  <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link  active" href="#pending" role="tab" data-toggle="tab" aria-selected="true">Pending</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#accepted" role="tab" data-toggle="tab">Accepted</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#rejected" role="tab" data-toggle="tab">Rejected</a>
-  </li>
-</ul>
 
-<!-- Tab panes -->
-<div class="tab-content">
+    <div class="container">
+        <script>
+            var i = 0;
+        </script>
+        <ul class="nav nav-tabs m-1" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link  active" href="#pending" role="tab" data-toggle="tab" aria-selected="true">Pending</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#accepted" role="tab" data-toggle="tab">Accepted</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#rejected" role="tab" data-toggle="tab">Rejected</a>
+            </li>
+        </ul>
 
-  <div role="tabpanel" class="tab-pane active" id="pending">
-    <section class="cart_area section_padding">
-      <div class="container">
-        <div class="cart_inner">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Total Cost</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container
-                  class="col-lg-4 col-sm-6" 
-                  *ngFor="let order of pendingList;
-                  let i = index"
-                >
-                  <tr *ngIf="order.status=='pending'">
-                    <td>
-                      {{i+1}}
-                    </td>
-                    <td>
-                      {{order.user.username}}
-                    </td>
-                    <td>
-                      <!-- {{order.date}} -->
-                      {{ order.date | date  }}
+        <!-- Tab panes -->
+        <div class="tab-content">
 
-                    </td>
-                    <td>
-                      {{order.status}}
-                    </td>
-                    <td>
-                      {{order.cost}}
-                    </td>
-                    <td>
-                      <input class="btn btn-primary" type="button" value="Details"  routerLink="/orders/{{ order._id }}"/>
-                    </td>
-                    <td>
-                      <input class="btn btn-success" type="button" value="Accept"  (click)="confirmOrder(order)"/>
-                    </td>
-                    <td>
-                      <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
-                    </td>
-                  </tr>
-                
-                </ng-container>
-              </tbody>
-            </table>
-          </div>
+            <div role="tabpanel" class="tab-pane active" id="pending">
+                <section class="cart_area " *ngIf="pendingList.length > 0">
+                    <div class="container">
+                        <div class="cart_inner">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Order No</th>
+                                            <th scope="col">Ordered By</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Total Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let order of pendingList;
+                let i = index">
+                                            <tr *ngIf="order.status=='pending'">
+                                                <td>
+                                                    {{i+1}}
+                                                </td>
+                                                <td>
+                                                    {{order.user.username}}
+                                                </td>
+                                                <td>
+                                                    <!-- {{order.date}} -->
+                                                    {{ order.date | date }}
+
+                                                </td>
+                                                <td>
+                                                    {{order.status}}
+                                                </td>
+                                                <td>
+                                                    {{order.cost}}
+                                                </td>
+                                                <td>
+                                                    <input class="btn btn-primary" type="button" value="Details" routerLink="/orders/{{ order._id }}" />
+                                                </td>
+                                                <td>
+                                                    <input class="btn btn-success" type="button" value="Accept" (click)="confirmOrder(order)" />
+                                                </td>
+                                                <td>
+                                                    <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)" />
+                                                </td>
+                                            </tr>
+
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="tab-content alert alert-danger m-2" *ngIf="pendingList.length == 0">
+                    No Pending Orders to display
+                </section>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade" id="accepted">
+                <section class="cart_area " *ngIf="acceptedList.length > 0">
+                    <div class="container">
+                        <div class="cart_inner">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Order No</th>
+                                            <th scope="col">Ordered By</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Total Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let order of acceptedList; 
+                let i = index">
+                                            <tr *ngIf="order.status=='accepted'">
+                                                <td>
+                                                    {{i+1}}
+                                                </td>
+                                                <td>
+                                                    {{order.user.username}}
+                                                </td>
+                                                <td>
+                                                    <!-- {{order.date}} -->
+                                                    {{ order.date | date }}
+
+                                                </td>
+                                                <td>
+                                                    {{order.status}}
+                                                </td>
+                                                <td>
+                                                    {{order.cost}}
+                                                </td>
+                                                <td>
+                                                    <input class="btn btn-primary" type="button" value="Details" routerLink="/orders/{{ order._id }}" />
+                                                </td>
+                                                <!-- <td>
+                    <input class="btn btn-success" type="button" value="Accept"  (click)="confirmOrder(order)"/>
+                  </td>
+                  <td>
+                    <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
+                  </td> -->
+                                            </tr>
+
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tab-content alert alert-danger m-2" *ngIf="acceptedList.length == 0">
+                    No Accepted Orders to display
+                </div>
+            </div>
+
+
+            <div role="tabpanel" class="tab-pane fade" id="rejected">
+
+                <section class="cart_area" *ngIf="rejectedList.length > 0">
+                    <div class="container">
+                        <div class="cart_inner">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Order No</th>
+                                            <th scope="col">Ordered By</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Total Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let order of rejectedList; 
+                                           let i = index">
+                                            <tr *ngIf="order.status=='rejected'">
+                                                <td>
+                                                    {{i+1}}
+                                                </td>
+                                                <td>
+                                                    {{order.user.username}}
+                                                </td>
+                                                <td>
+                                                    <!-- {{order.date}} -->
+                                                    {{ order.date | date }}
+
+                                                </td>
+                                                <td>
+                                                    {{order.status}}
+                                                </td>
+                                                <td>
+                                                    {{order.cost}}
+                                                </td>
+                                                <td>
+                                                    <input class="btn btn-primary" type="button" value="Details" routerLink="/orders/{{ order._id }}" />
+                                                </td>
+                                                <!-- <td>
+                                                  <input class="btn btn-success" type="button" value="Confirm"  (click)="confirmOrder(order)"/>
+                                                </td>
+                                                <td>
+                                                  <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
+                                                </td> -->
+                                            </tr>
+                                        </ng-container>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="tab-content alert alert-danger m-2" *ngIf="rejectedList.length == 0">
+                    No Rejected Orders to display
+                </div>
+            </div>
+
         </div>
-      </div>
-    </section>
-  </div>
 
-  <div role="tabpanel" class="tab-pane fade" id="accepted">
-    <section class="cart_area section_padding">
-      <div class="container">
-        <div class="cart_inner">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Total Cost</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container
-                  class="col-lg-4 col-sm-6" 
-                  *ngFor="let order of acceptedList; 
-                  let i = index"
-                >
-                  <tr *ngIf="order.status=='accepted'">
-                    <td>
-                      {{i+1}}
-                    </td>
-                    <td>
-                      {{order.user.username}}
-                    </td>
-                    <td>
-                      <!-- {{order.date}} -->
-                      {{ order.date | date  }}
-
-                    </td>
-                    <td>
-                      {{order.status}}
-                    </td>
-                    <td>
-                      {{order.cost}}
-                    </td>
-                    <td>
-                      <input class="btn btn-primary" type="button" value="Details"  routerLink="/orders/{{ order._id }}"/>
-                    </td>
-                    <!-- <td>
-                      <input class="btn btn-success" type="button" value="Accept"  (click)="confirmOrder(order)"/>
-                    </td>
-                    <td>
-                      <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
-                    </td> -->
-                  </tr>
-                
-                </ng-container>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-  </div>
-  
-  <div role="tabpanel" class="tab-pane fade" id="rejected">
-    
-    <section class="cart_area section_padding">
-      <div class="container">
-        <div class="cart_inner">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Order No</th>
-                  <th scope="col">Ordered By</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Total Cost</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container
-                  class="col-lg-4 col-sm-6" 
-                  *ngFor="let order of rejectedList; 
-                  let i = index"
-                >
-                  <tr *ngIf="order.status=='rejected'">
-                    <td>
-                      {{i+1}}
-                    </td>
-                    <td>
-                      {{order.user.username}}
-                    </td>
-                    <td>
-                      <!-- {{order.date}} -->
-                      {{ order.date | date  }}
-
-                    </td>
-                    <td>
-                      {{order.status}}
-                    </td>
-                    <td>
-                      {{order.cost}}
-                    </td>
-                    <td>
-                      <input class="btn btn-primary" type="button" value="Details"  routerLink="/orders/{{ order._id }}"/>
-                    </td>
-                    <!-- <td>
-                      <input class="btn btn-success" type="button" value="Confirm"  (click)="confirmOrder(order)"/>
-                    </td>
-                    <td>
-                      <input class="btn btn-danger" type="button" value="Delete" (click)="deleteOrder(order)"/>
-                    </td> -->
-                  </tr>
-                
-                </ng-container>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-  
-</div>
-  
-  </body>
+    </div>
+</body>

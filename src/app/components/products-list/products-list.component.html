@@ -87,6 +87,10 @@
                             <app-product-item [product]="prd" class="col-lg-4 col-sm-6" *ngIf="i < showOptionNumber"></app-product-item>
                         </ng-container>
 
+                        <div class="alert alert-danger col-lg-12 col-sm-12" *ngIf="productsListLength == 0">
+                            Items Sold Out
+                        </div>
+
                         <div class="col-lg-12 text-center" *ngIf="productsListLength >= 12 && productsListLength > showOptionNumber">
                             <a (click)="showMore()" class="btn_2">More Items</a>
                         </div>
