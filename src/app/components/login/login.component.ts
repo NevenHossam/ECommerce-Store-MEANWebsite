@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
         .subscribe((response: { accessToken: '', userId: '' }) => {
           console.log(response);
           let { accessToken } = response;
-          let a7a = jwtDecoder(accessToken);
-          console.log(a7a);
+          let tokenDecoded = jwtDecoder(accessToken);
+          console.log(tokenDecoded);
           this.router.navigate(['home']);
         }, (err) => {
           console.log(err);
