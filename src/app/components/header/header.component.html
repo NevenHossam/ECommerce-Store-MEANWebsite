@@ -39,6 +39,13 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="nav-item" *ngIf="userService.isLoggedIn() && userService.getCurrentUser().role == 'admin'">
+                                <a class="" routerLink="/users">
+                                    <span tooltip="Users" placement="bottom" show-delay="500">
+                                        <i class="fa fa-user-friends"></i> 
+                                    </span>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="" routerLink="/contact" *ngIf="(userService.isLoggedIn() && userService.getCurrentUser().role == 'member') || !userService.isLoggedIn()">
                                     <span tooltip="Contact" placement="bottom" show-delay="500">
