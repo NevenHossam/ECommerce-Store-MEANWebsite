@@ -3,6 +3,7 @@ import { productModel } from 'src/app/models/productModel';
 import { ProductsService } from 'src/app/services/products.service';
 import { orderModel } from 'src/app/models/orderModel';
 import { OrdersService } from 'src/app/services/orders.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,13 +19,14 @@ export class ShoppingCartComponent implements OnInit {
   };
 
   constructor(
-    private prdService: ProductsService,
-    private orderService: OrdersService
+    public prdService: ProductsService,
+    private orderService: OrdersService,
+    public userService: UsersService
   ) {}
 
   ngOnInit(): void {
     this.shoppingCartListOfProducts = JSON.parse(
-      localStorage.getItem('shoppingCartProducts')
+      localStorage.getItem(this.prdService.localStorageName)
     );
 
     this.orderCheckout = {
@@ -39,10 +41,6 @@ export class ShoppingCartComponent implements OnInit {
       this.shoppingCartTotal += this.getFinalPriceForAproduct(prd);
     });
     return this.shoppingCartTotal;
-  }
-
-  getProductFinalPrice(prd) {
-    return this.getFinalPriceForAproduct(prd);
   }
 
   getFinalPriceForAproduct(product: productModel) {
@@ -79,9 +77,12 @@ export class ShoppingCartComponent implements OnInit {
     // })
   }
 
-  deleteProductFromShoppingCart(prd){
-    let prdToRemove = this.shoppingCartListOfProducts.findIndex(p=>p._id == prd._id);
-    this.shoppingCartListOfProducts.splice(prdToRemove, 1);
-    localStorage.setItem('shoppingCartProducts', JSON.stringify(this.shoppingCartListOfProducts));
+  removeFromShoppingCart(prd:productModel){
+    this.shoppingCartListOfProducts = JSON.parse(
+      localStorage.getItem(this.prdService.localStorageName)
+    );
+    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(p=>p._id == prd._id);
+    this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
+    localStorage.setItem(this.prdService.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
   }
 }
