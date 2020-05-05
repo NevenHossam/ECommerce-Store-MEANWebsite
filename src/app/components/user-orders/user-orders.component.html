@@ -62,11 +62,10 @@
                       <td>
                         <input class="btn btn-success" type="button" value="Accept"
                           *ngIf="userService.isLoggedIn() && userService.getCurrentUser().role == 'admin'"
-                          (click)="updateOrder(order," accepted")" />
+                          (click)="confirmOrder(order)" />
                       </td>
                       <td>
-                        <input class="btn btn-danger" type="button" value="Cancel"
-                          *ngIf="userService.isLoggedIn() && userService.getCurrentUser().role == 'admin'"
+                        <input class="btn btn-danger" type="button" value="Cancel" *ngIf="userService.isLoggedIn()"
                           (click)="deleteOrder(order)" />
                       </td>
                     </tr>

@@ -65,7 +65,10 @@ export class UserOrdersComponent implements OnInit {
     let status = { status: "rejected" };
     this.updateOrder(order, status);
   }
-
+  confirmOrder(order: orderModel) {
+    let status = { status: "accepted" };
+    this.updateOrder(order, { status: "accepted" });
+  }
   updateOrder(order, status) {
     var orderId = order._id;
     this.orderService.updateOrder(orderId, status).subscribe(

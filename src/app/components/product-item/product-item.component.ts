@@ -19,12 +19,6 @@ export class ProductItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    if (!localStorage.getItem('shoppingCartProducts'))
-      localStorage.setItem(
-        'shoppingCartProducts',
-        JSON.stringify(this.shoppingCartListOfProduct)
-=======
     if (
       localStorage.getItem(this.prdService.localStorageName)?.length == 0 ||
       localStorage.getItem(this.prdService.localStorageName) == null
@@ -32,7 +26,6 @@ export class ProductItemComponent implements OnInit {
       localStorage.setItem(
         this.prdService.localStorageName,
         JSON.stringify([])
->>>>>>> 5e891852d372939d2a42ec4d4ee3ed062f0897bf
       );
   }
 
