@@ -13,7 +13,7 @@ export class ProductsService implements OnInit {
   public localStorageName =
     'shoppingCartProducts' + this.userService.getCurrentUser().userId;
 
-  constructor(private client: HttpClient, private userService: UsersService) {}
+  constructor(private client: HttpClient, private userService: UsersService) { }
 
   ngOnInit() {
     this.shoppingCartListOfProducts = JSON.parse(
@@ -23,7 +23,7 @@ export class ProductsService implements OnInit {
       localStorage.setItem(this.localStorageName, JSON.stringify([]));
   }
 
-  addToShoppingCart(prd:productModel){
+  addToShoppingCart(prd: productModel) {
     this.shoppingCartListOfProducts = JSON.parse(
       localStorage.getItem(this.localStorageName)
     );

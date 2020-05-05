@@ -22,7 +22,7 @@ export class ShoppingCartComponent implements OnInit {
     public prdService: ProductsService,
     private orderService: OrdersService,
     public userService: UsersService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.shoppingCartListOfProducts = JSON.parse(
@@ -77,11 +77,11 @@ export class ShoppingCartComponent implements OnInit {
     // })
   }
 
-  removeFromShoppingCart(prd:productModel){
+  removeFromShoppingCart(prd: productModel) {
     this.shoppingCartListOfProducts = JSON.parse(
       localStorage.getItem(this.prdService.localStorageName)
     );
-    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(p=>p._id == prd._id);
+    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(p => p._id == prd._id);
     this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
     localStorage.setItem(this.prdService.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
   }

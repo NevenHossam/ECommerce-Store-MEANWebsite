@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
   constructor(
     public prdService: ProductsService,
     public userService: UsersService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (

@@ -28,12 +28,12 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductDetails() {
     this.prdService.getSpecificProduct(this.productId).subscribe(
-      res => {this.product = res[0]},
+      res => { this.product = res[0] },
       err => console.log(err)
     );
   }
 
-  getPrice(){
+  getPrice() {
     return this.product.promotion ? this.product.price - this.product.promotion : this.product.price
   }
 

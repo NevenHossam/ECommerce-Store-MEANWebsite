@@ -15,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,11 +32,12 @@ const routes: Routes = [
   { path: 'search/:name', component: SearchComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderItemComponent },
-  { path: 'users/:id/orders', component: UserOrdersComponent }
+  { path: 'users/:id/orders', component: UserOrdersComponent },
+  { path: 'users', component: UsersComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
