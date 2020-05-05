@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginObject);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   Login() {
     if (
@@ -32,8 +32,9 @@ export class LoginComponent implements OnInit {
         (response: { accessToken: ''; userId: '' }) => {
           let { accessToken } = response;
           console.log(this.loginObject);
-          let jwtDec = jwtDecoder(accessToken);
-          localStorage.setItem('token', JSON.stringify(accessToken));
+          console.log(accessToken);
+          // let jwtDec = jwtDecoder(accessToken);
+          localStorage.setItem('token', accessToken);
           localStorage.setItem('currentuser', JSON.stringify(this.userServices.getCurrentUser()));
           this.invalidLogin = false;
           this.router.navigate(['home']);

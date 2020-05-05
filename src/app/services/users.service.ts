@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
@@ -21,26 +21,40 @@ export class UsersService {
   }
 
   // Logout User
-  LogOut(){
-    localStorage.removeItem('token'); 
-    localStorage.removeItem('currentuser'); 
+  LogOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentuser');
   }
 
   // Check on if the user still loggedin or not
-  isLoggedIn() {   
-    let jwtHelper = new JwtHelperService();  
-    let token = localStorage.getItem('token');  
-    if(!token) return false;  
-    let expirationDate = jwtHelper.getTokenExpirationDate(token);  
-    let isExpired = jwtHelper.isTokenExpired(token);  
-    return !isExpired;  
-  } 
-
-  // Get current user
-  getCurrentUser(){
-    let token = localStorage.getItem('token');  
-    if(!token) return null;  
-    return new JwtHelperService().decodeToken(token);  
+  isLoggedIn() {
+    let jwtHelper = new JwtHelperService();
+    let token = localStorage.getItem('token');
+    if (!token) return false;
+    let expirationDate = jwtHelper.getTokenExpirationDate(token);
+    let isExpired = jwtHelper.isTokenExpired(token);
+    return !isExpired;
   }
 
+  // Get current user
+  getCurrentUser() {
+    let token = localStorage.getItem('token');
+    if (!token) return null;
+    return new JwtHelperService().decodeToken(token);
+  }
+
+  // Get All Users
+  getAllUsers() {
+    let token = localStorage.getItem('token');
+    if (!token) return null;
+
+
+    return this.client.get(this.baseUrl,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      });
+  }
 }

@@ -18,9 +18,15 @@ export class ProductItemComponent implements OnInit {
   constructor(
     private prdService: ProductsService,
     public userService: UsersService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!localStorage.getItem('shoppingCartProducts'))
+      localStorage.setItem(
+        'shoppingCartProducts',
+        JSON.stringify(this.shoppingCartListOfProduct)
+      );
+  }
 
   getPrice() {
     return this.product.promotion
