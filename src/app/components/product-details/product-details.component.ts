@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-product-details',
@@ -10,12 +11,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
   @Input() productId;
   product;
-  shoppingCartListOfProduct = [];
 
   constructor(
-    private prdService: ProductsService,
+    public prdService: ProductsService,
     activatedRouteObj: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public userService: UsersService
   ) {
     this.productId = activatedRouteObj.snapshot.params['id'] || 0;
     this.product = this.getProductDetails();
@@ -27,23 +28,24 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductDetails() {
     this.prdService.getSpecificProduct(this.productId).subscribe(
-      res => {this.product = res[0]},
+      res => { this.product = res[0] },
       err => console.log(err)
     );
   }
 
-  getPrice(){
+  getPrice() {
     return this.product.promotion ? this.product.price - this.product.promotion : this.product.price
   }
 
-  addProductToCart() {
-    this.shoppingCartListOfProduct = JSON.parse(
-      localStorage.getItem('shoppingCartProducts')
-    );
-    this.shoppingCartListOfProduct.push(this.product);
-    localStorage.setItem(
-      'shoppingCartProducts',
-      JSON.stringify(this.shoppingCartListOfProduct)
-    );
-  }
+  // addProductToCart() {
+  //   this.shoppingCartListOfProduct = JSON.parse(
+  //     localStorage.getItem('shoppingCartProducts')
+  //   );
+  //   this.shoppingCartListOfProduct.push(this.product);
+  //   localStorage.setItem(
+  //     'shoppingCartProducts',
+  //     JSON.stringify(this.shoppingCartListOfProduct)
+  //   );
+  // }
+
 }

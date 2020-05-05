@@ -2,7 +2,8 @@
     <!-- header -->
     <ng-container class="dropDownHeader">
         <!-- <div class="dropdown__header"> -->
-        <div class="image image--small" style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
+        <div class="image image--small"
+            style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
             <div>
                 <div class="notification notification--danger">
                     {{ shoppingCartListOfProducts?.length }}
@@ -22,14 +23,15 @@
                         <div class="item-small-1__data">
                             <a href="" class="item-small-1__title">{{ prd.title }}</a>
                             <span class="item-small-1__description">
-                                1 X ${{ getProductFinalPrice(prd) }}
+                                1 X ${{ getFinalPriceForAproduct(prd) }}
                             </span>
                         </div>
                         <div class="item-small-1__image-box">
                             <!-- <a class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.image + ')'"> -->
-                            <a class="item-small-1__image image" [style.backgroundImage]="'url(assets/img/category/category_1.png)'">
+                            <a class="item-small-1__image image"
+                                [style.backgroundImage]="'url(assets/img/category/category_1.png)'">
                             </a>
-                            <a class="item-small-1__action" (click)="deleteProductFromShoppingCart(prd)">
+                            <a class="item-small-1__action" (click)="removeFromShoppingCart(prd)">
                                 <i class="fas fa-times"></i>
                             </a>
                         </div>

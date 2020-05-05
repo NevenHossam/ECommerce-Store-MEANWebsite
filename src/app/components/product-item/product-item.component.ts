@@ -12,19 +12,27 @@ import { UsersService } from 'src/app/services/users.service';
 export class ProductItemComponent implements OnInit {
   @Input() product: productModel;
   prdsList;
-  shoppingCartListOfProduct = [];
-  currentUser;
 
   constructor(
-    private prdService: ProductsService,
+    public prdService: ProductsService,
     public userService: UsersService
   ) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     if (!localStorage.getItem('shoppingCartProducts'))
       localStorage.setItem(
         'shoppingCartProducts',
         JSON.stringify(this.shoppingCartListOfProduct)
+=======
+    if (
+      localStorage.getItem(this.prdService.localStorageName)?.length == 0 ||
+      localStorage.getItem(this.prdService.localStorageName) == null
+    )
+      localStorage.setItem(
+        this.prdService.localStorageName,
+        JSON.stringify([])
+>>>>>>> 5e891852d372939d2a42ec4d4ee3ed062f0897bf
       );
   }
 
@@ -32,16 +40,5 @@ export class ProductItemComponent implements OnInit {
     return this.product.promotion
       ? this.product.price - this.product.promotion
       : this.product.price;
-  }
-
-  addProductToCart() {
-    this.shoppingCartListOfProduct = JSON.parse(
-      localStorage.getItem('shoppingCartProducts')
-    );
-    this.shoppingCartListOfProduct.push(this.product);
-    localStorage.setItem(
-      'shoppingCartProducts',
-      JSON.stringify(this.shoppingCartListOfProduct)
-    );
   }
 }
