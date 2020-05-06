@@ -53,6 +53,13 @@
                                     </span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="" routerLink="/about" *ngIf="(userService.isLoggedIn() && userService.getCurrentUser().role == 'member') || !userService.isLoggedIn()">
+                                    <span tooltip="About" placement="bottom" show-delay="500">
+                                        <i class="fa fa-info"></i> 
+                                    </span>
+                                </a>
+                            </li>
                             <li class="nav-item" *ngIf="userService.isLoggedIn()">
                                 <a class="" routerLink="/home" (click)="userService.LogOut()">
                                     <span tooltip="Logout" placement="bottom" show-delay="500">
