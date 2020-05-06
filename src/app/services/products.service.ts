@@ -10,10 +10,9 @@ export class ProductsService implements OnInit {
   private baseUrl = 'http://localhost:3000/api/products';
   allProducts;
   shoppingCartListOfProducts = [];
-  public localStorageName =
-    'shoppingCartProducts' + this.userService.getCurrentUser().userId;
+  public localStorageName;
 
-  constructor(private client: HttpClient, private userService: UsersService) { }
+  constructor(private client: HttpClient, private userService: UsersService) {}
 
   ngOnInit() {
     this.shoppingCartListOfProducts = JSON.parse(
@@ -21,6 +20,10 @@ export class ProductsService implements OnInit {
     );
     if (this.shoppingCartListOfProducts.length == 0)
       localStorage.setItem(this.localStorageName, JSON.stringify([]));
+
+    if (this.userService.getCurrentUser())
+      this.localStorageName =
+        'shoppingCartProducts' + this.userService.getCurrentUser().userId;
   }
 
   addToShoppingCart(prd: productModel) {
@@ -28,7 +31,10 @@ export class ProductsService implements OnInit {
       localStorage.getItem(this.localStorageName)
     );
     this.shoppingCartListOfProducts.push(prd);
-    localStorage.setItem(this.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
+    localStorage.setItem(
+      this.localStorageName,
+      JSON.stringify(this.shoppingCartListOfProducts)
+    );
   }
 
   getAllProducts() {

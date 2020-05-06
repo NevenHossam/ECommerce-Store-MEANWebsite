@@ -33,6 +33,7 @@ import { PromotedProductsComponent } from './components/promoted-products/promot
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
     Ng2SearchPipeModule,
     TooltipModule,
     CommonModule,
+    FontAwesomeModule,
   ],
   providers: [ProductsService, OrdersService, UsersService],
   bootstrap: [AppComponent],

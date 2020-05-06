@@ -1,10 +1,25 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!--================Home Banner Area =================-->
+<!-- breadcrumb start-->
+<section class="breadcrumb breadcrumb_bg p-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <div class="breadcrumb_iner_item">
+                        <p>Home / Users </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb start-->
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="main-box clearfix">
                 <div class="table-responsive">
-                    <table class="table user-list">
+                    <table class="table user-list m-3">
                         <thead>
                             <tr>
                                 <th><span>User No</span></th>
@@ -24,8 +39,7 @@
                                     <td>
                                         <!-- <img src={{user.imageUrl}} alt=""> -->
                                         <!-- user above after adjusting image -->
-                                        <img src="https://miro.medium.com/max/10634/1*9zBRv3a7hn5eZT17g-N4qQ.jpeg"
-                                            alt="">
+                                        <img src="https://miro.medium.com/max/10634/1*9zBRv3a7hn5eZT17g-N4qQ.jpeg" alt="">
                                         <a href="#" class="user-link">{{user.username}}</a>
                                         <span class="user-subhead">{{user.role}}</span>
                                     </td>
@@ -49,7 +63,7 @@
                                         <a href="#" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                <i class="fa fa-trash-restore-alt fa-stack-1x fa-inverse"></i>
                                             </span>
                                         </a>
                                     </td>
@@ -58,15 +72,6 @@
                         </tbody>
                     </table>
                 </div>
-                <ul class="pagination pull-right">
-                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                </ul>
             </div>
         </div>
     </div>

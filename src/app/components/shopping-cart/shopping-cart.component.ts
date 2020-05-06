@@ -58,7 +58,6 @@ export class ShoppingCartComponent implements OnInit {
       const element = this.shoppingCartListOfProducts[i];
       this.orderCheckout.products.push({ Product: element._id, count: 1 });
     }
-    debugger;
     this.orderService.insertOrder(this.orderCheckout).subscribe(
       (res) => {
         console.log(res);

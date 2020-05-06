@@ -24,7 +24,5 @@ export class UsersComponent implements OnInit {
       console.log(err);
     });
   }
-  getAllUsers() {
 
-  }
 }
