@@ -26,8 +26,9 @@ export class UserOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.activatedRoute.snapshot.params['id'];
-    this.ordersList = this.getUserOrders();
+    // this.userId = this.activatedRoute.snapshot.params['id'];
+    this.userId = this.userService.getCurrentUser().userId;
+    this.getUserOrders(this.userId);
     this.getUsername();
   }
 
@@ -43,8 +44,9 @@ export class UserOrdersComponent implements OnInit {
     );
   }
 
-  getUserOrders() {
-    this.orderService.getUserOrders(this.userId).subscribe(
+  getUserOrders(id) {
+    console.log(id)
+    this.orderService.getUserOrders(id).subscribe(
       (res: Array<orderModel>) => {
         console.log(res);
         this.ordersList = res;

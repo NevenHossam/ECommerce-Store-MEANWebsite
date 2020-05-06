@@ -23,7 +23,7 @@ export class OrdersComponent implements OnInit {
   constructor(private service: OrdersService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.ordersList = this.getAllOrders();
+    this.getAllOrders();
   }
 
   getAllOrders() {
@@ -48,7 +48,7 @@ export class OrdersComponent implements OnInit {
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
-          location.replace('/login');
+          console.log(err.status)
       }
     );
     return this.ordersList;

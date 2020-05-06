@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { productModel } from '../models/productModel';
 import { UsersService } from './users.service';
 
@@ -38,27 +38,57 @@ export class ProductsService implements OnInit {
   }
 
   getAllProducts() {
-    return this.client.get(this.baseUrl, { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
   getSpecificProduct(id) {
-    return this.client.get(this.baseUrl + '/' + id, { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + '/' + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
   getWomenProducts() {
+    let token = localStorage.getItem('token');
     return this.client.get(this.baseUrl + '/category/women', {
-      observe: 'body',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
     });
   }
   getMenProducts() {
-    return this.client.get(this.baseUrl + '/category/men', { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + '/category/men', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
   getChildrenProducts() {
+    let token = localStorage.getItem('token');
     return this.client.get(this.baseUrl + '/category/children', {
-      observe: 'body',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
     });
   }
   getProductByName(name: string) {
-    return this.client.get(this.baseUrl + '/productName/' + name, {
-      observe: 'body',
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + '/productName/', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
     });
   }
   getPromotedProducts() {
@@ -66,14 +96,32 @@ export class ProductsService implements OnInit {
   }
 
   addNewProduct(prd: productModel) {
-    return this.client.post(this.baseUrl, prd, { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.post(this.baseUrl, prd, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
 
   editSpecificProduct(id, prd) {
-    return this.client.patch(this.baseUrl + '/' + id, prd, { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.post(this.baseUrl + '/' + id, prd, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
 
   deleteSpecificProduct(id) {
-    return this.client.delete(this.baseUrl + '/' + id, { observe: 'body' });
+    let token = localStorage.getItem('token');
+    return this.client.delete(this.baseUrl + '/' + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
 }

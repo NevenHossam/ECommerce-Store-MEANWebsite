@@ -1,30 +1,67 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {orderModel} from '../models/orderModel';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { orderModel } from '../models/orderModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrdersService {
   private baseUrl = 'http://localhost:3000/api/';
 
-  constructor(private client:HttpClient) { }
-  getAll(){
-    return  this.client.get(this.baseUrl+'orders/', {observe:'body'});
+  constructor(private client: HttpClient) {}
+
+  getAll() {
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + 'orders/', {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
-  getOrder(id){
-    return this.client.get(this.baseUrl+`orders/${id}`, {observe: 'body'});
+  getOrder(id) {
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + `orders/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
-  updateOrder(id, order){
-    return  this.client.patch(this.baseUrl+`orders/${id}`, order,{observe:'body'});
+  updateOrder(id, order) {
+    let token = localStorage.getItem('token');
+    return this.client.patch(this.baseUrl + `orders/${id}`, order, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
-  deleteOrder(id){
-    return this.client.delete(this.baseUrl+`orders/${id}`, {observe: 'body'});
+  deleteOrder(id) {
+    let token = localStorage.getItem('token');
+    return this.client.delete(this.baseUrl + `orders/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
-  getUserOrders(id){
-    return  this.client.get(this.baseUrl+`orders/user/${id}`,{observe:'body'});
+  getUserOrders(id) {
+    let token = localStorage.getItem('token');
+    return this.client.get(this.baseUrl + `orders/user/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
-  insertOrder(order){
-    return this.client.post(this.baseUrl+'orders/', order, {observe:'body'} );
+  insertOrder(order) {
+    let token = localStorage.getItem('token');
+    return this.client.post(this.baseUrl + 'orders/', order, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
 }

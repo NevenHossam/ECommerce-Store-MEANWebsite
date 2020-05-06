@@ -9,7 +9,6 @@ import { OrdersService } from 'src/app/services/orders.service';
 })
 export class ProfileComponent implements OnInit {
   currentUser;
-  ordersOfCurrentUser;
 
   constructor(
     private usersService: UsersService,
@@ -18,18 +17,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.usersService.getCurrentUser();
-    this.getOrdersOfUser();
   }
 
-  getOrdersOfUser(){
-    this.ordersService
-      .getUserOrders(this.currentUser.userId)
-      .subscribe(
-        (res) => (this.ordersOfCurrentUser = res),
-        (err) => {
-          if (err.status === 401 || err.status === 403)
-          location.replace('/login');
-        }
-      );
-  }
 }
