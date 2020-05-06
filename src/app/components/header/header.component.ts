@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   productsList;
   prdName;
 
-  userId = "5eaded5ecb4ca110483fba06"
+  userId = this.userService.getCurrentUser().userId;
 
   constructor(
     private prdService: ProductsService,
