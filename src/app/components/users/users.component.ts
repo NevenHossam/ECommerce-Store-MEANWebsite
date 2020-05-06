@@ -21,7 +21,8 @@ export class UsersComponent implements OnInit {
       });
       console.log(this.usersList);
     }, (err) => {
-      console.log(err);
+      if (err.status === 401 || err.status === 403)
+        location.replace('/login');
     });
   }
 

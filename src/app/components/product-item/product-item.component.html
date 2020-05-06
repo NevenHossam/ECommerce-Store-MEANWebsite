@@ -19,12 +19,11 @@
             <br *ngIf="!product.promotion">
             <p>${{ getPrice() }}</p>
         </div>
-        <div class="text-center" *ngIf="userService.getCurrentUser().role == 'admin'">
+        <div class="text-center" *ngIf="currentUserRole == 'admin'">
             <a class="btn btn-secondary m-1" routerLink="/product/edit/{{ product._id }}">
                 Edit
             </a>
-            <button type="button" class="btn btn-danger text-light m-1" data-toggle="modal" data-target="#myModal"
-                routerLink="/product/delete/{{ product._id }}">
+            <button type="button" class="btn btn-danger text-light m-1" data-toggle="modal" data-target="#myModal" routerLink="/product/delete/{{ product._id }}">
                 Delete
             </button>
         </div>

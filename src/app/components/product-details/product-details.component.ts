@@ -42,7 +42,10 @@ export class ProductDetailsComponent implements OnInit {
       (res) => {
         this.product = res[0];
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
 

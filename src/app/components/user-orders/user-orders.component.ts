@@ -33,10 +33,13 @@ export class UserOrdersComponent implements OnInit {
 
   getUsername() {
     this.userService.getUserById(this.userId).subscribe(
-      (res:userModel) => {
+      (res: userModel) => {
         this.username = res.username;
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
 
@@ -62,7 +65,8 @@ export class UserOrdersComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
       }
     );
     return this.ordersList;
@@ -97,7 +101,8 @@ export class UserOrdersComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
       }
     );
   }

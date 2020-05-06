@@ -26,7 +26,10 @@ export class SearchComponent implements OnInit {
       (res) => {
         this.productsList = res;
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
 }

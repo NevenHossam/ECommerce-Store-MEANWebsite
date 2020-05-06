@@ -29,9 +29,9 @@ export class AddProductComponent implements OnInit, DoCheck {
   @Output() isPromotedCheckEvent = new EventEmitter();
   disabledFlag: boolean = true;
 
-  constructor(private prdService: ProductsService) { }
+  constructor(private prdService: ProductsService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngDoCheck() {
     if (this.newProductObj.isPromoted === 'true') this.disabledFlag = false;
@@ -46,7 +46,10 @@ export class AddProductComponent implements OnInit, DoCheck {
     if (this.newProductObj.price != 0 && this.newProductObj.title != '') {
       this.prdService.addNewProduct(this.newProductObj).subscribe(
         (res) => (this.newProductObj = {}),
-        (err) => console.log(err)
+        (err) => {
+          if (err.status === 401 || err.status === 403)
+            location.replace('/login');
+        }
       );
       return true;
     } else return false;

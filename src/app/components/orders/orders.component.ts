@@ -24,9 +24,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ordersList = this.getAllOrders();
-    if (this.ordersList) {
-      console.log(this.ordersList);
-    }
   }
 
   getAllOrders() {
@@ -50,7 +47,8 @@ export class OrdersComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
       }
     );
     return this.ordersList;
@@ -79,7 +77,7 @@ export class OrdersComponent implements OnInit {
     this.service.updateOrder(orderId, status).subscribe(
       (res: orderModel) => {
         order.status = status.status;
-        // this.pendingList.slice(this.pendingList.indexOf(order), 1);
+        this.pendingList.slice(this.pendingList.indexOf(order), 1);
         switch (status.status) {
           case 'accepted':
             this.acceptedList.push(order);
@@ -90,7 +88,8 @@ export class OrdersComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
       }
     );
   }

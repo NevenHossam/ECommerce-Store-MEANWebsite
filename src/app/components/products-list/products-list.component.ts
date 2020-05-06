@@ -12,14 +12,21 @@ export class ProductsListComponent implements OnInit {
   productsListLength;
   categoryName;
   showOptionNumber: number;
+  currentUserRole;
 
-  constructor(private prdService: ProductsService, public userService: UsersService) {
+  constructor(
+    private prdService: ProductsService,
+    public userService: UsersService
+  ) {
     this.getPromotedProduts();
   }
 
   ngOnInit(): void {
     this.showOptionNumber = 12;
     this.productsList = this.getAllProducts();
+    if (this.userService.getCurrentUser())
+      this.currentUserRole = this.userService.getCurrentUser().role;
+    else  location.replace('/login');
   }
 
   getAllProducts() {
@@ -29,7 +36,10 @@ export class ProductsListComponent implements OnInit {
         this.productsListLength = this.productsList.length;
         this.categoryName = 'All';
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
   getWomenProducts() {
@@ -39,7 +49,10 @@ export class ProductsListComponent implements OnInit {
         this.productsListLength = this.productsList.length;
         this.categoryName = 'Women';
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
   getMenProducts() {
@@ -49,7 +62,10 @@ export class ProductsListComponent implements OnInit {
         this.productsListLength = this.productsList.length;
         this.categoryName = 'Men';
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
   getChildrenProducts() {
@@ -59,7 +75,10 @@ export class ProductsListComponent implements OnInit {
         this.productsListLength = this.productsList.length;
         this.categoryName = 'Children';
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
   getPromotedProduts() {

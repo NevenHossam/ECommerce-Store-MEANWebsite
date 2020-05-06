@@ -34,6 +34,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { OrderItemComponent } from './components/order-item/order-item.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProtectedDirective } from './directives/protected.directive';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DropdownComponent,
     OrderItemComponent,
     UserOrdersComponent,
+    ProtectedDirective,
   ],
   imports: [
     BrowserModule,

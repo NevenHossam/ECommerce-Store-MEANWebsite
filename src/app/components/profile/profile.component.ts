@@ -26,7 +26,10 @@ export class ProfileComponent implements OnInit {
       .getUserOrders(this.currentUser.userId)
       .subscribe(
         (res) => (this.ordersOfCurrentUser = res),
-        (err) => console.log(err)
+        (err) => {
+          if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+        }
       );
   }
 }

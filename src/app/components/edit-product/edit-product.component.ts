@@ -31,7 +31,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     this.productId = activatedRouteObj.snapshot.params['id'] || '0';
     this.disabledFlag = this.product.isPromoted;
   }
-  
+
   ngOnInit(): void {
     this.getProduct();
   }
@@ -42,11 +42,14 @@ export class EditProductComponent implements OnInit, DoCheck {
   }
 
   getProduct() {
-     this.prdService.getSpecificProduct(this.productId).subscribe(
+    this.prdService.getSpecificProduct(this.productId).subscribe(
       (res) => {
         this.product = res[0];
       },
-      (err) => console.log(err)
+      (err) => {
+        if (err.status === 401 || err.status === 403)
+          location.replace('/login');
+      }
     );
   }
 
@@ -56,7 +59,10 @@ export class EditProductComponent implements OnInit, DoCheck {
         .editSpecificProduct(this.productId, this.product)
         .subscribe(
           (res) => console.log(res),
-          (err) => console.log(err)
+          (err) => {
+            if (err.status === 401 || err.status === 403)
+              location.replace('/login');
+          }
         );
       return true;
     } else return false;

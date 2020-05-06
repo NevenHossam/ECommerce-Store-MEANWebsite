@@ -12,11 +12,12 @@ import { UsersService } from 'src/app/services/users.service';
 export class ProductItemComponent implements OnInit {
   @Input() product: productModel;
   prdsList;
+  currentUserRole;
 
   constructor(
     public prdService: ProductsService,
     public userService: UsersService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (
@@ -27,6 +28,10 @@ export class ProductItemComponent implements OnInit {
         this.prdService.localStorageName,
         JSON.stringify([])
       );
+
+    if (this.userService.getCurrentUser())
+      this.currentUserRole = this.userService.getCurrentUser().role;
+    else this.currentUserRole = '';
   }
 
   getPrice() {

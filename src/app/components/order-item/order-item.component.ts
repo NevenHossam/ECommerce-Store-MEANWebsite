@@ -32,7 +32,8 @@ export class OrderItemComponent implements OnInit {
         console.log(this.products);
       },
       (err) => {
-        console.log(err);
+        if(err.status === 401 || err.status === 403)
+          location.replace('/login');
       }
     );
     return this.order;
