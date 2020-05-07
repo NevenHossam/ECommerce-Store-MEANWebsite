@@ -36,6 +36,10 @@ export class ProductsService implements OnInit {
       JSON.stringify(this.shoppingCartListOfProducts)
     );
   }
+  clearShoppingCart(){
+    this.shoppingCartListOfProducts=[];
+    localStorage.setItem(this.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
+  }
 
   getAllProducts() {
     let token = localStorage.getItem('token');

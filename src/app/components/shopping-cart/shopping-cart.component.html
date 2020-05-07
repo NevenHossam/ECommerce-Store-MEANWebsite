@@ -43,12 +43,12 @@
         <div class="separator"></div>
         <div class="block">
             <span class="lable">Total:</span>
-            <span class="lable">${{ getTotalPriceOfShoppingCart() }}</span>
+            <span class="lable" >${{ getTotalPriceOfShoppingCart() }}</span>
         </div>
         <!-- actions -->
         <div class="block list list--hr">
             <a class="list-item btn btn--gray" href="">View Cart</a>
-            <a class="list-item btn btn--primary" href="" (click)="insertOrder()">Checkout</a>
+            <a class="list-item btn btn--primary" routerLink="/checkout">Checkout</a>
         </div>
         <!-- </div> -->
     </ng-container>

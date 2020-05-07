@@ -26,7 +26,8 @@ export class ProductsListComponent implements OnInit {
     this.productsList = this.getAllProducts();
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;
-    else  location.replace('/login');
+    else{  
+      location.replace('/login');}
   }
 
   getAllProducts() {
@@ -38,7 +39,8 @@ export class ProductsListComponent implements OnInit {
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
-          location.replace('/login');
+          {
+            location.replace('/login');}
       }
     );
   }
