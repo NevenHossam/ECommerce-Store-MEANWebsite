@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class UsersService {
   private baseUrl = 'http://localhost:3000/api/users';
 
-  constructor(private client: HttpClient) {}
+  constructor(private client: HttpClient) { }
 
   // Register New User
   insertUser(user) {
@@ -57,7 +57,18 @@ export class UsersService {
   // Get user by id
   getUserById(id) {
     let token = localStorage.getItem('token');
-      return this.client.get(this.baseUrl + '/' + id, {
+    return this.client.get(this.baseUrl + '/' + id, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      })
+    });
+  }
+
+  updateUserInfo(id, user) {
+    let token = localStorage.getItem('token');
+    return this.client.patch(this.baseUrl + "/" + id, user, {
+      observe: 'body',
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,

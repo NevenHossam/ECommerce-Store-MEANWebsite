@@ -36,6 +36,8 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProtectedDirective } from './directives/protected.directive';
 import { AboutComponent } from './components/about/about.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { AboutComponent } from './components/about/about.component';
     UserOrdersComponent,
     ProtectedDirective,
     AboutComponent,
+    EditProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
