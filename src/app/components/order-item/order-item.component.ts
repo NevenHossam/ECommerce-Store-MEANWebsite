@@ -4,6 +4,7 @@ import { orderModel } from 'src/app/models/orderModel';
 import { userModel } from 'src/app/models/userModel';
 import { productModel } from 'src/app/models/productModel';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-order-item',
@@ -15,12 +16,15 @@ export class OrderItemComponent implements OnInit {
   products;
   orderId;
 
-  constructor(private service: OrdersService, private route: ActivatedRoute) {
+  constructor(
+    private service: OrdersService,
+    private route: ActivatedRoute,
+    private model: CommonModule) {
     this.orderId = this.route.snapshot.params['id'] || 0;
+    this.order = this.getOrderById(this.orderId);
   }
 
   ngOnInit(): void {
-    this.order = this.getOrderById(this.orderId);
   }
 
   getOrderById(id) {

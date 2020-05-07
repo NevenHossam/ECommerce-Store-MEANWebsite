@@ -18,6 +18,7 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
 import { UsersComponent } from './components/users/users.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AboutComponent } from './components/about/about.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
