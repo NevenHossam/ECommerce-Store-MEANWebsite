@@ -11,7 +11,6 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: productModel;
-  prdsList;
   currentUserRole;
 
   constructor(

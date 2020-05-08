@@ -6,7 +6,8 @@
             style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
             <div>
                 <div class="notification notification--danger">
-                    {{ shoppingCartListOfProducts?.length }}
+                    <!-- {{ shoppingCartListOfProducts?.length }} -->
+                    {{prdService.getShoppingCartContent()?.length }}
                 </div>
             </div>
         </div>
@@ -18,7 +19,7 @@
         <!-- items -->
         <div style="height: 300px; overflow: auto;">
             <ul class="dropdown__items list list--vr-separator">
-                <li *ngFor="let prd of shoppingCartListOfProducts" class="dropdown__item list__item">
+                <li *ngFor="let prd of prdService.getShoppingCartContent()" class="dropdown__item list__item">
                     <div class="item-small-1">
                         <div class="item-small-1__data">
                             <a href="" class="item-small-1__title">{{ prd.title }}</a>
@@ -31,11 +32,11 @@
                             <a class="item-small-1__image image"
                                 [style.backgroundImage]="'url(assets/img/category/category_1.png)'">
                             </a>
-                            <a class="item-small-1__action" (click)="removeFromShoppingCart(prd)">
-                                <i class="fas fa-times"></i>
-                            </a>
                         </div>
                     </div>
+                    <a class="">
+                        <i class="fa fa-home" (click)="removeFromShoppingCart(prd)"></i>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -43,7 +44,7 @@
         <div class="separator"></div>
         <div class="block">
             <span class="lable">Total:</span>
-            <span class="lable" >${{ getTotalPriceOfShoppingCart() }}</span>
+            <span class="lable">${{ shoppingCartTotal }}</span>
         </div>
         <!-- actions -->
         <div class="block list list--hr">

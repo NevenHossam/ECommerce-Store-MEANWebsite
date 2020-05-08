@@ -25,11 +25,12 @@ export class ShoppingCartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.shoppingCartListOfProducts = JSON.parse(
-      localStorage.getItem(this.prdService.localStorageName)
-      );
-      if(this.shoppingCartListOfProducts == null)
-        this.shoppingCartListOfProducts=[];
+    this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
+    // JSON.parse(
+    //   localStorage.getItem(this.prdService.localStorageName)
+    //   );
+    if (this.shoppingCartListOfProducts == null)
+      this.shoppingCartListOfProducts = [{}];
 
     this.orderCheckout = {
       user: '5eabaa55cac73750843b4950',
@@ -53,12 +54,11 @@ export class ShoppingCartComponent implements OnInit {
 
 
   removeFromShoppingCart(prd: productModel) {
-    this.shoppingCartListOfProducts = JSON.parse(
-      localStorage.getItem(this.prdService.localStorageName)
-    );
-    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(p => p._id == prd._id);
-    this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
-    localStorage.setItem(this.prdService.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
+    console.log(this.prdService.removeFromShoppingCart(prd))
+    console.log(prd)
+    this.prdService.removeFromShoppingCart(prd);
+    this.getTotalPriceOfShoppingCart();
+    return this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
   }
-  
+
 }

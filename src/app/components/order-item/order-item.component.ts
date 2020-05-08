@@ -4,7 +4,7 @@ import { orderModel } from 'src/app/models/orderModel';
 import { userModel } from 'src/app/models/userModel';
 import { productModel } from 'src/app/models/productModel';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-order-item',
@@ -15,23 +15,27 @@ export class OrderItemComponent implements OnInit {
   order: orderModel;
   products;
   orderId;
-
+  username;
+  totalCost;
   constructor(
     private service: OrdersService,
-    private route: ActivatedRoute,
-    private model: CommonModule) {
+    public userService: UsersService,
+    private route: ActivatedRoute) {
     this.orderId = this.route.snapshot.params['id'] || 0;
-    this.order = this.getOrderById(this.orderId);
   }
-
+  
   ngOnInit(): void {
+    this.order = this.getOrderById(this.orderId);
+   
   }
 
   getOrderById(id) {
     this.service.getOrder(id).subscribe(
       (res: orderModel) => {
         this.order = res;
+        this.username = res.user.username;
         this.order.cost = this.calculateCost(this.order);
+        this.totalCost = this.order.cost ;
         this.products = this.order.products;
         console.log(this.products);
       },

@@ -9,15 +9,13 @@ import { UsersService } from './users.service';
 export class ProductsService implements OnInit {
   private baseUrl = 'http://localhost:3000/api/products';
   allProducts;
-  shoppingCartListOfProducts = [];
+  public shoppingCartListOfProducts = [{}];
   public localStorageName;
 
   constructor(private client: HttpClient, private userService: UsersService) {}
 
   ngOnInit() {
-    this.shoppingCartListOfProducts = JSON.parse(
-      localStorage.getItem(this.localStorageName)
-    );
+    this.shoppingCartListOfProducts = this.getShoppingCartContent();
     if (this.shoppingCartListOfProducts.length == 0)
       localStorage.setItem(this.localStorageName, JSON.stringify([]));
 
@@ -26,21 +24,36 @@ export class ProductsService implements OnInit {
         'shoppingCartProducts' + this.userService.getCurrentUser().userId;
   }
 
-  addToShoppingCart(prd: productModel) {
-    this.shoppingCartListOfProducts = JSON.parse(
-      localStorage.getItem(this.localStorageName)
-    );
-    this.shoppingCartListOfProducts.push(prd);
+  setToShoppingCart() {
     localStorage.setItem(
       this.localStorageName,
       JSON.stringify(this.shoppingCartListOfProducts)
     );
   }
+  getShoppingCartContent() {
+    return JSON.parse( localStorage.getItem(this.localStorageName) );
+  }   
+
+addToShoppingCart(prd: productModel) {
+    this.shoppingCartListOfProducts = this.getShoppingCartContent();
+    this.shoppingCartListOfProducts.push(prd);
+    this.setToShoppingCart();
+    return this.getShoppingCartContent();
+}
   clearShoppingCart(){
     this.shoppingCartListOfProducts=[];
-    localStorage.setItem(this.localStorageName, JSON.stringify(this.shoppingCartListOfProducts));
+    this.setToShoppingCart();
+    return this.shoppingCartListOfProducts;
   }
-
+  removeFromShoppingCart(prd: productModel) {
+    console.log("delete from service");
+    this.getShoppingCartContent();
+    debugger;
+    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex((p:productModel) => p._id == prd._id);
+    this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
+    this.setToShoppingCart();
+    return this.shoppingCartListOfProducts;
+  }
   getAllProducts() {
     let token = localStorage.getItem('token');
     return this.client.get(this.baseUrl, {

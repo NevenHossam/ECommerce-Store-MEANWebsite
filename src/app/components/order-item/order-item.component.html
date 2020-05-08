@@ -1,8 +1,8 @@
 <style>
-    th, td,a , p{
-      font-weight: bold;
-    }
-  </style>
+        th, td,a , p{
+          font-weight: bold;
+        }
+      </style>
 <!-- breadcrumb start-->
 <section class="breadcrumb breadcrumb_bg">
     <div class="container">
@@ -25,7 +25,7 @@
             <div class="cart_inner ">
                 <div class="table-responsive">
                     <h3 class="m-3">
-                        Ordered By: {{order.user.username}}
+                        Ordered By: {{username}}
                     </h3>
                     <table class="table m-3">
                         <thead>
@@ -60,7 +60,7 @@
 
                     </table>
                     <div class="h4 text-right m-3">
-                        Total : {{order.cost | currency}}
+                        Total : {{totalCost | currency}}
                     </div>
                 </div>
             </div>
