@@ -1,7 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { productModel } from '../models/productModel';
 import { UsersService } from './users.service';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -97,12 +102,32 @@ export class ProductsService implements OnInit {
 
   addNewProduct(prd: productModel) {
     let token = localStorage.getItem('token');
-    return this.client.post(this.baseUrl, prd, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: token,
-      }),
-    });
+    return this.client.post(
+      this.baseUrl,
+      // { 'prd': { ...prd }, 'prdImage': prdImage },
+      prd,
+      {
+        reportProgress: true,
+        // observe: 'events',
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: token,
+        }),
+      }
+    );
+  }
+  // Error handling
+  errorMgmt(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 
   editSpecificProduct(id, prd) {

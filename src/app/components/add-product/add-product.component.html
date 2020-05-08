@@ -28,7 +28,14 @@
                 </div>
             </div>
             <div class="slider__items">
-                <div class="slider__item active" style="background-image: url(assets/img/category/category_1.png);"></div>
+                <!-- <div class="slider__item active" style="background-image: url({{newProductObj.image}})"></div> -->
+                <div class="preview" *ngIf="imgPreview && imgPreview !== null">
+                    <img [src]="imgPreview">
+                </div>
+                <div class="form-group">
+                    <label for="file">Choose File</label>
+                    <input type="file" id="file" (change)="uploadFile($event)">
+                </div>
             </div>
         </div>
         <div class="add-product__data">
@@ -87,7 +94,7 @@
                 </div>
                 <div class="add-product__actions">
                     <button class="btn btn--gray" (click)="cancelAddingProduct()" routerLink="/products">Cancel</button>
-                    <a type="button" class="btn btn--primary" (click)="addNewProduct()" href="/products">Add</a>
+                    <a type="button" class="btn btn--primary" (click)="addNewProduct()">Add</a>
                 </div>
             </div>
         </div>

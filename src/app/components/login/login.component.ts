@@ -28,11 +28,10 @@ export class LoginComponent implements OnInit {
       this.loginObject.password.length > 4 &&
       this.loginObject.email.length >= 7
     ) {
+      console.log('login')
       this.userServices.loginUser(this.loginObject).subscribe(
         (response: { accessToken: ''; userId: '' }) => {
           let { accessToken } = response;
-          console.log(this.loginObject);
-          console.log(accessToken);
           // let jwtDec = jwtDecoder(accessToken);
           localStorage.setItem('token', accessToken);
           localStorage.setItem('currentuser', JSON.stringify(this.userServices.getCurrentUser()));

@@ -13,7 +13,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     category: 'men',
     isPromoted: 'false',
     details: '',
-    image: '',
+    image: null,
     price: 0,
     quantity: 0,
     promotion: 0,

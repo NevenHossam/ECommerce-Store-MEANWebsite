@@ -1,7 +1,8 @@
 export interface productModel{
     _id?:string,
     title?: string,
-    image?: string,
+    image?: File,
+    imageUrl?: string,
     price?: number,
     details?: string,
     quantity?: number,

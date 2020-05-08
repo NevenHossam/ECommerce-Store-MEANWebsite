@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
     promotion: 0,
     category: '',
     details: '',
-    image: '',
+    image: null,
     isDeleted: false,
     isPromoted: 'false',
     quantity: 0,

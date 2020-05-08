@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit, DoCheck {
     category: 'men',
     isPromoted: 'false',
     details: '',
-    image: '',
+    image: null,
     price: 0,
     quantity: 0,
     promotion: 0,
@@ -28,10 +28,26 @@ export class AddProductComponent implements OnInit, DoCheck {
   };
   @Output() isPromotedCheckEvent = new EventEmitter();
   disabledFlag: boolean = true;
+  fileToUpload: File = null;
+  imgPreview;
 
   constructor(private prdService: ProductsService) {}
 
   ngOnInit() {}
+
+  // Image Preview
+  // uploadFile(event) {
+  //   const file = this.newProductObj.image;
+  //   this.newProductObj.image = file;
+  //   this.newProductObj.get('avatar').updateValueAndValidity();
+
+  //   // File Preview
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.preview = reader.result as string;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
   ngDoCheck() {
     if (this.newProductObj.isPromoted === 'true') this.disabledFlag = false;
@@ -45,14 +61,41 @@ export class AddProductComponent implements OnInit, DoCheck {
   addNewProduct() {
     if (this.newProductObj.price != 0 && this.newProductObj.title != '') {
       this.prdService.addNewProduct(this.newProductObj).subscribe(
-        (res) => (this.newProductObj = {}),
+        (res: productModel) => {
+          this.newProductObj = res;
+          console.log(res);
+        },
         (err) => {
           if (err.status === 401 || err.status === 403)
             location.replace('/login');
         }
       );
+      console.log(this.newProductObj.imageUrl);
       return true;
     } else return false;
+  }
+
+  //   handleFileInput(files: FileList) {
+  //     this.fileToUpload = files.item(0);
+  //     console.log(files.item(0).name);
+  //     this.newProductObj.image = files.item(0);
+  // }
+
+  // Image Preview
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.newProductObj.image = file;
+    // this.form.get('avatar').updateValueAndValidity()
+
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imgPreview = reader.result as string;
+      this.newProductObj.image = this.imgPreview;
+      this.newProductObj.imageUrl = file.name;
+    };
+    console.log(file.name);
+    reader.readAsDataURL(file);
   }
 
   cancelAddingProduct() {
