@@ -1,3 +1,8 @@
+<style>
+        th, td,a , p{
+          font-weight: bold;
+        }
+      </style>
 <!-- breadcrumb start-->
 <section class="breadcrumb breadcrumb_bg">
     <div class="container">
@@ -20,16 +25,16 @@
             <div class="cart_inner ">
                 <div class="table-responsive">
                     <h3 class="m-3">
-                        Ordered By: {{order.user.username}}
+                        Ordered By: {{username}}
                     </h3>
                     <table class="table m-3">
                         <thead>
                             <tr>
-                                <th scope="col">Product No</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Count</th>
-                                <th scope="col">Cost</th>
+                                <th scope="col"><h4>Product No</h4></th>
+                                <th scope="col"><h4>Product</h4></th>
+                                <th scope="col"><h4>Price</h4></th>
+                                <th scope="col"><h4>Count</h4></th>
+                                <th scope="col"><h4>Cost</h4></th>
                             </tr>
                         </thead>
                         <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of products;let i=index;">
@@ -42,24 +47,24 @@
                                     <br/> {{product.Product.title}}
                                 </td>
                                 <td>
-                                    {{product.Product.price}}
+                                    {{product.Product.price | currency}}
                                 </td>
                                 <td>
                                     {{product.count}}
                                 </td>
                                 <td>
-                                    {{product.Product.price * product.count}}
+                                    {{(product.Product.price * product.count)| currency}}
                                 </td>
                             </tr>
                         </ng-container>
 
                     </table>
                     <div class="h4 text-right m-3">
-                        Total : {{order.cost}}
+                        Total : {{totalCost | currency}}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
 </body>

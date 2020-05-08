@@ -35,7 +35,10 @@ import { OrderItemComponent } from './components/order-item/order-item.component
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProtectedDirective } from './directives/protected.directive';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AboutComponent } from './components/about/about.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { AboutComponent } from './components/about/about.component';
     OrderItemComponent,
     UserOrdersComponent,
     ProtectedDirective,
+    CheckoutComponent,
     AboutComponent,
+    EditProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
