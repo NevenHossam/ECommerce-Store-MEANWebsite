@@ -34,15 +34,15 @@ export class ProfileComponent implements OnInit {
     this.userData.role = this.currentUser.role;
     this.userData.username = this.currentUser.userName;
     this.userData.password = this.currentUser.userPassword;
-    // this.userData._id = this.currentUser.userId;
+    this.userData._id = this.currentUser.userId;
 
-    // this.getUserInfoFromDb();
+    this.getUserInfoFromDb();
   }
 
   getUserInfoFromDb() {
     this.usersService.getUserById(this.currentUser.userId).subscribe(
       (res: userModel) => {
-        console.log(res);
+        console.log('res errrrrrrrrrrrrrrr');
         this.userData = res;
       },
       (err) => {
@@ -54,15 +54,14 @@ export class ProfileComponent implements OnInit {
   // Image Preview
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    // this.userData.image = file;
+    this.userData.image = file;
     // this.form.get('avatar').updateValueAndValidity()
 
     // File Preview
     const reader = new FileReader();
     reader.onload = () => {
       this.userImgPreview = reader.result as string;
-      this.imgObj = { image: this.userImgPreview, imageUrl: file.name };
-
+      // this.imgObj = { image: this.userImgPreview, imageUrl: file.name };
 
       this.userData.image = this.userImgPreview;
       this.userData.imageUrl = file.name;
@@ -75,22 +74,10 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserImg() {
-    // console.log('update ' + this.userInfo.userName);
-    // let userObj = {
-    //   email: this.currentUser.userEmail,
-    //   gender: this.currentUser.userGender,
-    //   password: this.currentUser.userPassword,
-    //   role: this.currentUser.role,
-    //   username: this.currentUser.userName,
-    //   imageUrl: this.currentUser.imageUrl,
-    // };
-    console.log(this.imgObj);
     this.usersService
-      .updateUserImg(this.currentUser.userId, this.imgObj)
+      .updateUserImg(this.currentUser.userId, this.userData)
       .subscribe(
         (res: userModel) => {
-          console.log('res');
-          console.log(res);
           this.userData = res;
         },
         (err) => {

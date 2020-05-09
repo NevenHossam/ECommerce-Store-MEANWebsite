@@ -12,7 +12,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private prdService: ProductsService, private userService: UsersService) {
     this.getPromotedProduts();
-    console.log(this.promotedProductsList)
 
     this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
     // if (this.shoppingCartListOfProducts.length == 0)

@@ -20,8 +20,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <i class="fa fa-user fa m-2" aria-hidden="true"></i>
-                                        <input type="text" class="form-control" name="name" id="name"
-                                            placeholder="Your Name" [(ngModel)]="newRegisterUser.username">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" [(ngModel)]="newRegisterUser.username">
                                     </div>
                                     <div id="validation" *ngIf="newRegisterUser.username.length < 6">
                                         Name must be greater than 6
@@ -36,8 +35,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <i class="fa fa-envelope fa m-2" aria-hidden="true"></i>
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Your Email" [(ngModel)]="newRegisterUser.email" />
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" [(ngModel)]="newRegisterUser.email" />
                                     </div>
                                     <div id="validation" *ngIf="newRegisterUser.email.length < 7">
                                         Please Enter Valid Email
@@ -49,8 +47,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <i class="fa fa-mobile m-2" aria-hidden="true"></i>
-                                        <input type="password" class="form-control" name="mobile" id="mobile"
-                                            placeholder="Your Password" [(ngModel)]="newRegisterUser.password" />
+                                        <input type="password" class="form-control" name="mobile" id="mobile" placeholder="Your Password" [(ngModel)]="newRegisterUser.password" />
                                     </div>
                                     <div id="validation" *ngIf="newRegisterUser.password.length < 5">
                                         password must be at least 5 characters...
@@ -62,9 +59,7 @@
                                 <div class="cols-sm-10">
                                     <div class="input-group">
                                         <i class="fa fa-globe fa-lg m-2" aria-hidden="true"></i>
-                                        <select class="form-control" name="nationality" id="nationality"
-                                            placeholder="Please select your Nationality"
-                                            [(ngModel)]="newRegisterUser.gender">
+                                        <select class="form-control" name="nationality" id="nationality" placeholder="Please select your Nationality" [(ngModel)]="newRegisterUser.gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
@@ -72,8 +67,7 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <button type="submit"
-                                    class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block login-button" (click)="RegisterNewUser()">Register</button>
                             </div>
                         </form>
                     </div>
@@ -82,21 +76,21 @@
         </div>
     </div>
     <script>
-        $("#signup").click(function () {
-            $("#first").fadeOut("fast", function () {
+        $("#signup").click(function() {
+            $("#first").fadeOut("fast", function() {
                 $("#second").fadeIn("fast");
             });
         });
 
-        $("#signin").click(function () {
-            $("#second").fadeOut("fast", function () {
+        $("#signin").click(function() {
+            $("#second").fadeOut("fast", function() {
                 $("#first").fadeIn("fast");
             });
         });
 
 
 
-        $(function () {
+        $(function() {
             $("form[name='login']").validate({
                 rules: {
 
@@ -118,7 +112,7 @@
                     }
 
                 },
-                submitHandler: function (form) {
+                submitHandler: function(form) {
                     form.submit();
                 }
             });
@@ -126,7 +120,7 @@
 
 
 
-        $(function () {
+        $(function() {
 
             $("form[name='registration']").validate({
                 rules: {
@@ -152,7 +146,7 @@
                     email: "Please enter a valid email address"
                 },
 
-                submitHandler: function (form) {
+                submitHandler: function(form) {
                     form.submit();
                 }
             });
