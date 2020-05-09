@@ -1,10 +1,14 @@
 <style>
-  th, td,a , p{
-    font-weight: bold;
-  }
+    th,
+    td,
+    a,
+    p {
+        font-weight: bold;
+    }
 </style>
+
 <body class="bg-white">
-  <!--================Home Banner Area =================-->
+    <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
         <div class="container">
@@ -67,9 +71,9 @@
                       *ngFor="let order of pendingList; let i = index"
                     >
                       <tr *ngIf="order.status == 'pending'">
-                        <td>
+                        <!-- <td>
                           {{ i + 1 }}
-                        </td>
+                        </td> -->
                         <td>
                           {{ order.user.username }}
                         </td>
@@ -144,9 +148,9 @@
                       *ngFor="let order of acceptedList; let i = index"
                     >
                       <tr *ngIf="order.status == 'accepted'">
-                        <td>
+                        <!-- <td>
                           {{ i + 1 }}
-                        </td>
+                        </td> -->
                         <td>
                           {{ order.user.username }}
                         </td>

@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'product/add', component: AddProductComponent },
   { path: 'product/edit/:id', component: EditProductComponent },
   { path: 'product/delete/:id', component: DeleteProductComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:userId', component: ProfileComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

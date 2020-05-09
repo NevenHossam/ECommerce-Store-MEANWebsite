@@ -10,6 +10,14 @@ export class UsersService {
 
   constructor(private client: HttpClient) { }
 
+setIntoLocalStorage(){
+  localStorage.setItem(
+    'currentuser',
+    JSON.stringify(this.getCurrentUser())
+  );
+  localStorage.setItem('token', JSON.stringify(this.getCurrentUser()));
+}
+
   // Register New User
   insertUser(user) {
     return this.client.post(this.baseUrl, user, { observe: 'body' });
@@ -65,10 +73,24 @@ export class UsersService {
     });
   }
 
+  //Update user info
   updateUserInfo(id, user) {
     let token = localStorage.getItem('token');
     return this.client.patch(this.baseUrl + "/" + id, user, {
-      observe: 'body',
+      // observe: 'body',
+      reportProgress: true,
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      })
+    });
+  }
+
+  updateUserImg(id, userImg) {
+    let token = localStorage.getItem('token');
+    return this.client.patch(this.baseUrl + "/img/" + id, userImg, {
+      // observe: 'body',
+      reportProgress: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,

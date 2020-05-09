@@ -45,10 +45,8 @@ export class UserOrdersComponent implements OnInit {
   }
 
   getUserOrders(id) {
-    console.log(id)
     this.orderService.getUserOrders(id).subscribe(
       (res: Array<orderModel>) => {
-        console.log(res);
         this.ordersList = res;
         this.ordersCount = this.ordersList.length;
         for (let i = 0; i < this.ordersCount; i++) {
@@ -75,9 +73,11 @@ export class UserOrdersComponent implements OnInit {
   }
   calculateCost(order: orderModel) {
     let cost = 0;
+    if (order.products.length > 0)
     order.products.forEach((item) => {
-      cost += item.Product.price * item.count;
-    });
+      if(item.Product != null)
+        cost += item.Product.price * item.count;
+      });
     return cost;
   }
   deleteOrder(order: orderModel) {

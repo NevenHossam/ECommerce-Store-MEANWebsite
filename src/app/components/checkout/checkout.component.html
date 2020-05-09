@@ -20,52 +20,61 @@
             <div class="cart_inner ">
                 <div class="table-responsive">
                     <h3 class="m-3">
-                        Ordered By: {{user.username}}
+                        Ordered By: {{userService.getCurrentUser().userName}}
                     </h3>
-                    <table class="table m-3">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product No</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Count</th>
-                                <th scope="col">Discount</th>
-                                <th scope="col">Cost</th>
-                            </tr>
-                        </thead>
-                        <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of shoppingCartListOfProducts;let i=index;">
-                            <tr *ngIf="shoppingCartListOfProducts.length >0">
-                                <td>
-                                    {{i+1}}
-                                </td>
-                                <td>
-                                    <img src="{{product.image}}" width="100px" height="100px" />
-                                    <br/> {{product.title}}
-                                </td>
-                                <td>
-                                    {{product.price}}
-                                </td>
-                                <td>
-                                    <input #count 
-                                    type="number"
-                                    [(ngModel)]="product.count" 
-                                    (ngModelChange)="getTotalPriceOfShoppingCart()"/>                                    
-                                </td>
-                                
-                                <td>
-                                    {{product.promotion}}
-                                </td>
-                                <td >
-                                    {{(product.price-product.promotion) * count.value}}
-                                </td>
-                            </tr>
-                        </ng-container>
+                    <div *ngIf="shoppingCartListOfProducts.length>0">
+                        <table class="table m-3">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col">Product No</th> -->
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Count</th>
+                                    <th scope="col">Discount</th>
+                                    <th scope="col">Cost</th>
+                                </tr>
+                            </thead>
+                            <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of shoppingCartListOfProducts;let i=index;">
+                                <tr *ngIf="shoppingCartListOfProducts.length >0">
+                                    <!-- <td>
+                                        {{i+1}}
+                                    </td> -->
+                                    <td>
+                                        <img src="{{product.image}}" width="100px" height="100px" />
+                                        <br/> {{product.title}}
+                                    </td>
+                                    <td>
+                                        {{product.price}}
+                                    </td>
+                                    <td>
+                                        <input #count type="number" [(ngModel)]="product.count" (ngModelChange)="getTotalPriceOfShoppingCart()" />
+                                    </td>
 
-                    </table>
-                    <div class="h4 text-right m-3">
-                        Total : {{shoppingCartTotal}}
+                                    <td>
+                                        {{product.promotion}}
+                                    </td>
+                                    <td>
+                                        {{(product.price-product.promotion) * count.value}}
+                                    </td>
+                                </tr>
+                            </ng-container>
+
+                        </table>
+                        <div class="h4 text-right m-3">
+                            Total : {{shoppingCartTotal}}
+                        </div>
+                        <div class="text-right m-3">
+                            <input class="btn btn-primary" type="button" value="Confirm" (click)="insertOrder()" />
+                        </div>
                     </div>
-                    <input class="btn btn-primary" type="button" value="Confirm" (click)="insertOrder()"/>
+                    <div *ngIf="shoppingCartListOfProducts.length==0">
+                        <div class="alert alert-danger">
+                            No products have been ordered..
+                        </div>
+                        <div class="text-right m-3">
+                            <a routerLink="/products" class="btn btn-success"> Go Shopping</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

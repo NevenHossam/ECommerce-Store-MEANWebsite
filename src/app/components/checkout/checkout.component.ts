@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private prdService: ProductsService,
     private orderService: OrdersService,
-    private userService: UsersService) { }
+    public userService: UsersService) { }
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
@@ -61,6 +61,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartListOfProducts=[];
         this.prdService.clearShoppingCart();
         this.getTotalPriceOfShoppingCart();
+        location.replace('/products');
       },
       (err) => {
         console.log(err);

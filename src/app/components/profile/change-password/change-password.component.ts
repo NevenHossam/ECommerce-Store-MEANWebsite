@@ -30,7 +30,6 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.userService.getCurrentUser();
-    console.log(this.currentUser);
     this.loginObject = {
       email: this.currentUser.userEmail,
       password: ""
@@ -52,13 +51,9 @@ export class ChangePasswordComponent implements OnInit {
         this.updatedUser.email = this.currentUser.userEmail;
         this.updatedUser.gender = this.currentUser.userGender;
         this.updatedUser.isPasswordUpdated = true;
-        console.log("last trail");
-        console.log(this.currentUser);
         this.userService.updateUserInfo(this.currentUser.userId, this.updatedUser)
           .subscribe(
             (response: { accessToken: '' }) => {
-              console.log("update response");
-              console.log(response);
               let { accessToken } = response;
               localStorage.removeItem('token');
               localStorage.removeItem('currentuser');

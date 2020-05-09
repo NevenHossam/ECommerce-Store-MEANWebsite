@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { orderModel } from 'src/app/models/orderModel';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-orders',
@@ -20,10 +21,16 @@ export class OrdersComponent implements OnInit {
 
   ordersCount;
   orderCost;
-  constructor(private service: OrdersService, private route: ActivatedRoute) {}
+  constructor(
+    private service: OrdersService,
+    private route: ActivatedRoute,
+    private userServices: UsersService
+  ) {}
 
   ngOnInit(): void {
-    this.getAllOrders();
+    if (this.userServices.getCurrentUser().role == 'member')
+      return location.replace('/login');
+    else this.getAllOrders();
   }
 
   getAllOrders() {
@@ -48,7 +55,7 @@ export class OrdersComponent implements OnInit {
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
-          console.log(err.status)
+          location.replace('/login');
       }
     );
     return this.ordersList;

@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     ) {
       this.userServices.insertUser(this.newRegisterUser).subscribe(
         (response) => {
-          console.log(response);
+
           localStorage.setItem(
             'currentuser',
             JSON.stringify(this.userServices.getCurrentUser())

@@ -24,11 +24,12 @@ export class HeaderComponent implements OnInit {
     public userService: UsersService
   ) {
     this.prdName = activatedRouteObj.snapshot.params['name'];
-    if (this.userService.getCurrentUser())
-      this.userId = this.userService.getCurrentUser().userId;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.userService.getCurrentUser())
+    this.userId = this.userService.getCurrentUser().userId;
+  }
 
   inputValueChanged(searchInputValue) {
     this.searchQuery = searchInputValue;

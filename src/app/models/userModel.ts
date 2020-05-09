@@ -1,6 +1,6 @@
 
 export interface userModel {
-    _id: string,
+    _id?: string,
     username: string,
     email: string,
     role: string,
@@ -8,5 +8,6 @@ export interface userModel {
     gender: string,
     ordersCount?: number,
     orders?: [],
-    imageUrl?: string
+    image?: File,
+    imageUrl?: string,
 }

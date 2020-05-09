@@ -5,8 +5,7 @@
         <div class="image image--small" style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
             <div>
                 <div class="notification notification--danger">
-                    <!-- {{ shoppingCartListOfProducts?.length }} -->
-                    {{prdService.getShoppingCartContent()?.length }}
+                    {{ prdService.getShoppingCartContent()?.length }}
                 </div>
             </div>
         </div>
@@ -16,9 +15,13 @@
     <ng-container class="dropDownBody">
         <!-- <div class="dropdown__body"> -->
         <!-- items -->
-        <div style="height: 300px; overflow: auto;">
+        <div style="height: 300px; width: 400px; overflow: auto; background-color: white;">
             <ul class="dropdown__items list list--vr-separator">
                 <li *ngFor="let prd of prdService.getShoppingCartContent()" class="dropdown__item list__item">
+                    <!-- <div class="icon-wrapper" (click)="removeFromShoppingCart(prd)" style="position: relative;">
+                        <i class="fa fa-trash-alt"></i>
+                    </div> -->
+
                     <div class="item-small-1">
                         <div class="item-small-1__data">
                             <a href="" class="item-small-1__title">{{ prd.title }}</a>
@@ -31,10 +34,21 @@
                             <a class="item-small-1__image image" style="background-image: url({{prd.image}});">
                             </a>
                         </div>
+                        <a class="item-small-1__action" (click)="removeFromShoppingCart(prd)">
+                            <i class="fas fa-times"></i>
+                        </a>
                     </div>
-                    <a class="">
-                        <i class="fa fa-home" (click)="removeFromShoppingCart(prd)"></i>
-                    </a>
+
+                    <!-- <div class="item-small-1__image-box">
+                        <a href="#" class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.productImage + ')'">
+                        </a>
+                        <a class="item-small-1__action" (click)="prdService.removeFromShoppingCart(prd)">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div> -->
+
+
+
                 </li>
             </ul>
         </div>

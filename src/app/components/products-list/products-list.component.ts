@@ -19,6 +19,23 @@ export class ProductsListComponent implements OnInit {
     public userService: UsersService
   ) {
     this.getPromotedProduts();
+
+    this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
+    // if (this.shoppingCartListOfProducts.length == 0)
+    //   localStorage.setItem(this.localStorageName, JSON.stringify([]));
+    if (this.userService.getCurrentUser()){
+      this.prdService.localStorageName =
+        'shoppingCartProducts' + this.userService.getCurrentUser().userId;
+    }
+
+    if (
+      localStorage.getItem(this.prdService.localStorageName)?.length == 0 ||
+      localStorage.getItem(this.prdService.localStorageName) == null
+    )
+      localStorage.setItem(
+        this.prdService.localStorageName,
+        JSON.stringify([])
+      );
   }
 
   ngOnInit(): void {

@@ -52,13 +52,13 @@ export class ShoppingCartComponent implements OnInit {
       : product.price;
   }
 
-
   removeFromShoppingCart(prd: productModel) {
-    console.log(this.prdService.removeFromShoppingCart(prd))
-    console.log(prd)
-    this.prdService.removeFromShoppingCart(prd);
-    this.getTotalPriceOfShoppingCart();
-    return this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
+    console.log('remove')
+    // console.log(this.prdService.removeFromShoppingCart(prd))
+    // console.log(prd)
+    // this.prdService.removeFromShoppingCart(prd);
+    // this.getTotalPriceOfShoppingCart();
+    // return this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
   }
 
 }

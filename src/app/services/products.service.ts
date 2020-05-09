@@ -19,15 +19,7 @@ export class ProductsService implements OnInit {
 
   constructor(private client: HttpClient, private userService: UsersService) {}
 
-  ngOnInit() {
-    this.shoppingCartListOfProducts = this.getShoppingCartContent();
-    if (this.shoppingCartListOfProducts.length == 0)
-      localStorage.setItem(this.localStorageName, JSON.stringify([]));
-
-    if (this.userService.getCurrentUser())
-      this.localStorageName =
-        'shoppingCartProducts' + this.userService.getCurrentUser().userId;
-  }
+  ngOnInit() {}
 
   setToShoppingCart() {
     localStorage.setItem(
@@ -36,25 +28,25 @@ export class ProductsService implements OnInit {
     );
   }
   getShoppingCartContent() {
-    return JSON.parse( localStorage.getItem(this.localStorageName) );
-  }   
-
-addToShoppingCart(prd: productModel) {
+    return JSON.parse(localStorage.getItem(this.localStorageName));
+  }
+  addToShoppingCart(prd: productModel) {
     this.shoppingCartListOfProducts = this.getShoppingCartContent();
-    this.shoppingCartListOfProducts.push(prd);
+    if (prd.quantity > 0) this.shoppingCartListOfProducts.push(prd);
     this.setToShoppingCart();
     return this.getShoppingCartContent();
-}
-  clearShoppingCart(){
-    this.shoppingCartListOfProducts=[];
+  }
+  clearShoppingCart() {
+    this.shoppingCartListOfProducts = [];
     this.setToShoppingCart();
     return this.shoppingCartListOfProducts;
   }
   removeFromShoppingCart(prd: productModel) {
-    console.log("delete from service");
+    console.log('delete from service');
     this.getShoppingCartContent();
-    debugger;
-    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex((p:productModel) => p._id == prd._id);
+    let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(
+      (p: productModel) => p._id == prd._id
+    );
     this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
     this.setToShoppingCart();
     return this.shoppingCartListOfProducts;
@@ -119,19 +111,14 @@ addToShoppingCart(prd: productModel) {
 
   addNewProduct(prd: productModel) {
     let token = localStorage.getItem('token');
-    return this.client.post(
-      this.baseUrl,
-      // { 'prd': { ...prd }, 'prdImage': prdImage },
-      prd,
-      {
-        reportProgress: true,
-        // observe: 'events',
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: token,
-        }),
-      }
-    );
+    return this.client.post(this.baseUrl, prd, {
+      reportProgress: true,
+      // observe: 'events',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token,
+      }),
+    });
   }
   // Error handling
   errorMgmt(error: HttpErrorResponse) {

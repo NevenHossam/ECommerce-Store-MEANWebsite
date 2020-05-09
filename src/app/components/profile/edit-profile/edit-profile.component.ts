@@ -41,8 +41,6 @@ export class EditProfileComponent implements OnInit {
       this.currentUser.userPassword.length > 4 &&
       this.currentUser.userEmail.length >= 7) {
       this.userService.loginUser(this.loginObject).subscribe((res) => {
-        console.log("login response");
-        console.log(res);
         this.updatedUser.username = this.currentUser.userName;
         this.updatedUser.password = this.currentUser.userPassword;
         this.updatedUser.email = this.currentUser.userEmail;
@@ -51,10 +49,7 @@ export class EditProfileComponent implements OnInit {
         this.userService.updateUserInfo(this.currentUser.userId, this.updatedUser)
           .subscribe(
             (response: { accessToken: '' }) => {
-              console.log("update response");
-              console.log(response);
               let { accessToken } = response;
-              console.log(accessToken);
               localStorage.removeItem('token');
               localStorage.removeItem('currentuser');
               localStorage.setItem('token', accessToken);
