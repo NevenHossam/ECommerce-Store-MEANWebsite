@@ -27,21 +27,19 @@ export class RegisterComponent implements OnInit {
       this.newRegisterUser.email.length >= 7
     ) {
       this.userServices.insertUser(this.newRegisterUser).subscribe(
-        (response) => {
-
+        (response: { accessToken: ''; userObj: '' }) => {
+          let { accessToken } = response;
+          localStorage.setItem('token', accessToken);
           localStorage.setItem(
             'currentuser',
             JSON.stringify(this.userServices.getCurrentUser())
           );
-          localStorage.setItem('token', JSON.stringify(response));
           this.router.navigate(['home']);
         },
         (err) => {
           console.log(err);
         }
       );
-      // redirect to products
-      // add user's token and id to cookie
     }
   }
 }

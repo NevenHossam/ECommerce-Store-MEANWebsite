@@ -17,24 +17,24 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean = true;
   currentUser;
 
-  constructor(private userServices: UsersService, private router: Router) {
-    console.log(this.loginObject);
-  }
+  constructor(private userServices: UsersService, private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   Login() {
     if (
       this.loginObject.password.length > 4 &&
       this.loginObject.email.length >= 7
     ) {
-      console.log('login')
       this.userServices.loginUser(this.loginObject).subscribe(
-        (response: { accessToken: ''; userId: '' }) => {
+        (response: { accessToken: ''; userObj: '' }) => {
           let { accessToken } = response;
           // let jwtDec = jwtDecoder(accessToken);
           localStorage.setItem('token', accessToken);
-          localStorage.setItem('currentuser', JSON.stringify(this.userServices.getCurrentUser()));
+          localStorage.setItem(
+            'currentuser',
+            JSON.stringify(this.userServices.getCurrentUser())
+          );
           this.invalidLogin = false;
           this.router.navigate(['home']);
         },

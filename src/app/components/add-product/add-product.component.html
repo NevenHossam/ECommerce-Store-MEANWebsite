@@ -20,21 +20,22 @@
     <form class="add-product" action="">
         <div class="add-product__images slider">
             <div class="add-product__image-actions">
-                <div class="add-product__image-action">
+                <!-- <div class="add-product__image-action">
                     <a><i class="fas fa-plus-square"></i></a>
-
                     <a><i class="fas fa-edit"></i></a>
                     <a><i class="fas fa-trash-alt"></i></a>
-                </div>
+                </div> -->
             </div>
             <div class="slider__items">
                 <!-- <div class="slider__item active" style="background-image: url({{newProductObj.image}})"></div> -->
-                <div class="preview" *ngIf="imgPreview && imgPreview !== null">
-                    <img [src]="imgPreview">
-                </div>
-                <div class="form-group">
-                    <label for="file">Choose File</label>
-                    <input type="file" id="file" (change)="uploadFile($event)">
+                <div class="preview text-center">
+                    <img style="width: 400px; height: 400;" [src]="imgPreview" *ngIf="imgPreview">
+                    <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!imgPreview">
+                    <div class="form-group text-center m-3">
+                        <span>
+                            <input #inputFile type="file" id="file" (change)="uploadFile($event)">
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

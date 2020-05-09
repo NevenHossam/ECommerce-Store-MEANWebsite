@@ -3,7 +3,8 @@
 <div class="single_category_product">
     <div class="single_category_img">
         <a routerLink="/productDetails/{{ product._id }}">
-            <img [src]="product.image" />
+            <img [src]="product.image" *ngIf="product.image" />
+            <img [src]="product.imageUrl" *ngIf="!product.image" />
         </a>
         <div class="category_social_icon" *ngIf="product.quantity > 0">
             <ul>
