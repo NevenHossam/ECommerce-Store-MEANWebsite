@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { productModel } from 'src/app/models/productModel';
 import { ProductsService } from 'src/app/services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -30,23 +31,9 @@ export class AddProductComponent implements OnInit, DoCheck {
   disabledFlag: boolean = true;
   imgPreview;
 
-  constructor(private prdService: ProductsService) {}
+  constructor(private prdService: ProductsService, private router: Router) {}
 
   ngOnInit() {}
-
-  // Image Preview
-  // uploadFile(event) {
-  //   const file = this.newProductObj.image;
-  //   this.newProductObj.image = file;
-  //   this.newProductObj.get('avatar').updateValueAndValidity();
-
-  //   // File Preview
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.preview = reader.result as string;
-  //   };
-  //   reader.readAsDataURL(file);
-  // }
 
   ngDoCheck() {
     if (this.newProductObj.isPromoted === 'true') this.disabledFlag = false;
@@ -62,10 +49,11 @@ export class AddProductComponent implements OnInit, DoCheck {
       this.prdService.addNewProduct(this.newProductObj).subscribe(
         (res: productModel) => {
           this.newProductObj = res;
+          this.router.navigate(['products']);
         },
         (err) => {
           if (err.status === 401 || err.status === 403)
-            location.replace('/login');
+            this.router.navigate['/login'];
         }
       );
       return true;
@@ -86,6 +74,11 @@ export class AddProductComponent implements OnInit, DoCheck {
       this.newProductObj.imageUrl = file.name;
     };
     reader.readAsDataURL(file);
+  }
+
+  removeImg() {
+    this.newProductObj.image = null;
+    this.imgPreview = '';
   }
 
   cancelAddingProduct() {

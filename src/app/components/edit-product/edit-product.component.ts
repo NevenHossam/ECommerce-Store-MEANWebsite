@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditProductComponent implements OnInit, DoCheck {
   @Input() product: productModel = {
-    category: 'men',
+    category: '',
     isPromoted: 'false',
     details: '',
     image: null,
@@ -22,6 +22,7 @@ export class EditProductComponent implements OnInit, DoCheck {
   };
   @Input() productId;
   disabledFlag;
+  imgPreview;
 
   constructor(
     private prdService: ProductsService,
@@ -34,6 +35,7 @@ export class EditProductComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.getProduct();
+    this.imgPreview=this.product.image;
   }
 
   ngDoCheck() {
@@ -48,7 +50,7 @@ export class EditProductComponent implements OnInit, DoCheck {
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
-          location.replace('/login');
+          this.router.navigate['/login'];
       }
     );
   }
@@ -58,10 +60,15 @@ export class EditProductComponent implements OnInit, DoCheck {
       this.prdService
         .editSpecificProduct(this.productId, this.product)
         .subscribe(
-          (res) => console.log(res),
+          (res) => {
+            this.product = res;
+            this.router.navigate['/products'];
+          },
           (err) => {
+            console.log('error in edit');
+            console.log(err);
             if (err.status === 401 || err.status === 403)
-              location.replace('/login');
+              this.router.navigate['/login'];
           }
         );
       return true;
@@ -70,5 +77,28 @@ export class EditProductComponent implements OnInit, DoCheck {
 
   selectCategory(cat: string) {
     this.product.category = cat;
+  }
+
+  // Image Preview
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.product.image = file;
+    // this.form.get('avatar').updateValueAndValidity()
+
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imgPreview = reader.result as string;
+      this.product.image = this.imgPreview;
+      this.product.imageUrl = file.name;
+    };
+    reader.readAsDataURL(file);
+
+    console.log(this.product)
+  }
+
+  removeImg() {
+    this.product.image = null;
+    this.imgPreview = '';
   }
 }

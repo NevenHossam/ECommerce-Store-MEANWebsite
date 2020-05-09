@@ -21,6 +21,7 @@ export class ProductsService implements OnInit {
 
   ngOnInit() {}
 
+  //Shopping Cart
   setToShoppingCart() {
     localStorage.setItem(
       this.localStorageName,
@@ -51,6 +52,8 @@ export class ProductsService implements OnInit {
     this.setToShoppingCart();
     return this.shoppingCartListOfProducts;
   }
+
+  //Products
   getAllProducts() {
     let token = localStorage.getItem('token');
     return this.client.get(this.baseUrl, {
@@ -136,7 +139,8 @@ export class ProductsService implements OnInit {
 
   editSpecificProduct(id, prd) {
     let token = localStorage.getItem('token');
-    return this.client.post(this.baseUrl + '/' + id, prd, {
+    return this.client.patch(this.baseUrl + '/' + id, prd, {
+      observe: 'body',
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,

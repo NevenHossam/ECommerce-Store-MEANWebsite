@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
-import { productModel } from 'src/app/models/productModel';
 
 @Component({
   selector: 'app-checkout',
@@ -21,7 +20,7 @@ export class CheckoutComponent implements OnInit {
     products: [{}];
   };
   constructor(
-    private prdService: ProductsService,
+    public prdService: ProductsService,
     private orderService: OrdersService,
     public userService: UsersService) { }
 
@@ -31,14 +30,13 @@ export class CheckoutComponent implements OnInit {
       localStorage.getItem(this.prdService.localStorageName)
       );
       if(this.shoppingCartListOfProducts == null)
-        this.shoppingCartListOfProducts=[];
+        this.shoppingCartListOfProducts=[{}];
       else
         this.shoppingCartListOfProducts.forEach(product => {
           product.count =1;
           product.totalCost = product.price;
         });
         this.getTotalPriceOfShoppingCart();
-
   }
 
   insertOrder() {

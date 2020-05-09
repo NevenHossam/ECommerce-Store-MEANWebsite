@@ -16,15 +16,14 @@
 </section>
 <!-- breadcrumb start-->
 <!-- add Item -->
-<div class="container m-5 p-5">
+<div class="container m-5 p-1">
     <form class="add-product" action="">
         <div class="add-product__images slider">
             <div class="add-product__image-actions">
-                <!-- <div class="add-product__image-action">
-                    <a><i class="fas fa-plus-square"></i></a>
-                    <a><i class="fas fa-edit"></i></a>
-                    <a><i class="fas fa-trash-alt"></i></a>
-                </div> -->
+                <div class="add-product__image-action">
+                    <a (click)="uploadFile(inputFile.value)"><i class="fas fa-plus-square"></i></a>
+                    <a (click)="removeImg()"><i class="fas fa-trash-alt"></i></a>
+                </div>
             </div>
             <div class="slider__items">
                 <!-- <div class="slider__item active" style="background-image: url({{newProductObj.image}})"></div> -->
@@ -44,9 +43,9 @@
                 <div class="form-group">
                     <label for="">Title</label>
                     <input class="form-control" type="text" name="title" [(ngModel)]="newProductObj.title" />
-                </div>
-                <div class="form-group alert alert-danger col-12" *ngIf="newProductObj.title.length == 0">
-                    Name is required..
+                    <div class="text-danger p-0 col-12" *ngIf="newProductObj.title.length == 0">
+                        Name is required..
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
@@ -55,9 +54,9 @@
                 <div class="form-group">
                     <label for="">Price</label>
                     <input class="form-control" type="text" name="price" [(ngModel)]="newProductObj.price" id="" />
-                </div>
-                <div class="form-group alert alert-danger col-12" *ngIf="newProductObj.price == 0">
-                    Price is required..
+                    <div class="text-danger p-0 col-12" *ngIf="newProductObj.price == 0">
+                        Price is required..
+                    </div>
                 </div>
                 <div class="add-product__discount">
                     <div class="form-group">
@@ -89,9 +88,9 @@
                         <option value="women">Women</option>
                         <option value="children">Children</option>
                      </select>
-                </div>
-                <div class="form-group alert alert-danger col-12" *ngIf="newProductObj.category == null">
-                    Category is required..
+                    <div class="text-danger p-0  col-12" *ngIf="newProductObj.category == null">
+                        Category is required..
+                    </div>
                 </div>
                 <div class="add-product__actions">
                     <button class="btn btn--gray" (click)="cancelAddingProduct()" routerLink="/products">Cancel</button>
