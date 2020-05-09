@@ -23,9 +23,9 @@
                 <div class="col-lg-5">
                     <div class="product_slider_img">
                         <div id="vertical">
-                            <div data-thumb="img/product_details/prodect_details_1.png">
+                            <div data-thumb="img/product_details/prodect_details_1.png" class="text-center">
                                 <div class="item-medium-1__alert" *ngIf="product.promotion">Sale</div>
-                                <img [src]="product.image" />
+                                <img [src]="product.image" style="width: 300px; height: 400px;" />
                             </div>
                         </div>
                     </div>
@@ -36,33 +36,45 @@
                         <h3>{{ product.title }}</h3>
                         <del *ngIf="product.promotion">${{ product.price }}</del>
                         <h2>${{ getPrice() }}</h2>
-                        <ul class="list">
-                            <li>
-                                <a class="active">
-                                    <span>Category</span> : {{ product.category }}
-                                </a>
-                            </li>
-                            <li *ngIf="product.quantity > 0">
-                                <a> <span>Availibility</span> : In Stock</a>
-                            </li>
-                            <li *ngIf="product.quantity == 0">
-                                <a> <span>Availibility</span> : Out Of Stock</a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span> Description </span> : {{ product.details }}
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <span> Quantity </span> : {{ product.quantity }}
-                                </a>
-                            </li>
+                        <span>
+                            <ul class="list">
+                                <li>
+                                    <a class="active">
+                                        <span>Category</span> : {{ product.category }}
+                        </a>
+                        </li>
+                        <li *ngIf="product.quantity > 0">
+                            <a> <span>Availibility</span> : In Stock</a>
+                        </li>
+                        <li *ngIf="product.quantity == 0">
+                            <a> <span>Availibility</span> : Out Of Stock</a>
+                        </li>
+                        <li>
+                            <a>
+                                <span> Description </span> : {{ product.details }}
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span> Quantity </span> : {{ product.quantity }}
+                            </a>
+                        </li>
                         </ul>
+                        </span>
+                        <span class="text-center" *ngIf="userService.getCurrentUser().role === 'admin'">
+                            <a class="btn_3 btn btn-secondary m-1" routerLink="/product/edit/{{ product._id }}">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                            <button type="button" class="btn_3 btn-danger text-light m-1" data-toggle="modal" data-target="#myModal" routerLink="/product/delete/{{ product._id }}">
+                                <i class="fa fa-trash-alt"></i>
+                            </button>
+                        </span>
 
                         <div class="card_area">
                             <div class="add_to_cart">
-                                <a class="btn_3" (click)="prdService.addToShoppingCart(product)">add to cart</a>
+                                <div class="text-center">
+                                    <a class="btn_3 text-light" (click)="prdService.addToShoppingCart(product)">Add to cart</a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -35,7 +35,9 @@ export class EditProductComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.getProduct();
-    this.imgPreview=this.product.image;
+    this.imgPreview = this.product.image;
+
+    console.log(this.product)
   }
 
   ngDoCheck() {
@@ -47,6 +49,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     this.prdService.getSpecificProduct(this.productId).subscribe(
       (res) => {
         this.product = res[0];
+        this.imgPreview = this.product.image;
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
@@ -65,8 +68,6 @@ export class EditProductComponent implements OnInit, DoCheck {
             this.router.navigate['/products'];
           },
           (err) => {
-            console.log('error in edit');
-            console.log(err);
             if (err.status === 401 || err.status === 403)
               this.router.navigate['/login'];
           }
@@ -94,7 +95,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     };
     reader.readAsDataURL(file);
 
-    console.log(this.product)
+    console.log(this.product);
   }
 
   removeImg() {
