@@ -22,13 +22,14 @@ export class ShoppingCartComponent implements OnInit {
     public prdService: ProductsService,
     private orderService: OrdersService,
     public userService: UsersService
-  ) { }
+  ) {
+    this.shoppingCartTotal = this.prdService.getTotalCostOfCart();
+  }
 
   ngOnInit(): void {
     this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
-    // JSON.parse(
-    //   localStorage.getItem(this.prdService.localStorageName)
-    //   );
+    this.shoppingCartTotal = this.prdService.getTotalCostFromLocalStorage();
+
     if (this.shoppingCartListOfProducts == null)
       this.shoppingCartListOfProducts = [{}];
 
@@ -38,27 +39,30 @@ export class ShoppingCartComponent implements OnInit {
     };
   }
 
-  getTotalPriceOfShoppingCart() {
-    this.shoppingCartTotal = 0;
-    this.shoppingCartListOfProducts.forEach((prd) => {
-      this.shoppingCartTotal += this.getFinalPriceForAproduct(prd);
-    });
-    return this.shoppingCartTotal;
-  }
+  // getTotalPriceOfShoppingCart() {
+  // this.shoppingCartTotal = 0;
+  // this.shoppingCartListOfProducts.forEach((prd) => {
+  //   this.shoppingCartTotal += this.prdService.calculateTotalCostOfProduct(prd);
+  // });
+  // return this.shoppingCartTotal;
+  // }
 
-  getFinalPriceForAproduct(product: productModel) {
+getTotalCart(){
+  return this.prdService.getTotalCostOfCart();
+}
+
+  getFinalPriceForAproduct(product) {
     return product.promotion
       ? product.price - product.promotion
       : product.price;
   }
 
   removeFromShoppingCart(prd: productModel) {
-    console.log('remove')
+    console.log('remove');
     // console.log(this.prdService.removeFromShoppingCart(prd))
     // console.log(prd)
     // this.prdService.removeFromShoppingCart(prd);
     // this.getTotalPriceOfShoppingCart();
     // return this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
   }
-
 }

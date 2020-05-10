@@ -19,14 +19,6 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // if (
-    //   localStorage.getItem(this.prdService.localStorageName)?.length == 0 ||
-    //   localStorage.getItem(this.prdService.localStorageName) == null
-    // )
-    //   localStorage.setItem(
-    //     this.prdService.localStorageName,
-    //     JSON.stringify([])
-    //   );
 
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;

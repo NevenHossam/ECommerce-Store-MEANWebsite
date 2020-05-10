@@ -19,23 +19,6 @@ export class ProductsListComponent implements OnInit {
     public userService: UsersService
   ) {
     this.getPromotedProduts();
-
-    this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
-    // if (this.shoppingCartListOfProducts.length == 0)
-    //   localStorage.setItem(this.localStorageName, JSON.stringify([]));
-    if (this.userService.getCurrentUser()){
-      this.prdService.localStorageName =
-        'shoppingCartProducts' + this.userService.getCurrentUser().userId;
-    }
-
-    if (
-      localStorage.getItem(this.prdService.localStorageName)?.length == 0 ||
-      localStorage.getItem(this.prdService.localStorageName) == null
-    )
-      localStorage.setItem(
-        this.prdService.localStorageName,
-        JSON.stringify([])
-      );
   }
 
   ngOnInit(): void {
@@ -43,8 +26,9 @@ export class ProductsListComponent implements OnInit {
     this.productsList = this.getAllProducts();
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;
-    else{  
-      location.replace('/login');}
+    else {
+      location.replace('/login');
+    }
   }
 
   getAllProducts() {
@@ -55,9 +39,9 @@ export class ProductsListComponent implements OnInit {
         this.categoryName = 'All';
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
-          {
-            location.replace('/login');}
+        if (err.status === 401 || err.status === 403) {
+          location.replace('/login');
+        }
       }
     );
   }

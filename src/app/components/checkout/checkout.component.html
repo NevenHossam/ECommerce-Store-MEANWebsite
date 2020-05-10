@@ -48,14 +48,14 @@
                                         <br /> {{ product.title }}
                                     </td>
                                     <td>
-                                        {{ product.price }}
+                                        {{ product.price | currency }}
                                     </td>
                                     <td>
-                                        <input class="form-control" #count type="number" [(ngModel)]="product.count" (ngModelChange)="getTotalPriceOfShoppingCart()" />
+                                        <input class="form-control" style="width: 30%;" max="{{product.quantity}}" min="1" #count type="number" [(ngModel)]="product.count" (ngModelChange)="getTotalPriceOfShoppingCart()" />
                                     </td>
 
                                     <td>
-                                        {{ product.promotion }}
+                                        {{ product.promotion | currency }}
                                     </td>
                                     <td>
                                         {{ (product.price - product.promotion) * count.value }}
