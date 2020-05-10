@@ -27,12 +27,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.getCurrentUser())
-    this.userId = this.userService.getCurrentUser().userId;
+      this.userId = this.getCurrentUserId();
+  }
+
+  getCurrentUserId() {
+    return this.userService.getCurrentUser().userId;
   }
 
   inputValueChanged(searchInputValue) {
     this.searchQuery = searchInputValue;
     this.inputValueChangedEvent.emit(this.searchQuery);
   }
-
 }

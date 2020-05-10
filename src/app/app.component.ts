@@ -17,15 +17,16 @@ export class AppComponent {
     private prdService: ProductsService,
     private userService: UsersService
   ) {
+    debugger;
+    this.prdService.initLocalStorageName();
     this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
     this.prdService.shoppingCartTotalCost = this.prdService.getTotalCostOfCart();
-    this.prdService.initLocalStorageName();
-
-    userService.currentUserInfo = userService.getCurrentUser();
-
+    debugger;
+    userService.currentUserInfo = this.userService.getCurrentUser();
+    debugger;
     if (
       this.prdService.shoppingCartListOfProducts == null ||
-      prdService.shoppingCartListOfProducts.length == 0
+      this.prdService.shoppingCartListOfProducts.length == 0
     )
       this.prdService.shoppingCartListOfProducts = [];
     else
