@@ -20,21 +20,23 @@ export class ProfileComponent implements OnInit {
     imageUrl: '',
   };
   imgObj;
+
   constructor(
     private usersService: UsersService,
     private ordersService: OrdersService
-  ) {}
+  ) {
+    this.currentUser = this.usersService.getCurrentUser();
+  }
 
   ngOnInit(): void {
-    this.currentUser = this.usersService.getCurrentUser();
     this.userData.email = this.currentUser.userEmail;
     this.userData.gender = this.currentUser.userGender;
     this.userData.imageUrl = this.currentUser.userImage;
-    // this.userData.image = this.currentUser.userImage;
+    this.userData.image = this.currentUser.userImage;
     this.userData.role = this.currentUser.role;
     this.userData.username = this.currentUser.userName;
     this.userData.password = this.currentUser.userPassword;
-    this.userData._id = this.currentUser.userId;
+    // this.userData._id = this.currentUser.userId;
 
     this.getUserInfoFromDb();
   }
@@ -42,7 +44,6 @@ export class ProfileComponent implements OnInit {
   getUserInfoFromDb() {
     this.usersService.getUserById(this.currentUser.userId).subscribe(
       (res: userModel) => {
-        console.log('res errrrrrrrrrrrrrrr');
         this.userData = res;
       },
       (err) => {
@@ -74,13 +75,16 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUserImg() {
+    console.log(this.userData);
     this.usersService
-      .updateUserImg(this.currentUser.userId, this.userData)
+      .updateUserInfo(this.currentUser.userId, this.userData)
       .subscribe(
         (res: userModel) => {
           this.userData = res;
+          console.log('res succeeded');
         },
         (err) => {
+          console.log('failed');
           console.log(this.userData);
           console.log(err);
         }

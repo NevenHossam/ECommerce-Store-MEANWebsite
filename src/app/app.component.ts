@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from './services/products.service';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,20 @@ export class AppComponent {
   /**
    *
    */
-  constructor(private prdService: ProductsService) {
+  constructor(
+    private prdService: ProductsService,
+    private userService: UsersService
+  ) {
     this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
     this.prdService.shoppingCartTotalCost = this.prdService.getTotalCostOfCart();
     this.prdService.initLocalStorageName();
 
-    if (this.prdService.shoppingCartListOfProducts == null)
+    userService.currentUserInfo = userService.getCurrentUser();
+
+    if (
+      this.prdService.shoppingCartListOfProducts == null ||
+      prdService.shoppingCartListOfProducts.length == 0
+    )
       this.prdService.shoppingCartListOfProducts = [];
     else
       this.prdService.shoppingCartListOfProducts.forEach((product) => {
@@ -25,8 +34,5 @@ export class AppComponent {
           product.totalCost = product.price - product.promotion;
         else product.totalCost = product.price;
       });
-
-    console.log(this.prdService.shoppingCartListOfProducts);
   }
-
 }

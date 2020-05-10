@@ -7,16 +7,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class UsersService {
   private baseUrl = 'http://localhost:3000/api/users';
+  currentUserInfo;
 
-  constructor(private client: HttpClient) { }
+  constructor(private client: HttpClient) {}
 
-setIntoLocalStorage(){
-  localStorage.setItem(
-    'currentuser',
-    JSON.stringify(this.getCurrentUser())
-  );
-  localStorage.setItem('token', JSON.stringify(this.getCurrentUser()));
-}
+  setIntoLocalStorage() {
+    localStorage.setItem('currentuser', JSON.stringify(this.getCurrentUser()));
+    localStorage.setItem('token', JSON.stringify(this.getCurrentUser()));
+  }
 
   // Register New User
   insertUser(user) {
@@ -66,35 +64,39 @@ setIntoLocalStorage(){
   getUserById(id) {
     let token = localStorage.getItem('token');
     return this.client.get(this.baseUrl + '/' + id, {
+      observe: 'body',
+      reportProgress: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,
-      })
+      }),
     });
   }
 
   //Update user info
   updateUserInfo(id, user) {
+    console.log('service user')
+    console.log(user)
     let token = localStorage.getItem('token');
-    return this.client.patch(this.baseUrl + "/" + id, user, {
+    return this.client.patch(this.baseUrl + '/' + id, user, {
       // observe: 'body',
       reportProgress: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,
-      })
+      }),
     });
   }
 
   updateUserImg(id, userImg) {
     let token = localStorage.getItem('token');
-    return this.client.patch(this.baseUrl + "/img/" + id, userImg, {
+    return this.client.patch(this.baseUrl + '/img/' + id, userImg, {
       // observe: 'body',
       reportProgress: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,
-      })
+      }),
     });
   }
 }
