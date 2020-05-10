@@ -18,7 +18,7 @@ export class AppComponent {
     this.prdService.initLocalStorageName();
 
     if (this.prdService.shoppingCartListOfProducts == null)
-      this.prdService.shoppingCartListOfProducts = [{}];
+      this.prdService.shoppingCartListOfProducts = [];
     else
       this.prdService.shoppingCartListOfProducts.forEach((product) => {
         if (product.promotion)
@@ -28,4 +28,5 @@ export class AppComponent {
 
     console.log(this.prdService.shoppingCartListOfProducts);
   }
+
 }

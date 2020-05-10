@@ -36,8 +36,6 @@ export class EditProductComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.getProduct();
     this.imgPreview = this.product.image;
-
-    console.log(this.product)
   }
 
   ngDoCheck() {
@@ -50,6 +48,7 @@ export class EditProductComponent implements OnInit, DoCheck {
       (res) => {
         this.product = res[0];
         this.imgPreview = this.product.image;
+        console.log(this.product)
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
@@ -99,6 +98,8 @@ export class EditProductComponent implements OnInit, DoCheck {
   }
 
   removeImg() {
+    console.log(this.product)
+    this.product.imageUrl = '/assets/products/default-product-image.png';
     this.product.image = null;
     this.imgPreview = '';
   }

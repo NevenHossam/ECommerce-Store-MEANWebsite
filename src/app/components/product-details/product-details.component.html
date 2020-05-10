@@ -24,7 +24,8 @@
                     <div class="product_slider_img">
                         <div id="vertical">
                             <div data-thumb="img/product_details/prodect_details_1.png" class="text-center">
-                                <div class="item-medium-1__alert" *ngIf="product.promotion">Sale</div>
+                                <div class="item-medium-1__alert" *ngIf="product.promotion && product.quantity > 0">Sale</div>
+                                <div class="item-medium-1__alert text-center" *ngIf="product.quantity == 0">Out Of Stock</div>
                                 <img [src]="product.image" style="width: 300px; height: 400px;" />
                             </div>
                         </div>
@@ -70,10 +71,10 @@
                             </button>
                         </span>
 
-                        <div class="card_area">
+                        <div class="card_area" *ngIf="product.quantity>0">
                             <div class="add_to_cart">
                                 <div class="text-center">
-                                    <a class="btn_3 text-light" (click)="prdService.addToShoppingCart(product)">Add to cart</a>
+                                    <a class="btn_3 text-light" style="cursor: pointer;;" (click)="prdService.addToShoppingCart(product)">Add to cart</a>
                                 </div>
                             </div>
                         </div>

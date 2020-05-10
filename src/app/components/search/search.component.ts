@@ -25,8 +25,10 @@ export class SearchComponent implements OnInit {
     this.prdService.getProductByName(searchInputValue).subscribe(
       (res) => {
         this.productsList = res;
+        console.log('search')
       },
       (err) => {
+        console.log(err)
         if (err.status === 401 || err.status === 403)
           location.replace('/login');
       }

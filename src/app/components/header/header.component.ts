@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { productModel } from 'src/app/models/productModel';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class HeaderComponent implements OnInit {
   userId;
 
   constructor(
-    private prdService: ProductsService,
+    public prdService: ProductsService,
     private activatedRouteObj: ActivatedRoute,
     private router: Router,
     public userService: UsersService
@@ -35,4 +34,5 @@ export class HeaderComponent implements OnInit {
     this.searchQuery = searchInputValue;
     this.inputValueChangedEvent.emit(this.searchQuery);
   }
+
 }

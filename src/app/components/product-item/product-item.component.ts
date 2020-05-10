@@ -19,10 +19,11 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;
     else this.currentUserRole = '';
+
+    console.log(this.product.imageUrl);
   }
 
   getPrice() {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { productModel } from 'src/app/models/productModel';
 import { ProductsService } from 'src/app/services/products.service';
 import { orderModel } from 'src/app/models/orderModel';
@@ -17,6 +17,7 @@ export class ShoppingCartComponent implements OnInit {
     user: string;
     products: [{}];
   };
+  @Output() removeFromCartEvent = new EventEmitter();
 
   constructor(
     public prdService: ProductsService,
@@ -27,8 +28,8 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
-    this.shoppingCartTotal = this.prdService.getTotalCostFromLocalStorage();
+    // this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
+    // this.shoppingCartTotal = this.prdService.getTotalCostFromLocalStorage();
 
     if (this.shoppingCartListOfProducts == null)
       this.shoppingCartListOfProducts = [{}];
@@ -39,17 +40,13 @@ export class ShoppingCartComponent implements OnInit {
     };
   }
 
-  // getTotalPriceOfShoppingCart() {
-  // this.shoppingCartTotal = 0;
-  // this.shoppingCartListOfProducts.forEach((prd) => {
-  //   this.shoppingCartTotal += this.prdService.calculateTotalCostOfProduct(prd);
-  // });
-  // return this.shoppingCartTotal;
-  // }
+  resetCart() {
+    this.prdService.resetCart();
+  }
 
-getTotalCart(){
-  return this.prdService.getTotalCostOfCart();
-}
+  getTotalCart() {
+    return this.prdService.getTotalCostOfCart();
+  }
 
   getFinalPriceForAproduct(product) {
     return product.promotion
@@ -57,12 +54,17 @@ getTotalCart(){
       : product.price;
   }
 
-  removeFromShoppingCart(prd: productModel) {
-    console.log('remove');
-    // console.log(this.prdService.removeFromShoppingCart(prd))
-    // console.log(prd)
-    // this.prdService.removeFromShoppingCart(prd);
-    // this.getTotalPriceOfShoppingCart();
-    // return this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
-  }
+  // removeFromShoppingCart(event) {
+  //   this.removeFromCartEvent.emit(event);
+  //   console.log('remove')
+  // this.prdService.removeFromShoppingCart(prd);
+  // this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
+  // this.prdService.shoppingCartTotalCost = this.prdService.getTotalCostOfCart();
+  // let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(
+  //   (p: productModel) => p._id == prd._id
+  // );
+  // this.shoppingCartListOfProducts.splice(prdIndexToRemove, 1);
+  // this.prdService.setToShoppingCart();
+  // return this.shoppingCartListOfProducts;
+  // }
 }

@@ -22,8 +22,7 @@ export class ProductsService implements OnInit {
 
   constructor(private client: HttpClient, private userService: UsersService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   //Shopping Cart
   initLocalStorageName() {
@@ -45,7 +44,7 @@ export class ProductsService implements OnInit {
 
   setToShoppingCart() {
     if (this.shoppingCartListOfProducts?.length == 0) {
-      localStorage.setItem(this.localStorageName, JSON.stringify([{}]));
+      localStorage.setItem(this.localStorageName, JSON.stringify([]));
       localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
     } else {
       localStorage.setItem(
@@ -106,7 +105,7 @@ export class ProductsService implements OnInit {
   }
   removeFromShoppingCart(prd: productModel) {
     console.log('delete from service');
-    this.getShoppingCartContent();
+    this.shoppingCartListOfProducts = this.getShoppingCartContent();
     this.shoppingCartTotalCost = this.getTotalCostOfCart();
     let prdIndexToRemove = this.shoppingCartListOfProducts.findIndex(
       (p: productModel) => p._id == prd._id
@@ -121,12 +120,11 @@ export class ProductsService implements OnInit {
       this.shoppingCartListOfProducts.forEach((prd) => {
         this.shoppingCartTotalCost += this.calculateTotalCostOfProduct(prd);
       });
-    console.log(this.shoppingCartListOfProducts);
     return this.shoppingCartTotalCost;
   }
   setTotalCostIntoLocalStorage() {
     if (this.shoppingCartListOfProducts?.length > 0)
-      localStorage.setItem(this.localStorageCartCost, JSON.stringify([{}]));
+      localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
     localStorage.setItem(
       this.localStorageName,
       JSON.stringify(this.shoppingCartListOfProducts)
@@ -134,6 +132,10 @@ export class ProductsService implements OnInit {
   }
   getTotalCostFromLocalStorage() {
     return JSON.parse(localStorage.getItem(this.localStorageCartCost));
+  }
+  resetCart(){
+    localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
+    localStorage.setItem(this.localStorageName, JSON.stringify([]));
   }
 
   //Products
@@ -184,7 +186,7 @@ export class ProductsService implements OnInit {
   }
   getProductByName(name: string) {
     let token = localStorage.getItem('token');
-    return this.client.get(this.baseUrl + '/productName/', {
+    return this.client.get(this.baseUrl + '/productName/' + name, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,

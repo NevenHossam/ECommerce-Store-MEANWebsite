@@ -11,50 +11,59 @@
         </div>
     </ng-container>
 
-    <!-- body -->
     <ng-container class="dropDownBody">
-        <!-- <div class="dropdown__body"> -->
-        <!-- items -->
         <div style="height: 300px; width: 400px; overflow: auto; background-color: white;">
             <ul class="dropdown__items list list--vr-separator">
+
                 <li *ngFor="let prd of prdService.getShoppingCartContent()" class="dropdown__item list__item">
-                    <!-- <div class="icon-wrapper" (click)="removeFromShoppingCart(prd)" style="position: relative;">
-                        <i class="fa fa-trash-alt"></i>
-                    </div> -->
+                    <div class="item-small-1">
+                        <div class="item-small-1__data" routerLink="/productDetails/{{prd._id}}">
+                            <a class="item-small-1__title">{{ prd.title }}</a>
+                            <span class="item-small-1__description">
+                               {{ prd.count }}X ${{ getFinalPriceForAproduct(prd) }}
+                            </span>
+                        </div>
+                        <div class="item-small-1__image-box">
+                            <img class="item-small-1__image image" [src]="prd.image" *ngIf="prd.image" />
+                            <img class="item-small-1__image image" [src]="prd.image" *ngIf="prd.image===null" />
+                        </div>
+                    </div>
+                </li>
+
+                <!-- 
+                <li *ngFor="let prd of prdService.getShoppingCartContent()" class="dropdown__item list__item">
 
                     <div class="item-small-1">
                         <div class="item-small-1__data">
                             <a href="" class="item-small-1__title">{{ prd.title }}</a>
                             <span class="item-small-1__description">
-                               <!-- <input [(ngModel)]='prd.count' (ngModelChange)='getTotalCart()' /> -->
-                               
                                {{ prd.count }}X ${{ getFinalPriceForAproduct(prd) }}
                             </span>
                         </div>
                         <div class="item-small-1__image-box">
-                            <!-- <a class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.image + ')'"> -->
-                            <a class="item-small-1__image image" style="background-image: url({{prd.image}});">
+                            <a class="item-small-1__image image" style="background-image: url({{prd.image}});" *ngIf="prd.image">
                             </a>
+                            <a class="item-small-1__image image" style="background-image: url({{prd.imageUrl}});" *ngIf="prd.image===null"></a>
                         </div>
                         <a class="item-small-1__action" (click)="removeFromShoppingCart(prd)">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
 
-                    <!-- <div class="item-small-1__image-box">
+                    <button (click)="removeFromShoppingCart(prd)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+
+                    <div class="item-small-1__image-box">
                         <a href="#" class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.productImage + ')'">
                         </a>
                         <a class="item-small-1__action" (click)="prdService.removeFromShoppingCart(prd)">
                             <i class="fas fa-times"></i>
                         </a>
-                    </div> -->
-
-
-
-                </li>
+                    </div>
+                </li> -->
             </ul>
         </div>
-        <!-- totals -->
         <div class="separator"></div>
         <div class="block">
             <span class="lable">Total:</span>
@@ -62,7 +71,7 @@
         </div>
         <!-- actions -->
         <div class="block list list--hr">
-            <a class="list-item btn btn--gray" href="">View Cart</a>
+            <a class="list-item btn btn--gray text-light" (click)="resetCart()">Reset</a>
             <a class="list-item btn btn--primary" routerLink="/checkout">Checkout</a>
         </div>
         <!-- </div> -->
