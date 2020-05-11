@@ -55,6 +55,7 @@ export class EditProfileComponent implements OnInit {
           .subscribe(
             (response: { accessToken: '', userTokenObject:{} }) => {
               let { accessToken, userTokenObject } = response;
+              console.log(userTokenObject)
               localStorage.removeItem('token');
               localStorage.removeItem('currentuser');
               localStorage.setItem('token', accessToken);

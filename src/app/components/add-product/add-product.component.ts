@@ -64,6 +64,7 @@ export class AddProductComponent implements OnInit, DoCheck {
 
   // Image Preview
   uploadFile(event) {
+    debugger;
     const file = (event.target as HTMLInputElement).files[0];
     this.newProductObj.image = file;
     // this.form.get('avatar').updateValueAndValidity()

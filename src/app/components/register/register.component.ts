@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
     password: '',
     gender: 'male',
   };
+  isExitedUser;
+
   constructor(private userServices: UsersService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -37,6 +39,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['home']);
         },
         (err) => {
+          if (err.status === 405) this.isExitedUser = err.error;
           console.log(err);
         }
       );

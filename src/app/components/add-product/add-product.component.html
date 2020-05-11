@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <!--================Home Banner Area =================-->
 <!-- breadcrumb start-->
 <section class="breadcrumb breadcrumb_bg p-3">
@@ -21,7 +23,11 @@
         <div class="add-product__images slider">
             <div class="add-product__image-actions">
                 <div class="add-product__image-action">
-                    <a (click)="uploadFile(inputFile.value)"><i class="fas fa-plus-square"></i></a>
+                    <!-- <a><i id="addPrdIcon" class="fas fa-plus-square"></i>
+                        <span id="fileSpanContainer">
+                            <input id="fileUpload" #inputFile type="file" (change)="uploadFile($event)" style="display: none;">
+                        </span>
+                    </a> -->
                     <a (click)="removeImg()"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
@@ -31,8 +37,8 @@
                     <img style="width: 400px; height: 400;" [src]="imgPreview" *ngIf="imgPreview">
                     <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!imgPreview">
                     <div class="form-group text-center m-3">
-                        <span>
-                            <input #inputFile type="file" id="file" (change)="uploadFile($event)">
+                        <span id="fileSpanContainer">
+                            <input id="fileUpload" #inputFile type="file" (change)="uploadFile($event)">
                         </span>
                     </div>
                 </div>
@@ -100,3 +106,16 @@
         </div>
     </form>
 </div>
+
+
+
+<script>
+    $("#addPrdIcon").click(function() {
+        $("#fileUpload").trigger('click');
+    });
+
+    $('#fileUpload').on('change', function() {
+        var val = $(this).val();
+        $(this).siblings('#fileSpanContainer').text(val);
+    })
+</script>
