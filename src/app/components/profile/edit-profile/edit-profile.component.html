@@ -4,8 +4,7 @@
             <label for="first_name">
                 <h4>Username</h4>
             </label>
-            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Change Username"
-                title="enter your first name if any." [(ngModel)]="currentUser.userName" />
+            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Change Username" title="enter your first name if any." [(ngModel)]="currentUser.userName" />
         </div>
     </div>
 
@@ -14,8 +13,7 @@
             <label for="email">
                 <h4>Email</h4>
             </label>
-            <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
-                title="enter your email." [(ngModel)]="currentUser.userEmail" />
+            <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." [(ngModel)]="currentUser.userEmail" />
         </div>
     </div>
 
@@ -24,8 +22,7 @@
             <label for="Gender">
                 <h4>Gender</h4>
             </label>
-            <select name="nationality" id="nationality" placeholder="Please select your Nationality"
-                [(ngModel)]="currentUser.userGender">
+            <select name="nationality" id="nationality" placeholder="Please select your Nationality" [(ngModel)]="currentUser.userGender" class="form-control">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
@@ -36,10 +33,9 @@
             <label for="password">
                 <h4>password</h4>
             </label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="password"
-                title="enter your password." [(ngModel)]="currentUser.userPassword" />
+            <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password." [(ngModel)]="currentUser.userPassword" />
         </div>
-        <span class="text-danger">
+        <span class="text-success">
             {{this.Validation1}}
         </span>
         <span class="text-danger">

@@ -43,8 +43,10 @@ export class ProductDetailsComponent implements OnInit {
         this.product = res[0];
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
   }

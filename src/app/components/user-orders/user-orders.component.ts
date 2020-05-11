@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrdersService } from 'src/app/services/orders.service';
 import { orderModel } from 'src/app/models/orderModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { userModel } from 'src/app/models/userModel';
 
@@ -22,7 +22,8 @@ export class UserOrdersComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrdersService,
-    public userService: UsersService
+    public userService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,8 +39,10 @@ export class UserOrdersComponent implements OnInit {
         this.username = res.username;
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
           location.replace('/login');
+          this.router.navigate['/login'];
+        }
       }
     );
   }
@@ -65,8 +68,10 @@ export class UserOrdersComponent implements OnInit {
         }
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
           location.replace('/login');
+          this.router.navigate['/login'];
+        }
       }
     );
     return this.ordersList;
@@ -74,9 +79,8 @@ export class UserOrdersComponent implements OnInit {
   calculateCost(order: orderModel) {
     let cost = 0;
     if (order.products.length > 0)
-    order.products.forEach((item) => {
-      if(item.Product != null)
-        cost += item.Product.price * item.count;
+      order.products.forEach((item) => {
+        if (item.Product != null) cost += item.Product.price * item.count;
       });
     return cost;
   }
@@ -103,8 +107,10 @@ export class UserOrdersComponent implements OnInit {
         }
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
           location.replace('/login');
+          this.router.navigate['/login'];
+        }
       }
     );
   }

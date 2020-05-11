@@ -24,13 +24,15 @@ export class OrdersComponent implements OnInit {
   constructor(
     private service: OrdersService,
     private route: ActivatedRoute,
-    private userServices: UsersService
+    private userServices: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if (this.userServices.getCurrentUser().role == 'member')
-      return location.replace('/login');
-    else this.getAllOrders();
+    if (this.userServices.getCurrentUser().role == 'member') {
+      this.router.navigate['/login'];
+      location.replace('/login');
+    } else this.getAllOrders();
   }
 
   getAllOrders() {
@@ -54,8 +56,10 @@ export class OrdersComponent implements OnInit {
         }
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
     return this.ordersList;
@@ -95,8 +99,10 @@ export class OrdersComponent implements OnInit {
         }
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
   }

@@ -27,7 +27,6 @@
                                 <th><span>Orders Count</span></th>
                                 <th><span>Gender</span></th>
                                 <th><span>Email</span></th>
-                                <th>&nbsp;</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +38,9 @@
                                     <td>
                                         <!-- <img src={{user.imageUrl}} alt=""> -->
                                         <!-- user above after adjusting image -->
-                                        <img src="https://miro.medium.com/max/10634/1*9zBRv3a7hn5eZT17g-N4qQ.jpeg" alt="">
-                                        <a href="#" class="user-link">{{user.username}}</a>
+                                        <img [src]="user.image" alt="" style="width: 50px; height: 50px;" *ngIf="user.image">
+                                        <img [src]="user.imageUrl" alt="" style="width: 50px; height: 50px;" *ngIf="!user.image">
+                                        <a class="user-link">{{user.username}}</a>
                                         <span class="user-subhead">{{user.role}}</span>
                                     </td>
                                     <td>
@@ -50,22 +50,7 @@
                                         <span class="label label-default">{{user.gender}}</span>
                                     </td>
                                     <td>
-                                        <a href="#">{{user.email}}</a>
-                                    </td>
-                                    <td style="width: 20%;">
-                                        <a routerLink="{{user._id}}/orders" class="table-link">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
-
-                                        <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-restore-alt fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                        </a>
+                                        <a>{{user.email}}</a>
                                     </td>
                                 </tr>
                             </ng-container>

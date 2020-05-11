@@ -16,6 +16,7 @@ export class EditProfileComponent implements OnInit {
     newPassword: "",
     gender: "",
     role:"",
+    _id:"",
     isPasswordUpdated: false
   };
   loginObject: {
@@ -36,22 +37,20 @@ export class EditProfileComponent implements OnInit {
 
   saveChanges() {
     this.loginObject.password = this.currentUser.userPassword;
-    console.log("password "+this.loginObject.password);
     if (
       this.currentUser.userName.length >= 6 &&
       this.currentUser.userName.length < 16 &&
       this.currentUser.userPassword.length > 4 &&
       this.currentUser.userEmail.length >= 7) {
-      this.userService.loginUser(this.loginObject).subscribe((res) => {
-      
+        this.userService.loginUser(this.loginObject).subscribe((res) => {
         this.updatedUser.username = this.currentUser.userName;
         this.updatedUser.password = this.currentUser.userPassword;
         this.updatedUser.email = this.currentUser.userEmail;
         this.updatedUser.gender = this.currentUser.userGender;
+        this.updatedUser._id = this.currentUser.userId;
         this.updatedUser.role = this.currentUser.role;
         // this.updatedUser.imageUrl = this.currentUser.imageUrl;
         this.updatedUser.isPasswordUpdated = false;
-        console.log("pw" + this.updatedUser.password );
         this.userService.updateUserInfo(this.currentUser.userId, this.updatedUser)
           .subscribe(
             (response: { accessToken: '', userTokenObject:{} }) => {

@@ -58,7 +58,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col"><h4>Order No</h4></th>
                       <th scope="col"><h4>Ordered By</h4></th>
                       <th scope="col"><h4>Date</h4></th>
                       <th scope="col"><h4>Status</h4></th>
@@ -135,7 +134,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Order No</th>
                       <th scope="col">Ordered By</th>
                       <th scope="col">Date</th>
                       <th scope="col">Status</th>
@@ -203,7 +201,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Order No</th>
                       <th scope="col">Ordered By</th>
                       <th scope="col">Date</th>
                       <th scope="col">Status</th>
@@ -216,9 +213,7 @@
                       *ngFor="let order of rejectedList; let i = index"
                     >
                       <tr *ngIf="order.status == 'rejected'">
-                        <td>
-                          {{ i + 1 }}
-                        </td>
+               
                         <td>
                           {{ order.user.username }}
                         </td>

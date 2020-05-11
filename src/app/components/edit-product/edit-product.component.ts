@@ -48,11 +48,13 @@ export class EditProductComponent implements OnInit, DoCheck {
       (res) => {
         this.product = res[0];
         this.imgPreview = this.product.image;
-        console.log(this.product)
+        console.log(this.product);
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
           this.router.navigate['/login'];
+          location.replace('/login');
+        }
       }
     );
   }
@@ -67,8 +69,10 @@ export class EditProductComponent implements OnInit, DoCheck {
             this.router.navigate['/products'];
           },
           (err) => {
-            if (err.status === 401 || err.status === 403)
+            if (err.status === 401 || err.status === 403) {
               this.router.navigate['/login'];
+              location.replace('/login');
+            }
           }
         );
       return true;
@@ -98,7 +102,7 @@ export class EditProductComponent implements OnInit, DoCheck {
   }
 
   removeImg() {
-    console.log(this.product)
+    console.log(this.product);
     this.product.imageUrl = '/assets/products/default-product-image.png';
     this.product.image = null;
     this.imgPreview = '';

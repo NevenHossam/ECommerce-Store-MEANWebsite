@@ -34,8 +34,10 @@ export class DeleteProductComponent implements OnInit {
     this.prdService.deleteSpecificProduct(this.productId).subscribe(
       (res) => console.log(res),
       (err) => {
-        if(err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
   }

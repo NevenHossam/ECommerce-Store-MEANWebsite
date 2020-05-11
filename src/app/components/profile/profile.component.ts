@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { userModel } from 'src/app/models/userModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,27 +12,27 @@ import { userModel } from 'src/app/models/userModel';
 export class ProfileComponent implements OnInit {
   currentUser;
   userImgPreview;
-  imgRes={};
+  imgRes = {};
   userData: {
-  //   email: '',
-  //   gender: '',
-  //   password: '',
-  //   role: '',
-  //   username: '',
-    imageUrl: string,
-    image?:File
-    
+    //   email: '',
+    //   gender: '',
+    //   password: '',
+    //   role: '',
+    //   username: '',
+    imageUrl: string;
+    image?: File;
   };
 
   constructor(
     private usersService: UsersService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private router: Router
   ) {
     this.currentUser = this.usersService.getCurrentUser();
   }
 
   ngOnInit(): void {
-    this.userData={imageUrl:''}
+    this.userData = { imageUrl: '' };
     // this.userData.email = this.currentUser.userEmail;
     // this.userData.gender = this.currentUser.userGender;
     // // this.userData.imageUrl = this.currentUser.userImage;
@@ -45,15 +46,18 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfoFromDb() {
-     this.usersService.getUserById(this.currentUser.userId).subscribe(
-      (res:{imageUrl:''}) => {
-        this.userData = res
+    this.usersService.getUserById(this.currentUser.userId).subscribe(
+      (res: { imageUrl: '' }) => {
+        this.userData = res;
       },
       (err) => {
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
+          location.replace('/login');
+        }
         console.log(err);
       }
     );
-    
   }
 
   // Image Preview
@@ -77,16 +81,16 @@ export class ProfileComponent implements OnInit {
 
   updateUserImg() {
     this.usersService
-      .updateUserImg(this.currentUser.userId, {'image': this.userData.image, 'imageUrl':this.userData.imageUrl})
+      .updateUserImg(this.currentUser.userId, {
+        image: this.userData.image,
+        imageUrl: this.userData.imageUrl,
+      })
       .subscribe(
         (res: userModel) => {
           // this.userData = res;
-          console.log('res succeeded');
-          console.log(res );
-          this.getUserInfoFromDb() ;
+          this.getUserInfoFromDb();
         },
         (err) => {
-          console.log('failed');
           console.log(err);
         }
       );

@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -16,9 +17,11 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private prdService: ProductsService,
-    public userService: UsersService
+    public userService: UsersService,
+    private router: Router
   ) {
     this.getPromotedProduts();
+    if (!userService.getCurrentUser()) this.router.navigate['/login'];
   }
 
   ngOnInit(): void {
@@ -27,6 +30,7 @@ export class ProductsListComponent implements OnInit {
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;
     else {
+      this.router.navigate['/login'];
       location.replace('/login');
     }
   }
@@ -40,6 +44,7 @@ export class ProductsListComponent implements OnInit {
       },
       (err) => {
         if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
         }
       }
@@ -53,8 +58,10 @@ export class ProductsListComponent implements OnInit {
         this.categoryName = 'Women';
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
   }
@@ -66,8 +73,10 @@ export class ProductsListComponent implements OnInit {
         this.categoryName = 'Men';
       },
       (err) => {
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
           location.replace('/login');
+        }
       }
     );
   }
@@ -80,7 +89,8 @@ export class ProductsListComponent implements OnInit {
       },
       (err) => {
         if (err.status === 401 || err.status === 403)
-          location.replace('/login');
+          this.router.navigate['/login'];
+        location.replace('/login');
       }
     );
   }

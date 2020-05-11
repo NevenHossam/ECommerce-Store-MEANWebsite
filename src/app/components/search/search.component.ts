@@ -21,16 +21,17 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  inputValueChanged(searchInputValue){
+  inputValueChanged(searchInputValue) {
     this.prdService.getProductByName(searchInputValue).subscribe(
       (res) => {
         this.productsList = res;
-        console.log('search')
       },
       (err) => {
-        console.log(err)
-        if (err.status === 401 || err.status === 403)
+        if (err.status === 401 || err.status === 403) {
           location.replace('/login');
+          this.router.navigate['/login'];
+        }
+        console.log(err);
       }
     );
   }

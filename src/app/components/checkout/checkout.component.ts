@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { OrdersService } from 'src/app/services/orders.service';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -22,12 +23,13 @@ export class CheckoutComponent implements OnInit {
   constructor(
     public prdService: ProductsService,
     private orderService: OrdersService,
-    public userService: UsersService
+    public userService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.user = this.userService.getCurrentUser();
-    console.log(this.prdService.localStorageName)
+    console.log(this.prdService.localStorageName);
     this.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
     this.shoppingCartTotal = this.prdService.getTotalCostFromLocalStorage();
 
@@ -60,6 +62,10 @@ export class CheckoutComponent implements OnInit {
         location.replace('/products');
       },
       (err) => {
+        if (err.status === 401 || err.status === 403) {
+          this.router.navigate['/login'];
+          location.replace('/login');
+        }
         console.log(err);
       }
     );

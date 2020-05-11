@@ -52,8 +52,10 @@ export class AddProductComponent implements OnInit, DoCheck {
           this.router.navigate(['products']);
         },
         (err) => {
-          if (err.status === 401 || err.status === 403)
+          if (err.status === 401 || err.status === 403) {
             this.router.navigate['/login'];
+            location.replace('/login');
+          }
         }
       );
       return true;
