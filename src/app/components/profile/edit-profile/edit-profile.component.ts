@@ -15,6 +15,7 @@ export class EditProfileComponent implements OnInit {
     password: "",
     newPassword: "",
     gender: "",
+    role:"",
     isPasswordUpdated: false
   };
   loginObject: {
@@ -35,39 +36,46 @@ export class EditProfileComponent implements OnInit {
 
   saveChanges() {
     this.loginObject.password = this.currentUser.userPassword;
+    console.log("password "+this.loginObject.password);
     if (
       this.currentUser.userName.length >= 6 &&
       this.currentUser.userName.length < 16 &&
       this.currentUser.userPassword.length > 4 &&
       this.currentUser.userEmail.length >= 7) {
       this.userService.loginUser(this.loginObject).subscribe((res) => {
+      
         this.updatedUser.username = this.currentUser.userName;
         this.updatedUser.password = this.currentUser.userPassword;
         this.updatedUser.email = this.currentUser.userEmail;
         this.updatedUser.gender = this.currentUser.userGender;
+        this.updatedUser.role = this.currentUser.role;
+        // this.updatedUser.imageUrl = this.currentUser.imageUrl;
         this.updatedUser.isPasswordUpdated = false;
+        console.log("pw" + this.updatedUser.password );
         this.userService.updateUserInfo(this.currentUser.userId, this.updatedUser)
           .subscribe(
-            (response: { accessToken: '' }) => {
-              let { accessToken } = response;
+            (response: { accessToken: '', userTokenObject:{} }) => {
+              let { accessToken, userTokenObject } = response;
               localStorage.removeItem('token');
               localStorage.removeItem('currentuser');
               localStorage.setItem('token', accessToken);
               localStorage.setItem(
                 'currentuser',
-                JSON.stringify(JSON.stringify(this.userService.getCurrentUser()))
+                JSON.stringify(userTokenObject)
               );
               this.Validation1 = "data is Updated Successfully";
               this.loginObject.email = this.currentUser.userEmail;
             }, (err) => {
-              console.log("Error" + err);
+              this.Validation2 =err.error;
             });
 
       }, (error) => {
         this.Validation1 = "please enter your password to update";
+        this.Validation2 ="";
       });
 
     } else {
+      this.Validation1="";
       this.Validation2 = "username length must be between 6 and 15, password must be 5 or more characters and valid email";
     }
 

@@ -28,7 +28,7 @@
                                 Enter Valid password..
                             </div>
 
-                            <div *ngIf="invalidLogin && !loginObject.email && !loginObject.password" class="alert alert-danger">
+                            <div *ngIf="invalidLogin || !loginObject.email || !loginObject.password" class="alert alert-danger">
                                 Invalid username and/or password.
                             </div>
 

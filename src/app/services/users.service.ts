@@ -75,12 +75,9 @@ export class UsersService {
 
   //Update user info
   updateUserInfo(id, user) {
-    console.log('service user')
-    console.log(user)
     let token = localStorage.getItem('token');
     return this.client.patch(this.baseUrl + '/' + id, user, {
-      // observe: 'body',
-      reportProgress: true,
+      observe: 'body',
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: token,
@@ -89,9 +86,9 @@ export class UsersService {
   }
 
   updateUserImg(id, userImg) {
+    debugger;
     let token = localStorage.getItem('token');
     return this.client.patch(this.baseUrl + '/img/' + id, userImg, {
-      // observe: 'body',
       reportProgress: true,
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

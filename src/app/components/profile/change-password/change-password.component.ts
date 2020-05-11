@@ -26,6 +26,7 @@ export class ChangePasswordComponent implements OnInit {
   }
   Validation1: string = "";
   Validation2: string = "";
+  Success: string="";
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
@@ -65,11 +66,17 @@ export class ChangePasswordComponent implements OnInit {
             }, (err) => {
               console.log("Error" + err);
             });
-
+        this.Success = "Password Updated Successfully";
+        this.Validation1 = "";
+        this.Validation2 = "";
       }, (error) => {
+        this.Success ="";
+        this.Validation2="";
         this.Validation1 = "please enter your password to update";
       });
     } else {
+      this.Success = "";
+      this.Validation1 = "";
       this.Validation2 = "password needs to be 6 or more characters";
     }
   }

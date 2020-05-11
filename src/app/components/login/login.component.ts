@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     email: '',
     password: '',
   };
-  invalidLogin: boolean = true;
+  invalidLogin: boolean = false;
   currentUser;
 
   constructor(private userServices: UsersService, private router: Router) {}
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       this.loginObject.password.length > 4 &&
       this.loginObject.email.length >= 7
     ) {
+      // debugger;
       this.userServices.loginUser(this.loginObject).subscribe(
         (response: { accessToken: ''; userObj: '' }) => {
           let { accessToken } = response;

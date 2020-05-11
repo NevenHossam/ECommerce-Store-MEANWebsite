@@ -11,15 +11,17 @@ import { userModel } from 'src/app/models/userModel';
 export class ProfileComponent implements OnInit {
   currentUser;
   userImgPreview;
-  userData: userModel = {
-    email: '',
-    gender: '',
-    password: '',
-    role: '',
-    username: '',
-    imageUrl: '',
+  imgRes={};
+  userData: {
+  //   email: '',
+  //   gender: '',
+  //   password: '',
+  //   role: '',
+  //   username: '',
+    imageUrl: string,
+    image?:File
+    
   };
-  imgObj;
 
   constructor(
     private usersService: UsersService,
@@ -29,33 +31,35 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userData.email = this.currentUser.userEmail;
-    this.userData.gender = this.currentUser.userGender;
-    this.userData.imageUrl = this.currentUser.userImage;
-    this.userData.image = this.currentUser.userImage;
-    this.userData.role = this.currentUser.role;
-    this.userData.username = this.currentUser.userName;
-    this.userData.password = this.currentUser.userPassword;
+    this.userData={imageUrl:''}
+    // this.userData.email = this.currentUser.userEmail;
+    // this.userData.gender = this.currentUser.userGender;
+    // // this.userData.imageUrl = this.currentUser.userImage;
+    // // this.userData.image = this.currentUser.userImage;
+    // this.userData.role = this.currentUser.role;
+    // this.userData.username = this.currentUser.userName;
+    // this.userData.password = this.currentUser.userPassword;
     // this.userData._id = this.currentUser.userId;
 
     this.getUserInfoFromDb();
   }
 
   getUserInfoFromDb() {
-    this.usersService.getUserById(this.currentUser.userId).subscribe(
-      (res: userModel) => {
-        this.userData = res;
+     this.usersService.getUserById(this.currentUser.userId).subscribe(
+      (res:{imageUrl:''}) => {
+        this.userData = res
       },
       (err) => {
         console.log(err);
       }
     );
+    
   }
 
   // Image Preview
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
-    this.userData.image = file;
+    // this.userData.image = file;
     // this.form.get('avatar').updateValueAndValidity()
 
     // File Preview
@@ -66,26 +70,23 @@ export class ProfileComponent implements OnInit {
 
       this.userData.image = this.userImgPreview;
       this.userData.imageUrl = file.name;
-      console.log('upload');
-      console.log(this.userData.image);
-      console.log(this.userData.imageUrl);
+      this.updateUserImg();
     };
     reader.readAsDataURL(file);
-    this.updateUserImg();
   }
 
   updateUserImg() {
-    console.log(this.userData);
     this.usersService
-      .updateUserInfo(this.currentUser.userId, this.userData)
+      .updateUserImg(this.currentUser.userId, {'image': this.userData.image, 'imageUrl':this.userData.imageUrl})
       .subscribe(
         (res: userModel) => {
-          this.userData = res;
+          // this.userData = res;
           console.log('res succeeded');
+          console.log(res );
+          this.getUserInfoFromDb() ;
         },
         (err) => {
           console.log('failed');
-          console.log(this.userData);
           console.log(err);
         }
       );

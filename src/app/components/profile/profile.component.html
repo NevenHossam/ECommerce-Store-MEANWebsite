@@ -30,8 +30,10 @@
                 <!--left col-->
                 <div class="text-center col-12">
                     <div class="m-2">
-                        <div class="preview" *ngIf="userImgPreview && userImgPreview !== null">
-                            <img [src]="userImgPreview" class="avatar rounded-circle img-thumbnail" />
+                        <div class="preview" >
+                            <img [src]="userData.image" *ngIf="userData.image" class="avatar rounded-circle img-thumbnail" />
+                            <img src="{{userData.imageUrl}}" *ngIf="userData.image === null" class="avatar rounded-circle img-thumbnail" />
+                            <!-- <img src="{{imgObj.image}}" class="avatar rounded-circle img-thumbnail" /> -->
                         </div>
                         <h6>Upload a photo</h6>
                         <input type="file" class="text-center center-block file-upload" (change)="uploadFile($event)" />
@@ -51,7 +53,7 @@
                                     <span class="pull-right"><strong class="">Email: </strong></span> {{ currentUser.userEmail }}
                                 </li>
                                 <li class="list-group-item text-left">
-                                    <span class="pull-right"><strong class="">Sex: </strong></span> {{ currentUser.userGender }}
+                                    <span class="pull-right"><strong class="">Gender: </strong></span> {{ currentUser.userGender }}
                                 </li>
                             </ul>
                         </div>

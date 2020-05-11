@@ -17,13 +17,13 @@ export class AppComponent {
     private prdService: ProductsService,
     private userService: UsersService
   ) {
-    debugger;
+    // debugger;
     this.prdService.initLocalStorageName();
     this.prdService.shoppingCartListOfProducts = this.prdService.getShoppingCartContent();
     this.prdService.shoppingCartTotalCost = this.prdService.getTotalCostOfCart();
-    debugger;
+    // debugger;
     userService.currentUserInfo = this.userService.getCurrentUser();
-    debugger;
+    // debugger;
     if (
       this.prdService.shoppingCartListOfProducts == null ||
       this.prdService.shoppingCartListOfProducts.length == 0
@@ -35,5 +35,6 @@ export class AppComponent {
           product.totalCost = product.price - product.promotion;
         else product.totalCost = product.price;
       });
+      // debugger;
   }
 }
