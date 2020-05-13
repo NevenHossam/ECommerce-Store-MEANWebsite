@@ -53,7 +53,7 @@
                                         {{ product.price | currency }}
                                     </td>
                                     <td>
-                                        <input class="form-control" style="width: 30%;" max="{{product.quantity}}" min="1" #count type="number" [(ngModel)]="product.count" (ngModelChange)="getTotalPriceOfShoppingCart()" />
+                                        <input class="form-control" style="width: 30%;" max="{{product.quantity-1}}" min="1" #count type="number" [(ngModel)]="product.count" (ngModelChange)="getTotalPriceOfShoppingCart()" />
                                     </td>
 
                                     <td>

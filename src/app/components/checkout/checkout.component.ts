@@ -59,7 +59,8 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartListOfProducts = [];
         this.prdService.clearShoppingCart();
         this.getTotalPriceOfShoppingCart();
-        location.replace('/products');
+        let profileId = this.userService.getCurrentUser().userId;
+        location.replace(`/profile/${{ profileId }}`);
       },
       (err) => {
         if (err.status === 401 || err.status === 403) {

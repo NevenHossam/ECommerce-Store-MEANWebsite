@@ -86,7 +86,6 @@ export class UsersService {
   }
 
   updateUserImg(id, userImg) {
-    debugger;
     let token = localStorage.getItem('token');
     return this.client.patch(this.baseUrl + '/img/' + id, userImg, {
       reportProgress: true,

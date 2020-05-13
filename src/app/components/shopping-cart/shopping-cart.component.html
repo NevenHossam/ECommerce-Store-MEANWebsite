@@ -1,7 +1,5 @@
 <app-dropdown>
-    <!-- header -->
     <ng-container class="dropDownHeader">
-        <!-- <div class="dropdown__header"> -->
         <div class="image image--small" style="background-image: url('assets/img/icons/icon-cart-big.svg'); margin: 5px; width: 20px; height: 20px;">
             <div>
                 <div class="notification notification--danger">
@@ -29,39 +27,6 @@
                         </div>
                     </div>
                 </li>
-
-                <!-- 
-                <li *ngFor="let prd of prdService.getShoppingCartContent()" class="dropdown__item list__item">
-
-                    <div class="item-small-1">
-                        <div class="item-small-1__data">
-                            <a href="" class="item-small-1__title">{{ prd.title }}</a>
-                            <span class="item-small-1__description">
-                               {{ prd.count }}X ${{ getFinalPriceForAproduct(prd) }}
-                            </span>
-                        </div>
-                        <div class="item-small-1__image-box">
-                            <a class="item-small-1__image image" style="background-image: url({{prd.image}});" *ngIf="prd.image">
-                            </a>
-                            <a class="item-small-1__image image" style="background-image: url({{prd.imageUrl}});" *ngIf="prd.image===null"></a>
-                        </div>
-                        <a class="item-small-1__action" (click)="removeFromShoppingCart(prd)">
-                            <i class="fas fa-times"></i>
-                        </a>
-                    </div>
-
-                    <button (click)="removeFromShoppingCart(prd)">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-
-                    <div class="item-small-1__image-box">
-                        <a href="#" class="item-small-1__image image" [style.backgroundImage]="'url(' + prd.productImage + ')'">
-                        </a>
-                        <a class="item-small-1__action" (click)="prdService.removeFromShoppingCart(prd)">
-                            <i class="fas fa-times"></i>
-                        </a>
-                    </div>
-                </li> -->
             </ul>
         </div>
         <div class="separator"></div>
@@ -69,11 +34,53 @@
             <span class="lable">Total:</span>
             <span class="lable">${{ prdService.getTotalCostFromLocalStorage() }}</span>
         </div>
-        <!-- actions -->
         <div class="block list list--hr">
             <a class="list-item btn btn--gray text-light" (click)="resetCart()">Reset</a>
             <a class="list-item btn btn--primary" routerLink="/checkout">Checkout</a>
         </div>
-        <!-- </div> -->
     </ng-container>
 </app-dropdown>
+
+
+<!-- <app-dropdown>
+    <ng-container class="dropDownHeader">
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Your Cart</span>
+            <div class="qty">3</div>
+        </a>
+    </ng-container>
+    <ng-container class="dropDownBody">
+        <div class="cart-list">
+            <div class="product-widget">
+                <div class="product-img">
+                    <img src="./img/product01.png" alt="">
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                    <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                </div>
+                <button class="delete"><i class="fa fa-close"></i></button>
+            </div>
+
+            <div class="product-widget">
+                <div class="product-img">
+                    <img src="./img/product02.png" alt="">
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                    <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                </div>
+                <button class="delete"><i class="fa fa-close"></i></button>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <small>3 Item(s) selected</small>
+            <h5>SUBTOTAL: $2940.00</h5>
+        </div>
+        <div class="cart-btns">
+            <a href="#">View Cart</a>
+            <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </ng-container>
+</app-dropdown> -->
