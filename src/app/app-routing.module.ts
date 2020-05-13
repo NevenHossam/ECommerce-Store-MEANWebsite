@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
+
+import { AuthGuardService } from './services/Auth/auth-guard.service';
 
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
@@ -18,31 +20,36 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
 import { UsersComponent } from './components/users/users.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AboutComponent } from './components/about/about.component';
-import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { RoleGuardService } from './services/Auth/role-guard-service.service';
+import { NoAccessComponent } from './components/no-access/no-access.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'products', component: ProductsListComponent },
-  { path: 'product/add', component: AddProductComponent },
-  { path: 'product/edit/:id', component: EditProductComponent },
-  { path: 'product/delete/:id', component: DeleteProductComponent },
-  { path: 'profile/:userId', component: ProfileComponent },
+  { path: 'products', component: ProductsListComponent, canActivate: [AuthGuardService] },
+  { path: 'product/add', component: AddProductComponent, canActivate: [AuthGuardService, RoleGuardService] },
+  { path: 'product/edit/:id', component: EditProductComponent , canActivate: [AuthGuardService, RoleGuardService]},
+  { path: 'product/delete/:id', component: DeleteProductComponent, canActivate: [AuthGuardService, RoleGuardService] },
+  { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'contact', component: ContactUsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'productDetails/:id', component: ProductDetailsComponent },
-  { path: 'search/:name', component: SearchComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'orders/:id', component: OrderItemComponent },
-  { path: 'users/:id/orders', component: UserOrdersComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'checkout', component: CheckoutComponent},
-  { path: 'about', component: AboutComponent }
+  { path: 'productDetails/:id', component: ProductDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'search/:name', component: SearchComponent, canActivate: [AuthGuardService] },
+  { path: 'orders', component: OrdersComponent , canActivate: [AuthGuardService, RoleGuardService]},
+  { path: 'orders/:id', component: OrderItemComponent, canActivate: [AuthGuardService] },
+  { path: 'users/:id/orders', component: UserOrdersComponent, canActivate: [AuthGuardService] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuardService, RoleGuardService] },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuardService] },
+  { path: 'about', component: AboutComponent },
+  { path: 'noAccess', component: NoAccessComponent },
+  { path: '**', component: NoAccessComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

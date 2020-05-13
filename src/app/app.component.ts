@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from './services/products.service';
 import { UsersService } from './services/users.service';
+import { AuthGuardService } from './services/Auth/auth-guard.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,6 @@ import { UsersService } from './services/users.service';
 })
 export class AppComponent {
   title = 'ECommerceAngular';
-
-  /**
-   *
-   */
   constructor(
     private prdService: ProductsService,
     private userService: UsersService

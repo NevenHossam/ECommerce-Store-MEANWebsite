@@ -38,7 +38,9 @@
                     <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!imgPreview">
                     <div class="form-group text-center m-3">
                         <span id="fileSpanContainer">
-                            <input id="fileUpload" #inputFile type="file" (change)="uploadFile($event)">
+                            <form method="post" enctype="multipart/form-data">
+                                <input id="fileUpload" name="image" #inputFile type="file" (change)="uploadFile($event)">
+                            </form>
                         </span>
                     </div>
                 </div>

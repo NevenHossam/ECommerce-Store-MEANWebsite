@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { ProductsService } from './services/products.service';
 import { UsersService } from './services/users.service';
 import { OrdersService } from './services/orders.service';
+import { AuthGuardService } from './services/Auth/auth-guard.service';
+import { AuthService } from './services/Auth/auth-service.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +41,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AboutComponent } from './components/about/about.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { ChangePasswordComponent } from './components/profile/change-password/change-password.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { RoleGuardService } from './services/Auth/role-guard-service.service';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +75,7 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
     AboutComponent,
     EditProfileComponent,
     ChangePasswordComponent,
+    NoAccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +87,15 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
     CommonModule,
     FontAwesomeModule,
   ],
-  providers: [ProductsService, OrdersService, UsersService],
+  providers: [
+    ProductsService,
+    OrdersService,
+    UsersService,
+    AuthGuardService,
+    AuthService,
+    JwtHelperService,
+    RoleGuardService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

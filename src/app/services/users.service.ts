@@ -47,6 +47,7 @@ export class UsersService {
     let token = localStorage.getItem('token');
     if (!token) return null;
     return new JwtHelperService().decodeToken(token);
+    // return localStorage.getItem('currentuser');
   }
 
   // Get All Users
