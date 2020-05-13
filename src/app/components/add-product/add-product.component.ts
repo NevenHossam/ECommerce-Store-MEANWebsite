@@ -64,24 +64,24 @@ export class AddProductComponent implements OnInit, DoCheck {
 
   // Image Preview
   uploadFile(event) {
-    debugger;
-    const file = (event.target as HTMLInputElement).files[0];
-    this.newProductObj.image = file;
-    // this.form.get('avatar').updateValueAndValidity()
+    const fileToUpload = (event.target as HTMLInputElement).files[0];
+    this.newProductObj.image = fileToUpload;
+    const fileName = fileToUpload.name;
+    this.newProductObj.image = fileToUpload;
+    this.newProductObj.imageUrl = fileName;
 
-    // File Preview
     const reader = new FileReader();
     reader.onload = () => {
       this.imgPreview = reader.result as string;
-      this.newProductObj.image = this.imgPreview;
-      this.newProductObj.imageUrl = file.name;
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(fileToUpload);
   }
 
   removeImg() {
+    console.log(this.newProductObj);
+    this.newProductObj.imageUrl = '/assets/products/default-product-image.png';
     this.newProductObj.image = null;
-    this.imgPreview = '';
+    this.imgPreview = '/assets/products/default-product-image.png';
   }
 
   cancelAddingProduct() {

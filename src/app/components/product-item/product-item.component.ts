@@ -22,8 +22,6 @@ export class ProductItemComponent implements OnInit {
     if (this.userService.getCurrentUser())
       this.currentUserRole = this.userService.getCurrentUser().role;
     else this.currentUserRole = '';
-
-    console.log(this.product.imageUrl);
   }
 
   getPrice() {

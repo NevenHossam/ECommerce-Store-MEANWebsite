@@ -86,14 +86,10 @@ export class UsersService {
     });
   }
 
-  updateUserImg(id, userImg) {
+  updateUserImg(id, userImg: File) {
     let token = localStorage.getItem('token');
-    return this.client.patch(this.baseUrl + '/img/' + id, userImg, {
-      reportProgress: true,
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: token,
-      }),
-    });
+    const formData: FormData = new FormData();
+    formData.append('image', userImg, userImg.name);
+    return this.client.patch(this.baseUrl + '/img/' + id, formData);
   }
 }

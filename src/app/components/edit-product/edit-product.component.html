@@ -29,7 +29,7 @@
                 <!-- <div class="slider__item active" style="background-image: url({{newProductObj.image}})"></div> -->
                 <div class="preview text-center">
                     <img style="width: 400px; height: 400;" [src]="imgPreview" *ngIf="imgPreview">
-                    <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!imgPreview">
+                    <img style="width: 400px; height: 400;" [src]="product.imageUrl" *ngIf="!imgPreview">
                     <div class="form-group text-center m-3">
                         <span>
                             <input #inputFile type="file" id="file" (change)="uploadFile($event)">

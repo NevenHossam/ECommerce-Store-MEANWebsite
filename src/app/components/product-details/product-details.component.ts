@@ -37,6 +37,8 @@ export class ProductDetailsComponent implements OnInit {
     this.getProductDetails();
   }
 
+  
+
   getProductDetails() {
     return this.prdService.getSpecificProduct(this.productId).subscribe(
       (res) => {

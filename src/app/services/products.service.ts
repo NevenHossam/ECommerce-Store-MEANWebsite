@@ -32,14 +32,14 @@ export class ProductsService implements OnInit {
       this.localStorageCartCost =
         'shoppingCartProductsTotalCost' +
         this.userService.getCurrentUser().userId;
-        if (
-          this.localStorageName == 'undefined' ||
-          localStorage.getItem(this.localStorageName)?.length == 0 ||
-          localStorage.getItem(this.localStorageName) == null
-          ) {
-            localStorage.setItem(this.localStorageName, JSON.stringify([]));
-            localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
-          }
+      if (
+        this.localStorageName == 'undefined' ||
+        localStorage.getItem(this.localStorageName)?.length == 0 ||
+        localStorage.getItem(this.localStorageName) == null
+      ) {
+        localStorage.setItem(this.localStorageName, JSON.stringify([]));
+        localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
+      }
     }
   }
 
@@ -60,8 +60,7 @@ export class ProductsService implements OnInit {
   }
   getShoppingCartContent() {
     let result = JSON.parse(localStorage.getItem(this.localStorageName));
-    if(result ==0)
-      return [];
+    if (result == 0) return [];
     return result;
   }
   addToShoppingCart(prd) {
@@ -137,7 +136,7 @@ export class ProductsService implements OnInit {
   getTotalCostFromLocalStorage() {
     return JSON.parse(localStorage.getItem(this.localStorageCartCost));
   }
-  resetCart(){
+  resetCart() {
     localStorage.setItem(this.localStorageCartCost, JSON.stringify(0));
     localStorage.setItem(this.localStorageName, JSON.stringify([]));
   }
@@ -203,11 +202,35 @@ export class ProductsService implements OnInit {
 
   addNewProduct(prd: productModel) {
     let token = localStorage.getItem('token');
-    return this.client.post(this.baseUrl, prd, {
+    const formData: FormData = new FormData();
+    let prdObjData = {
+      isDeleted: prd.isDeleted,
+      isPromoted: prd.isPromoted,
+      price: prd.price,
+      promotion: prd.promotion,
+      quantity: prd.quantity,
+      title: prd.title,
+      category: prd.category,
+      details: prd.details,
+    };
+    if (prd.image) formData.append('image', prd.image, prd.image.name);
+    formData.append('prd', JSON.stringify(prdObjData));
+
+    // formData.append('category', prd.category);
+    // formData.append('image', prd.details);
+    // formData.append('imageUrl', prd.imageUrl);
+    // formData.append('isPromoted', prd.isPromoted);
+    // formData.append('title', prd.title);
+    // formData.append('isDeleted', prd.isDeleted.toString());
+    // formData.append('price', prd.price);
+    // formData.append('promotion', JSON.stringify(prd.promotion));
+    // formData.append('quantity', JSON.stringify(prd.quantity));
+
+    return this.client.post(this.baseUrl, formData, {
       reportProgress: true,
       // observe: 'events',
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         Authorization: token,
       }),
     });
@@ -222,16 +245,40 @@ export class ProductsService implements OnInit {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 
   editSpecificProduct(id, prd) {
+    console.log('edit');
+    console.log(prd);
+
     let token = localStorage.getItem('token');
-    return this.client.patch(this.baseUrl + '/' + id, prd, {
-      observe: 'body',
+
+    const formData: FormData = new FormData();
+    let prdObjData = {
+      isDeleted: prd.isDeleted,
+      isPromoted: prd.isPromoted,
+      price: prd.price,
+      promotion: prd.promotion,
+      quantity: prd.quantity,
+      title: prd.title,
+      category: prd.category,
+      details: prd.details,
+      imageUrl: prd.imageUrl
+    };
+    if (prd.image) {
+      console.log(prd.image);
+      formData.append('image', prd.image, prd.image.name);
+    }
+    formData.append('prd', JSON.stringify(prdObjData));
+
+    console.log('formData');
+    console.log(formData);
+
+    return this.client.patch(`${this.baseUrl}/${id}`, formData, {
+      // observe: 'body',
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         Authorization: token,
       }),
     });

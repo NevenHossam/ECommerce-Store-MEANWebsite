@@ -31,11 +31,11 @@ export class EditProductComponent implements OnInit, DoCheck {
   ) {
     this.productId = activatedRouteObj.snapshot.params['id'] || '0';
     this.disabledFlag = this.product.isPromoted;
+    this.getProduct();
   }
 
   ngOnInit(): void {
     this.getProduct();
-    this.imgPreview = this.product.image;
   }
 
   ngDoCheck() {
@@ -47,8 +47,7 @@ export class EditProductComponent implements OnInit, DoCheck {
     this.prdService.getSpecificProduct(this.productId).subscribe(
       (res) => {
         this.product = res[0];
-        this.imgPreview = this.product.image;
-        console.log(this.product);
+        this.product.image = null;
       },
       (err) => {
         if (err.status === 401 || err.status === 403) {
@@ -67,12 +66,16 @@ export class EditProductComponent implements OnInit, DoCheck {
           (res) => {
             this.product = res;
             this.router.navigate['/products'];
+            
+            console.log('edit comp');
+            console.log(this.product);
           },
           (err) => {
             if (err.status === 401 || err.status === 403) {
               this.router.navigate['/login'];
               location.replace('/login');
             }
+            console.log(err)
           }
         );
       return true;
@@ -85,26 +88,26 @@ export class EditProductComponent implements OnInit, DoCheck {
 
   // Image Preview
   uploadFile(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.product.image = file;
-    // this.form.get('avatar').updateValueAndValidity()
+    const fileToUpload = (event.target as HTMLInputElement).files[0];
+    this.product.image = fileToUpload;
+    const fileName = fileToUpload.name;
+    this.product.image = fileToUpload;
+    this.product.imageUrl = fileName;
 
-    // File Preview
     const reader = new FileReader();
     reader.onload = () => {
       this.imgPreview = reader.result as string;
-      this.product.image = this.imgPreview;
-      this.product.imageUrl = file.name;
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(fileToUpload);
 
+    console.log('upload');
     console.log(this.product);
   }
 
   removeImg() {
-    console.log(this.product);
     this.product.imageUrl = '/assets/products/default-product-image.png';
     this.product.image = null;
-    this.imgPreview = '';
+    this.imgPreview = '/assets/products/default-product-image.png';
+    console.log(this.product);
   }
 }

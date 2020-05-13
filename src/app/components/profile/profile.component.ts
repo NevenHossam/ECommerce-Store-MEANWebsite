@@ -13,15 +13,16 @@ export class ProfileComponent implements OnInit {
   currentUser;
   userImgPreview;
   imgRes = {};
-  userData: {
-    //   email: '',
-    //   gender: '',
-    //   password: '',
-    //   role: '',
-    //   username: '',
-    imageUrl: string;
-    image?: File;
-  };
+  // userData: {
+  //   //   email: '',
+  //   //   gender: '',
+  //   //   password: '',
+  //   //   role: '',
+  //   //   username: '',
+  //   imageUrl: string;
+  //   image?: File;
+  // };
+  userData;
 
   constructor(
     private usersService: UsersService,
@@ -47,8 +48,12 @@ export class ProfileComponent implements OnInit {
 
   getUserInfoFromDb() {
     this.usersService.getUserById(this.currentUser.userId).subscribe(
-      (res: { imageUrl: '' }) => {
-        this.userData = res;
+      // (res: { imageUrl: '' }) => {
+      //   this.userData = res;
+        (res) => {
+          this.userData = res;
+          // console.log('profile res')
+          // console.log(res)
       },
       (err) => {
         if (err.status === 401 || err.status === 403) {
@@ -62,32 +67,36 @@ export class ProfileComponent implements OnInit {
 
   // Image Preview
   uploadFile(event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    // this.userData.image = file;
-    // this.form.get('avatar').updateValueAndValidity()
+    // const file = (event.target as HTMLInputElement).files[0];
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   this.userImgPreview = reader.result as string;
+    //   this.userData.image = this.userImgPreview;
+    //   this.userData.imageUrl = file.name;
+    //   this.updateUserImg();
+    // };
+    // reader.readAsDataURL(file);
 
-    // File Preview
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.userImgPreview = reader.result as string;
-      // this.imgObj = { image: this.userImgPreview, imageUrl: file.name };
 
-      this.userData.image = this.userImgPreview;
-      this.userData.imageUrl = file.name;
-      this.updateUserImg();
-    };
-    reader.readAsDataURL(file);
+    const fileToUpload = (event.target as HTMLInputElement).files[0];
+    const fileName = fileToUpload.name;
+    this.userData.image = fileToUpload;
+    this.userData.imageUrl = fileName;
+    this.updateUserImg();
+    // location.reload();
   }
 
   updateUserImg() {
     this.usersService
-      .updateUserImg(this.currentUser.userId, {
-        image: this.userData.image,
-        imageUrl: this.userData.imageUrl,
-      })
+      .updateUserImg(this.currentUser.userId, 
+        // {
+        // image: this.userData.image,
+        // imageUrl: this.userData.imageUrl,
+      // }
+      this.userData.image
+      )
       .subscribe(
         (res: userModel) => {
-          // this.userData = res;
           this.getUserInfoFromDb();
         },
         (err) => {

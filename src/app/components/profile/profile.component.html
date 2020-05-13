@@ -28,8 +28,9 @@
                     </div>
                     <div class="m-2">
                         <div class="preview">
-                            <img [src]="userData.image" *ngIf="userData.image" class="avatar rounded-circle img-thumbnail" style="width: 100%; height: 70%;" />
-                            <img src="{{ userData.imageUrl }}" *ngIf="!userData.image" class="avatar rounded-circle img-thumbnail" />
+                            <img [src]="userData.imageUrl" class="avatar rounded-circle img-thumbnail" style="width: 100%; height: 70%;" />
+                            <!-- <img [src]="userData.image" *ngIf="userData.image" class="avatar rounded-circle img-thumbnail" style="width: 100%; height: 70%;" />
+                            <img src="{{ userData.imageUrl }}" *ngIf="!userData.image" class="avatar rounded-circle img-thumbnail" /> -->
                         </div>
                         <h6>Upload a photo</h6>
                         <input type="file" class="text-center center-block file-upload" (change)="uploadFile($event)" />

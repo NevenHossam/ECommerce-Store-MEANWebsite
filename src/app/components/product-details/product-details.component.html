@@ -26,7 +26,7 @@
                             <div data-thumb="img/product_details/prodect_details_1.png" class="text-center">
                                 <div class="item-medium-1__alert" *ngIf="product.promotion && product.quantity > 0">Sale</div>
                                 <div class="item-medium-1__alert text-center" *ngIf="product.quantity == 0">Out Of Stock</div>
-                                <img [src]="product.image" style="width: 300px; height: 400px;" />
+                                <img [src]="product.imageUrl" style="width: 300px; height: 400px;" />
                             </div>
                         </div>
                     </div>
