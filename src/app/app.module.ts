@@ -44,6 +44,7 @@ import { ChangePasswordComponent } from './components/profile/change-password/ch
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RoleGuardService } from './services/Auth/role-guard-service.service';
 import { NoAccessComponent } from './components/no-access/no-access.component';
+import { SearchItemComponent } from './components/search/search-item/search-item.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { NoAccessComponent } from './components/no-access/no-access.component';
     EditProfileComponent,
     ChangePasswordComponent,
     NoAccessComponent,
+    SearchItemComponent,
   ],
   imports: [
     BrowserModule,

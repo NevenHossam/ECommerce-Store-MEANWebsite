@@ -32,8 +32,11 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <!-- Products -->
+                        <h3 class="pb-3 mb-4 font-italic border-bottom" *ngIf="productsList">
+                            Result
+                        </h3>
                         <ng-container class="col-lg-4 col-sm-6" *ngFor="let prd of productsList">
-                            <app-product-item [product]="prd" class="col-lg-4 col-sm-6"></app-product-item>
+                            <app-search-item [product]="prd" class="col-sm-12"></app-search-item>
                         </ng-container>
                     </div>
                 </div>
