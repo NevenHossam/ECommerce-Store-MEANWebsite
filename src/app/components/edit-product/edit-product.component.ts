@@ -23,6 +23,7 @@ export class EditProductComponent implements OnInit, DoCheck {
   @Input() productId;
   disabledFlag;
   imgPreview;
+  validationMsg='';
 
   constructor(
     private prdService: ProductsService,
@@ -59,14 +60,19 @@ export class EditProductComponent implements OnInit, DoCheck {
   }
 
   submitEditedProduct() {
-    if (this.product.price != 0 && this.product.title != '') {
+    if (
+      this.product.price != 0 &&
+      this.product.title != '' &&
+      this.product.promotion < this.product.price * 0.6
+    ) {
       this.prdService
         .editSpecificProduct(this.productId, this.product)
         .subscribe(
           (res) => {
             this.product = res;
             this.router.navigate['/products'];
-            
+            location.replace('/products')
+
             console.log('edit comp');
             console.log(this.product);
           },
@@ -75,11 +81,16 @@ export class EditProductComponent implements OnInit, DoCheck {
               this.router.navigate['/login'];
               location.replace('/login');
             }
-            console.log(err)
+            console.log(err);
+            this.validationMsg = err;
           }
         );
       return true;
-    } else return false;
+    } else {
+      this.validationMsg = 'Promotion must be less than 60% of the price';
+      console.log(this.validationMsg)
+      return false;
+    }
   }
 
   selectCategory(cat: string) {

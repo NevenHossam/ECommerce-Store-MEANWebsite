@@ -85,6 +85,9 @@
                         <input class="form-control" type="text" name="promotion" [(ngModel)]="newProductObj.promotion" [disabled]="disabledFlag" />
                     </div>
                 </div>
+                <div class="text-danger" *ngIf="validationMsg!==''">
+                    {{validationMsg}}
+                </div>
                 <div class="form-group">
                     <label for="">Quantity</label>
                     <input class="form-control" type="number" name="quantity" [(ngModel)]="newProductObj.quantity">

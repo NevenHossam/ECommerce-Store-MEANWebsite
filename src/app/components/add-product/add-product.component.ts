@@ -30,6 +30,7 @@ export class AddProductComponent implements OnInit, DoCheck {
   @Output() isPromotedCheckEvent = new EventEmitter();
   disabledFlag: boolean = true;
   imgPreview;
+  validationMsg='';
 
   constructor(private prdService: ProductsService, private router: Router) {}
 
@@ -45,21 +46,32 @@ export class AddProductComponent implements OnInit, DoCheck {
   }
 
   addNewProduct() {
-    if (this.newProductObj.price != 0 && this.newProductObj.title != '') {
+    if (
+      this.newProductObj.price != 0 &&
+      this.newProductObj.title != '' &&
+      this.newProductObj.promotion < this.newProductObj.price * 0.6
+    ){
       this.prdService.addNewProduct(this.newProductObj).subscribe(
         (res: productModel) => {
           this.newProductObj = res;
-          this.router.navigate(['products']);
+          this.router.navigate['/products'];
+          location.replace('/products')
         },
         (err) => {
           if (err.status === 401 || err.status === 403) {
             this.router.navigate['/login'];
             location.replace('/login');
           }
+          console.log(err);
+            this.validationMsg = err;
         }
       );
       return true;
-    } else return false;
+    } else {
+      this.validationMsg = 'Promotion must be less than 60% of the price';
+      console.log(this.validationMsg)
+      return false;
+    }
   }
 
   // Image Preview
