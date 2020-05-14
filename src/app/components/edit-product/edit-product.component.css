@@ -18,27 +18,6 @@
     justify-content: space-between;
     align-items: center;
 }
-
-.block {
-    padding: 1.7rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-}
-
-.separator {
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    width: 100%;
-}
-
-.flex-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
 *,
 *:after,
 *:before {
@@ -59,55 +38,9 @@
     /* Non-prefixed version, currently supported by Chrome and Opera */
 }
 
-html {
-    font-size: 62.5%;
-}
-
-body {
-    /* font-size: 1.26rem;
-    font-family: "Open Sans", Arial, sans-serif; */
-    box-sizing: border-box;
-    height: 1200px;
-}
-
-h1 {
-    /* font-size: 2.8rem;
-    font-weight: 700; */
-    padding-bottom: 1rem;
-}
-
-h3 {
-    /* font-size: 1.96rem;
-    font-weight: 400; */
-    margin-bottom: 1.6rem;
-}
-
-h4 {
-    color: #0088CC;
-    /* font-size: 1.68rem; */
-    text-transform: capitalize;
-    /* font-weight: 700; */
-}
-
-h5 {
-    color: #212529;
-    /* font-size: 1.4rem; */
-    text-transform: uppercase;
-    margin: 1.6rem 0;
-}
-
 a {
     text-decoration: none;
     color: #999;
-}
-
-li {
-    list-style: none;
-}
-
-del {
-    color: rgba(145, 145, 145, 0.5);
-    /* font-size: 1.3rem; */
 }
 
 input[type="text"],
@@ -127,46 +60,6 @@ input[type="color"],
 button,
 textarea {
     -webkit-appearance: none;
-}
-
-strong {
-    /* font-weight: 700; */
-}
-
-.data-item-1 {
-    display: flex;
-    justify-content: space-between;
-}
-
-.data-item-1__left-side {
-    margin-right: 5rem;
-}
-
-.data-item-1__header {
-    /* font-size: 3.08rem;
-    font-weight: 700; */
-    margin-bottom: 1.6rem;
-}
-
-.data-item-1__desc-lg {
-    /* font-size: 2rem;
-    font-weight: 400; */
-    margin-bottom: 1.6rem;
-}
-
-.data-item-1__desc-sm {
-    /* font-size: 1.4rem;
-    font-weight: 400; */
-}
-
-.data-item-1__desc-sm:not(:last-of-type) {
-    margin-bottom: 1.6rem;
-}
-
-.data-item-1__right-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .action-btn {
