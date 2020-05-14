@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TooltipModule } from 'ng2-tooltip-directive';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 
 import { ProductsService } from './services/products.service';
 import { UsersService } from './services/users.service';
@@ -86,7 +86,7 @@ import { SearchItemComponent } from './components/search/search-item/search-item
     FormsModule,
     Ng2SearchPipeModule,
     TooltipModule,
-    CommonModule,
+    // CommonModule,
     FontAwesomeModule,
   ],
   providers: [

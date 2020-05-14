@@ -23,11 +23,11 @@
         "@auth0/angular-jwt": "^4.0.0",
         "@fortawesome/angular-fontawesome": "^0.6.1",
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
+        "@fortawesome/free-brands-svg-icons": "^5.13.0",
+        "@fortawesome/free-regular-svg-icons": "^5.13.0",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
-        "angular-font-awesome": "^3.1.2",
         "angular-jwt": "github:auth0/angular-jwt",
         "bootstrap": "^4.4.1",
-        "font-awesome": "^4.7.0",
         "http": "0.0.1-security",
         "httpclient": "^0.1.0",
         "jquery": "^3.4.1",
@@ -61,6 +61,6 @@
     },
     "engines": {
         "node": "~12.16.2",
-        "npm":"~6.13.7 "
+        "npm": "~6.13.7 "
     }
 }
