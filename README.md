@@ -1,15 +1,24 @@
 TECHNOLOGIES
+------------
 Backend: Node.js using express and mongodb.
 Frontend: Angular Framework.
 
 FEATURES
+--------
 Here’s a summary of our application, but also you can watch our demo in the ‘Demo Video’ folder.
+
+
 ANONYMOUS:
+----------
 Any anonymous’ navbar has links for: Homepage, About, Contact us, Login and Register.
 The home page only contains the promoted products. (for all users’ types).
 He can’t see any products (but promoted ones) via products tab or search bar if he did not sign in.
 If he tries to browse “Products list, Orders or Users one”, he’ll be redirected to the Login page.
+
+-------------------------------------------------------------
+
 MEMBER:
+-------
 Any new registered user is assigned as a “member” and only one user is assigned as an “admin” in the database.
 The member’s navbar has links for: Homepage, Profile, Products, About, Contact us, Search, Shopping Cart icon and Logout.
 The user’s profile page has the following:
@@ -32,7 +41,11 @@ Checkout button to place the order if you are done browsing, it redirects to a c
 Reset button to clear your shopping cart.
 If he tries to browse “Orders list or Users one”, he’ll be redirected to the No Access page.
 Logout makes you an anonymous user.
+
+-------------------------------------------------------------
+
 ADMIN:
+------
 The admin’s navbar has links for: Homepage, Profile, Products, Orders, Users, About, Contact us, Search, Shopping Cart icon and Logout.
 In the Products tab, the admin can either view the list of products, edit a specific products’s information, create a new product or even delete a specific one.
 In the Orders tab, the admin can either view the list of orders which are divided into 3 subcategories (Pending, Accepted, Rejected).
