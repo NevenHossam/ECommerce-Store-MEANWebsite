@@ -46,8 +46,8 @@
                                         <div class="ml-4">
                                             {{ product.title }}
                                         </div>
-                                        <img src="{{ product.image }}" *ngIf="product.image" width="100px" height="100px" />
-                                        <img src="assets/products/default-product-image.png" *ngIf="!product.image" width="100px" height="100px" />
+                                        <img src="{{ product.imageUrl }}" *ngIf="product.imageUrl" width="100px" height="100px" />
+                                        <img src="assets/products/default-product-image.png" *ngIf="!product.imageUrl" width="100px" height="100px" />
                                     </td>
                                     <td>
                                         {{ product.price | currency }}

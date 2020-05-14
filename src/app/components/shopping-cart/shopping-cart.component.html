@@ -22,8 +22,8 @@
                             </span>
                         </div>
                         <div class="item-small-1__image-box">
-                            <img class="item-small-1__image image" [src]="prd.image" *ngIf="prd.image" />
-                            <img class="item-small-1__image image" [src]="prd.image" *ngIf="prd.image===null" />
+                            <img class="item-small-1__image image" [src]="prd.imageUrl" *ngIf="prd.imageUrl" />
+                            <img class="item-small-1__image image" [src]="prd.imageUrl" *ngIf="!prd.imageUrl" />
                         </div>
                     </div>
                 </li>

@@ -34,8 +34,8 @@
                 <div class="modal-body">
                     <div class="single_category_product">
                         <div class="single_category_img text-center">
-                            <img style="width: 400px; height: 400;" [src]="product.image" *ngIf="product.image">
-                            <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!product.image">
+                            <img style="width: 400px; height: 400;" [src]="product.imageUrl" *ngIf="product.imageUrl">
+                            <img style="width: 400px; height: 400;" src="assets/products/default-product-image.png" *ngIf="!product.imageUrl">
                             <!-- <img [src]="product.image" style="height: 30%; width: 85%;" /> -->
                             <div class="category_product_text">
                                 <h5>{{ product.title }}</h5>

@@ -2,8 +2,8 @@
 <div class="single_category_product">
     <div class="single_category_img">
         <a routerLink="/productDetails/{{ product._id }}">
-            <img [src]="product.image" *ngIf="product.image" />
-            <img [src]="product.imageUrl" *ngIf="product.image === null" />
+            <img [src]="product.imageUrl" *ngIf="product.imageUrl" />
+            <img [src]="product.imageUrl" *ngIf="!product.imageUrl" />
         </a>
         <div class="category_social_icon">
             <ul>

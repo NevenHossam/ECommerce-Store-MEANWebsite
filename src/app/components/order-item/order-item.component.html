@@ -1,8 +1,11 @@
 <style>
-        th, td,a , p{
-          font-weight: bold;
-        }
-      </style>
+    th,
+    td,
+    a,
+    p {
+        font-weight: bold;
+    }
+</style>
 <!-- breadcrumb start-->
 <section class="breadcrumb breadcrumb_bg">
     <div class="container">
@@ -30,11 +33,21 @@
                     <table class="table m-3">
                         <thead>
                             <tr>
-                                <th scope="col"><h4>Product No</h4></th>
-                                <th scope="col"><h4>Product</h4></th>
-                                <th scope="col"><h4>Price</h4></th>
-                                <th scope="col"><h4>Count</h4></th>
-                                <th scope="col"><h4>Cost</h4></th>
+                                <th scope="col">
+                                    <h4>Product No</h4>
+                                </th>
+                                <th scope="col">
+                                    <h4>Product</h4>
+                                </th>
+                                <th scope="col">
+                                    <h4>Price</h4>
+                                </th>
+                                <th scope="col">
+                                    <h4>Count</h4>
+                                </th>
+                                <th scope="col">
+                                    <h4>Cost</h4>
+                                </th>
                             </tr>
                         </thead>
                         <ng-container class="col-lg-4 col-sm-6" *ngFor="let product of products;let i=index;">
@@ -43,7 +56,7 @@
                                     {{i+1}}
                                 </td>
                                 <td>
-                                    <img src="{{product.Product.image}}" width="100px" height="100px" />
+                                    <img src="{{product.Product.imageUrl}}" width="100px" height="100px" />
                                     <br/> {{product.Product.title}}
                                 </td>
                                 <td>
@@ -66,5 +79,5 @@
             </div>
         </div>
     </section>
-    
+
 </body>
