@@ -13,7 +13,7 @@ import { orderModel } from '../models/orderModel';
   providedIn: 'root',
 })
 export class ProductsService implements OnInit {
-  private baseUrl = 'http://localhost:3000/api/products';
+  private baseUrl = 'http://winterecommerceapp.herokuapp.com/api/products';
   allProducts;
   public shoppingCartListOfProducts = [];
   public localStorageName;

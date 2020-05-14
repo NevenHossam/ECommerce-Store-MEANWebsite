@@ -6,7 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class UsersService {
-  private baseUrl = 'http://localhost:3000/api/users';
+  private baseUrl = 'http://winterecommerceapp.herokuapp.com/api/users';
   currentUserInfo;
 
   constructor(private client: HttpClient) {}

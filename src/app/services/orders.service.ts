@@ -6,7 +6,7 @@ import { orderModel } from '../models/orderModel';
   providedIn: 'root',
 })
 export class OrdersService {
-  private baseUrl = 'http://localhost:3000/api/';
+  private baseUrl = 'http://winterecommerceapp.herokuapp.com/api/';
 
   constructor(private client: HttpClient) {}
 
