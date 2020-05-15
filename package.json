@@ -28,13 +28,13 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "angular-jwt": "github:auth0/angular-jwt",
         "bootstrap": "^4.4.1",
-        "express": "^4.17.1",
         "http": "0.0.1-security",
         "httpclient": "^0.1.0",
         "jquery": "^3.4.1",
         "jwt-decode": "^2.2.0",
         "ng2-search-filter": "^0.5.1",
         "ng2-tooltip-directive": "^2.9.20",
+        "path": "^0.12.7",
         "rxjs": "~6.5.4",
         "tslib": "^1.10.0",
         "zone.js": "~0.10.2"
@@ -48,6 +48,7 @@
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.12.37",
         "codelyzer": "^5.1.2",
+        "express": "^4.17.1",
         "jasmine-core": "~3.5.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~4.4.1",
@@ -58,7 +59,6 @@
         "protractor": "~5.4.3",
         "ts-node": "~8.3.0",
         "tslint": "^6.1.2",
-        "express": "^4.17.1",
         "typescript": "~3.8.3"
     },
     "engines": {
