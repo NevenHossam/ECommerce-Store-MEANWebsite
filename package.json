@@ -28,12 +28,9 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "angular-jwt": "github:auth0/angular-jwt",
         "bootstrap": "^4.4.1",
-        <<
-        << << < HEAD "express": "^4.17.1",
+        "express": "^4.17.1",
         "heroku": "^7.41.1",
-        ===
-        === = >>>
-        >>> > a7ad25e875d3c76085bce5473a4b11bb4a985978 "http": "0.0.1-security",
+        "http": "0.0.1-security",
         "httpclient": "^0.1.0",
         "jquery": "^3.4.1",
         "jwt-decode": "^2.2.0",
