@@ -8,7 +8,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "postinstall": "ng build --aot --prod"
+        "postinstall": "npm run build"
     },
     "private": true,
     "dependencies": {
@@ -29,6 +29,7 @@
         "angular-jwt": "github:auth0/angular-jwt",
         "bootstrap": "^4.4.1",
         "express": "^4.17.1",
+        "heroku": "^7.41.1",
         "http": "0.0.1-security",
         "httpclient": "^0.1.0",
         "jquery": "^3.4.1",
