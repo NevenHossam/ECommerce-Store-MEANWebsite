@@ -1,10 +1,10 @@
 {
-    "name": "ecommerce-angular",
+    "name": "ECommerceAngular",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
         "start": "node server.js",
-        "build": "ng build",
+        "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
@@ -28,6 +28,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "angular-jwt": "github:auth0/angular-jwt",
         "bootstrap": "^4.4.1",
+        "express": "^4.17.1",
         "http": "0.0.1-security",
         "httpclient": "^0.1.0",
         "jquery": "^3.4.1",
@@ -57,6 +58,7 @@
         "protractor": "~5.4.3",
         "ts-node": "~8.3.0",
         "tslint": "^6.1.2",
+        "express": "^4.17.1",
         "typescript": "~3.8.3"
     },
     "engines": {
